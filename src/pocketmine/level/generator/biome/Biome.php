@@ -53,7 +53,7 @@ abstract class Biome{
 	const ICE_PLAINS = 12;
 	const SMALL_MOUNTAINS = 20;
 	const BIRCH_FOREST = 27;
-	const EXTREME_HILLS+ = 34;
+	const EXTREME_HILLS = 34;
 	/*
     SWAMPLAND,-> added (6)
     FOREST, -> added (4)
