@@ -3,6 +3,8 @@ Apollo is better software for MCPE Server. Epic world changes :)
 
 Travis-CI : https://travis-ci.org/NycuRO/Apollo
 
+Telegram group ,anyone can join : https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw
+
 #InDEV
 
 Epic features:
