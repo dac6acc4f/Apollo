@@ -53,17 +53,18 @@ abstract class Biome{
 	const ICE_PLAINS = 12;
 	const SMALL_MOUNTAINS = 20;
 	const BIRCH_FOREST = 27;
+	const EXTREME_HILLS+ = 27;
 	/*
-    SWAMPLAND,
-    FOREST,
-    TAIGA,
-    DESERT,
-    PLAINS,
-    HELL,
-    SKY,
-    OCEAN,
-    RIVER,
-    EXTREME_HILLS,
+    SWAMPLAND,-> added (6)
+    FOREST, -> added (4)
+    TAIGA, -> added (5)
+    DESERT, -> added (2)
+    PLAINS, -> added (1)
+    HELL, -> added (8)
+    SKY, -> idk is this.. :/
+    OCEAN, -> added (0)
+    RIVER, -> added (7)
+    EXTREME_HILLS, -> in construction (34)
     FROZEN_OCEAN,
     FROZEN_RIVER,
     ICE_PLAINS,
