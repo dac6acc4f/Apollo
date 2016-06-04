@@ -1,8 +1,7 @@
 # Apollo [![Travis-CI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)]
 Apollo is better software for MCPE Server. Epic world changes :)
 
-TRAVIS-LINK :
-(https://travis-ci.org/NycuRO/Apollo)]
+Travis-CI : https://travis-ci.org/NycuRO/Apollo
 
 #InDEV
 
