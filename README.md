@@ -11,7 +11,7 @@ Epic features:
 Anyone can help me with Pull Request and create new request for Develop ;)
 
 TODO :
-- Ready ExtremeHills+ Biome (34)
+- ExtremeHills+ Biome (34)
     ~*~ Temperature: 0.2
 
 Stone, Dirt, Spruce Trees, Oak Trees
