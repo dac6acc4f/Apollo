@@ -95,7 +95,7 @@ class AutoUpdater{
 	}
 
 	public function showPlayerUpdate(Player $player){
-		$player->sendMessage(TextFormat::DARK_PURPLE . "The version of Apollo@ that this server is running is out of date. Please consider updating to the latest version.");
+		$player->sendMessage(TextFormat::DARK_PURPLE . "The version of Apollo that this server is running is out of date. Please consider updating to the latest version.");
 		$player->sendMessage(TextFormat::DARK_PURPLE . "Check the console for more details.");
 	}
 
