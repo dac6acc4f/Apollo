@@ -9,3 +9,11 @@ Epic features:
 - No lag , minor bugs
 
 Anyone can help me with Pull Request and create new request for Develop ;)
+
+TODO :
+- Ready ExtremeHills+ Biome (34)
+    ~*~ Temperature: 0.2
+
+Stone, Dirt, Spruce Trees, Oak Trees
+
+A variant of the regular extreme hills biome, adding larger mountains, steeper cliffs, and a moderate amount of spruce trees and scattered oak trees.
