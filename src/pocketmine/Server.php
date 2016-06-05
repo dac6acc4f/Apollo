@@ -1741,7 +1741,7 @@ class Server{
 		   §9Apollo §fis a fork of PocketMine-MP.
 		   §fVersion: §6" . $this->getPocketMineVersion() . "
 		   §fClient Version: §d". \pocketmine\MINECRAFT_VERSION ."
-		   §fYou can get the lastest code on https://github.com/NycuRO/Apollo
+		   §fYou can get the latest code on https://github.com/NycuRO/Apollo
 		\n";
 
 		$this->about();
