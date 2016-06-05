@@ -1,12 +1,10 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\network\protocol\Info;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
-
 class VersionCommand extends VanillaCommand{
 
 	public function __construct($name){
