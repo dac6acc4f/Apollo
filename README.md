@@ -1,4 +1,4 @@
-# Apollo ~ [![Travis-CI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)]
+# Apollo
 Apollo is a Minecraft: PE Server Software with an improved Generator and a lot more features. 
 
 **TravisCI Build Status** [![TravisCI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)](https://travis-ci.org/NycuRO/Apollo "TravisCI Build Status")
