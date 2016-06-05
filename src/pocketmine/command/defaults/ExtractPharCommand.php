@@ -10,7 +10,7 @@ class ExtractPharCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"Extracts the source code from a Phar file",
-			"/extractphar <Phar file Name>"
+			"/extractphar <file>"
 		);
 		$this->setPermission("pocketmine.command.extractphar");
 	}
