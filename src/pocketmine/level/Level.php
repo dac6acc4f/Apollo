@@ -112,8 +112,12 @@ class Level implements ChunkManager, Metadatable{
 	const TIME_SUNSET = 12000;
 	const TIME_NIGHT = 14000;
 	const TIME_SUNRISE = 23000;
-
 	const TIME_FULL = 24000;
+
+	const MAX_X = 50000;
+	const MIN_Y = -1;
+	const MAX_Y = 127;
+	const MIN_Z = -50000;
 
 	const DIMENSION_NORMAL = 0;
 	const DIMENSION_NETHER = 1;
