@@ -1,22 +1,4 @@
 <?php
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- * 
- *
-*/
 namespace pocketmine\level;
 use pocketmine\block\Block;
 use pocketmine\entity\Entity;
@@ -28,17 +10,17 @@ use pocketmine\item\Item;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Math;
 use pocketmine\math\Vector3;
-use pocketmine\nbt\tag\ByteTag;
+use pocketmine\nbt\tag\Byte;
 use pocketmine\nbt\tag\Compound;
-use pocketmine\nbt\tag\Double as DoubleTag;
+use pocketmine\nbt\tag\Double;
 use pocketmine\nbt\tag\Enum;
-use pocketmine\nbt\tag\Float as FloatTag;
+use pocketmine\nbt\tag\Float;
 use pocketmine\network\Network;
 use pocketmine\network\protocol\ExplodePacket;
 use pocketmine\Server;
 use pocketmine\utils\Random;
 class Explosion{
-	private $rays = 16; //Rays
+	private $rays = 16;
 	public $level;
 	public $source;
 	public $size;
@@ -159,20 +141,20 @@ class Explosion{
 				$mot = (new Random())->nextSignedFloat() * M_PI * 2;
 				$tnt = Entity::createEntity("PrimedTNT", $this->level->getChunk($block->x >> 4, $block->z >> 4), new Compound("", [
 					"Pos" => new Enum("Pos", [
-						new DoubleTag("", $block->x + 0.5),
-						new DoubleTag("", $block->y),
-						new DoubleTag("", $block->z + 0.5)
+						new Double("", $block->x + 0.5),
+						new Double("", $block->y),
+						new Double("", $block->z + 0.5)
 					]),
 					"Motion" => new Enum("Motion", [
-						new DoubleTag("", -sin($mot) * 0.02),
-						new DoubleTag("", 0.2),
-						new DoubleTag("", -cos($mot) * 0.02)
+						new Double("", -sin($mot) * 0.02),
+						new Double("", 0.2),
+						new Double("", -cos($mot) * 0.02)
 					]),
 					"Rotation" => new Enum("Rotation", [
-						new FloatTag("", 0),
-						new FloatTag("", 0)
+						new Float("", 0),
+						new Float("", 0)
 					]),
-					"Fuse" => new ByteTag("Fuse", mt_rand(10, 30))
+					"Fuse" => new Byte("Fuse", mt_rand(10, 30))
 				]));
 				$tnt->spawnToAll();
 			}elseif(mt_rand(0, 100) < $yield){
