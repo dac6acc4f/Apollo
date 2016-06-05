@@ -1,13 +1,11 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\level\Level;
 use pocketmine\level\weather\Weather;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
-
 class WeatherCommand extends VanillaCommand{
 
 	public function __construct($name){
