@@ -8,7 +8,6 @@ branches:
 
 before_script:
  - mkdir -p plugins/Apollo
- - ls
  - pecl install channel://pecl.php.net/pthreads-2.0.10
  - pecl install channel://pecl.php.net/weakref-0.2.6
  - echo | pecl install channel://pecl.php.net/yaml-1.1.1
