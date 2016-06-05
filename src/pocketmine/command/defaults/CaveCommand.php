@@ -3,9 +3,7 @@
  * Author: boybook
  * OpenGenisys Project
  */
-
 namespace pocketmine\command\defaults;
-
 use pocketmine\block\Air;
 use pocketmine\block\Block;
 use pocketmine\block\Lava;
@@ -18,9 +16,7 @@ use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
-
 class CaveCommand extends VanillaCommand{
-
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -29,21 +25,17 @@ class CaveCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.cave");
 	}
-
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-
 		if($sender instanceof Player and $args[0] == "getmypos"){
 			$sender->sendMessage("You position ({$sender->getX()}, {$sender->getY()}, {$sender->getZ()}, {$sender->getLevel()->getFolderName()})");
 			return true;
 		}
-
 		//0:旋转角度 1:洞穴长度 2:分叉数 3:洞穴强度
 		if(count($args) != 8){
 			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
-
 			return false;
 		}
 		$level = $sender->getServer()->getLevelByName($args[7]);
@@ -64,22 +56,18 @@ class CaveCommand extends VanillaCommand{
 		$sender->sendMessage("[Caves] " . TextFormat::GREEN . "%commands.cave.success");
 		return true;
 	}
-
 	public function chu($v1, $v2){
 		if($v2 == 0) return 0;
 		return $v1 / $v2;
 	}
-
 	public function getDirectionVector($yaw, $pitch){
 		$y = -\sin(\deg2rad($pitch));
 		$xz = \cos(\deg2rad($pitch));
 		$x = -$xz * \sin(\deg2rad($yaw));
 		$z = $xz * \cos(\deg2rad($yaw));
-
 		$temporalVector = new Vector3($x, $y, $z);
 		return $temporalVector->normalize();
 	}
-
 	public function caves(Position $pos, $cave, $tt = false){
 		$x = $pos->x;
 		$y = $pos->y;
@@ -109,7 +97,6 @@ class CaveCommand extends VanillaCommand{
 			//$s2[0] = $s1[0] -\sin($yaw / 180 * M_PI) * \cos($pitch / 180 * M_PI) * $i;
 			//$s2[1] = $s1[1] +\sin($pitch / 180 * M_PI) * $i;
 			//$s2[2] = $s1[2] + \cos($yaw / 180 * M_PI) * \cos($pitch / 180 * M_PI) * $i;
-
 			#echo "s1: ";
 			//var_dump($s1);
 			$see = $this->getDirectionVector($yaw, $pitch);
@@ -128,10 +115,8 @@ class CaveCommand extends VanillaCommand{
 				$newPos = new Position($s2[0], $s2[1], $s2[2], $level);
 				$this->caves($newPos, [$yaw + 90 * (round(mt_rand(0, 100) / 100) * 2 - 1), $ls - $u, $cv, [false, $cave[3][1], $cave[3][2]], 0], $tt);
 			}
-
 			//$exPos = new Position($s2[0], $s2[1], $s2[2], $level);
 			//$this->explodeBlocks($exPos, mt_rand(2, 4), mt_rand(1, 4));
-
 			if(mt_rand(0, 100) > 80){
 				$add = mt_rand(-10, 10);
 			}else{
@@ -140,7 +125,6 @@ class CaveCommand extends VanillaCommand{
 			$yaw = $yaw + $add;
 			$yaw = $yaw % 360;
 			$yaw = $yaw >= 0 ? $yaw : 360 + $yaw;
-
 			//$i = 5 + mt_rand(0, 100) * 0.05;
 			$x = $s1[0];
 			$y = $s1[1];
@@ -180,16 +164,13 @@ class CaveCommand extends VanillaCommand{
 					}
 				}
 			}
-
 			//if ($level->getBlock(new Vector3($s2[0], $s2[1] - 4, $s2[2]))->getId() != 0 && $cave[3][2] && mt_rand(0, 100) / 100 > 0.5) $this->tiankengy($level, $s2[0], $s2[1], $s2[2], $l * 0.6, 11, 0);
 		} else if ($cave[3][2]) {
 			$l = $cave[4];
 			if ($pitch < -10 && $pitch > -45 && $level->getBlock(new Vector3($s2[0], $s2[1] - 3, $s2[2]))->getId() != 0) $this->tiankengy($level, $s2[0], $s2[1], $s2[2], $l / 2, 11, 0);
 		}*/
 		//echo "\n 矿洞生成完成\n";
-
 	}
-
 	public function lavaSpawn(Level $level, $x, $y, $z){
 		$level->getServer()->getLogger()->info("生成岩浆中 " . "floor($x)" . ", " . "floor($y)" . ", " . floor($z));
 		for($xx = $x - 20; $xx <= $x + 20; $xx++){
@@ -205,7 +186,6 @@ class CaveCommand extends VanillaCommand{
 		}
 		$level->setBlock(new Vector3($x, $y, $z), new Lava());
 	}
-
 	public function explodeBlocks(Position $source, $rays = 16, $size = 4){
 		$vector = new Vector3(0, 0, 0);
 		$vBlock = new Vector3(0, 0, 0);
@@ -221,7 +201,6 @@ class CaveCommand extends VanillaCommand{
 						$pointerX = $source->x;
 						$pointerY = $source->y;
 						$pointerZ = $source->z;
-
 						for($blastForce = $size * (\mt_rand(700, 1300) / 1000); $blastForce > 0; $blastForce -= $stepLen * 0.75){
 							$x = (int) $pointerX;
 							$y = (int) $pointerY;
@@ -233,7 +212,6 @@ class CaveCommand extends VanillaCommand{
 								break;
 							}
 							$block = $source->getLevel()->getBlock($vBlock);
-
 							if($block->getId() !== 0){
 								$blastForce -= (mt_rand(1, 3) / 5 + 0.3) * $stepLen;
 								if($blastForce > 0){
@@ -256,7 +234,6 @@ class CaveCommand extends VanillaCommand{
 			}
 		}
 	}
-
 	public function fdx($x, $y, $z, Level $level, $liu = false){
 		//$this->getLogger()->info(TextFormat::GREEN."fdx!");
 		for($i = 1; $i < mt_rand(2, 4); $i++){
@@ -287,14 +264,12 @@ class CaveCommand extends VanillaCommand{
 			$level->setBlock(new Vector3($x + $i - 3, $y + 1, $z + 3), $l);
 		}
 	}
-
 	public function ranz($a){
 		$n = [];
 		$j = 0;
 		for($m = 0; $m < $a; $m++){
 			$n[] = mt_rand(0, 999) / 1000 - 1;
 		}
-
 		for($m = 0; $m < $a; $m++){
 			foreach($n as $q){
 				$min = min($n);
@@ -307,7 +282,6 @@ class CaveCommand extends VanillaCommand{
 		}
 		return $n;
 	}
-
 	public function tiankengy(Level $level, $x, $y, $z, $l, $id, $bd){
 		if($level->getBlock(new Vector3($x, $y, $z))->getId() == 0) $level->setBlock(new Vector3($x, $y, $z), Item::get($id, $bd)->getBlock());
 		if($l >= 0){
@@ -331,5 +305,4 @@ class CaveCommand extends VanillaCommand{
 			}
 		}
 	}
-
 }
