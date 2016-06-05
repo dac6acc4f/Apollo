@@ -1,12 +1,4 @@
 <?php
-/**
- * Author: gaoyichuan
- * Time: 2016/2/2 15:16
- *
- * OpenGenisys Project
- */
-
-
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
