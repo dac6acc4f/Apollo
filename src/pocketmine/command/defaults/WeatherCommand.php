@@ -1,6 +1,5 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\level\Level;
