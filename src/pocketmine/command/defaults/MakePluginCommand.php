@@ -40,7 +40,7 @@ class MakePluginCommand extends VanillaCommand{
 			return true;
 		}
 
-		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "PocketMine-iTX" . DIRECTORY_SEPARATOR . $description->getName()."_v".$description->getVersion().".phar";
+		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "Apollo" . DIRECTORY_SEPARATOR . $description->getName()."_v".$description->getVersion().".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar plugin already exists, overwriting...");
 			@unlink($pharPath);
@@ -74,7 +74,7 @@ class MakePluginCommand extends VanillaCommand{
 				continue;
 			}
 			$phar->addFile($file, $path);
-			$sender->sendMessage("[Genisys] Adding $path");
+			$sender->sendMessage("[Apollo] Adding $path");
 		}
 
 		foreach($phar as $file => $finfo){
