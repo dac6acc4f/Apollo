@@ -1,5 +1,4 @@
 <?php
-
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____
@@ -18,15 +17,10 @@
  *
  *
 */
-
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
-
-
 class GarbageCollectorCommand extends VanillaCommand{
-
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -35,18 +29,14 @@ class GarbageCollectorCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.gc");
 	}
-
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-
 		$chunksCollected = 0;
 		$entitiesCollected = 0;
 		$tilesCollected = 0;
-
 		$memory = memory_get_usage();
-
 		foreach($sender->getServer()->getLevels() as $level){
 			$diff = [count($level->getChunks()), count($level->getEntities()), count($level->getTiles())];
 			$level->doChunkGarbageCollection();
@@ -56,7 +46,6 @@ class GarbageCollectorCommand extends VanillaCommand{
 			$tilesCollected += $diff[2] - count($level->getTiles());
 			$level->clearCache(true);
 		}
-
 		$cyclesCollected = $sender->getServer()->getMemoryManager()->triggerGarbageCollector();
 		$sender->sendMessage(TextFormat::GREEN . "---- " . TextFormat::WHITE . "%pocketmine.command.gc.title" . TextFormat::GREEN . " ----");
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.chunks" . TextFormat::RED . \number_format($chunksCollected));
