@@ -1,5 +1,4 @@
 <?php
-
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____
@@ -18,9 +17,7 @@
  *
  *
 */
-
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
@@ -30,9 +27,7 @@ use pocketmine\math\Vector3;
 use pocketmine\item\ItemBlock;
 use pocketmine\item\Item;
 use pocketmine\level\Level;
-
 class FillCommand extends VanillaCommand{
-
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -41,12 +36,10 @@ class FillCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.fill");
 	}
-
 	public function execute(CommandSender $sender, $label, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-
 		for($a = 0; $a < 6; $a++){
 			if(isset($args[$a])){
 				if(is_integer($args[$a])){
@@ -71,8 +64,7 @@ class FillCommand extends VanillaCommand{
 			return false;
 		}
 	}
-
-	private function setBlock(Vector3 $p, Level $lvl, ItemBlock $b,$meta = 0){
+	private function setBlock(Vector3 $p, Level $lvl, ItemBlock $b, int $meta = 0) : bool{
 		$block = $b->getBlock();
 		$block->setDamage($meta);
 		$lvl->setBlock($p, $b);
