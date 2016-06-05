@@ -1,6 +1,7 @@
 <?php
 
 namespace pocketmine\block;
+
 use pocketmine\level\Level;
 
 class StillLava extends Lava{
