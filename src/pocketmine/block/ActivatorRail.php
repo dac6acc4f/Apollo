@@ -1,5 +1,4 @@
 <?php
-
 namespace pocketmine\block;
 
 class ActivatorRail extends PoweredRail {
