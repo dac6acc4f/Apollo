@@ -12,8 +12,8 @@ fclose($pipes[0]);
 fclose($pipes[1]);
 fclose($pipes[2]);
 echo "\n\nReturn value: ". proc_close($server) ."\n";
-if(count(glob("plugins/DevTools/Apollo*.phar")) === 0){
-	echo "Failed to create a Apollo.phar!\n";
+if(count(glob("plugins/Apollo/Apollo*.phar")) === 0){
+	echo "Failed to create an Apollo.phar!\n";
 	exit(1);
 }else{
 	echo "Apollo.phar created!\n";
