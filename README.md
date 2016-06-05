@@ -1,9 +1,7 @@
-# Apollo ~ An unofficial [PocketMine](https://github.com/PocketMine/PocketMine-MP) fork [![Travis-CI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)]
-Apollo is a Minecraft: PE Server Software with an improved Generator and a lot more features.
+# Apollo ~ [![Travis-CI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)]
+Apollo is a Minecraft: PE Server Software with an improved Generator and a lot more features. 
 
-Is the current build run-able? Check out: [Travis-CI](https://travis-ci.org/NycuRO/Apollo)
-
-Want to chat with us or ask question? Chat with us on [Telegram!](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw)
+**TravisCI Build Status** [![TravisCI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)](https://travis-ci.org/NycuRO/Apollo "TravisCI Build Status")
 
 #InDEV
 
@@ -24,3 +22,5 @@ A variant of the regular extreme hills biome, adding larger mountains, steeper c
 
 ## Information
 - Official Apollo Server: [server:**19132**] *Often online, but could be offline at times.*
+- Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
+- We are a third party software of PocketMine. We did not code PocketMine, as all credit should be given to them.
