@@ -62,12 +62,8 @@ use pocketmine\command\defaults\WeatherCommand;
 
 class SimpleCommandMap implements CommandMap{
 
-	/**
-	 * @var Command[]
-	 */
 	protected $knownCommands = [];
 
-	/** @var Server */
 	private $server;
 
 	public function __construct(Server $server){
@@ -87,7 +83,6 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new ExtractPluginCommand("extractplugin"));
 		$this->register("pocketmine", new MakePluginCommand("makeplugin"));
 		$this->register("pocketmine", new MakeServerCommand("ms"));
-		//$this->register("pocketmine", new MakeServerCommand("makeserver"));
 		$this->register("pocketmine", new ExtractPluginCommand("ep"));
 		$this->register("pocketmine", new MakePluginCommand("mp"));
 
@@ -286,17 +281,10 @@ class SimpleCommandMap implements CommandMap{
 		return null;
 	}
 
-	/**
-	 * @return Command[]
-	 */
 	public function getCommands(){
 		return $this->knownCommands;
 	}
 
-
-	/**
-	 * @return void
-	 */
 	public function registerServerAliases(){
 		$values = $this->server->getCommandAliases();
 
@@ -328,7 +316,6 @@ class SimpleCommandMap implements CommandMap{
 				continue;
 			}
 
-			//These registered commands have absolute priority
 			if(count($targets) > 0){
 				$this->knownCommands[strtolower($alias)] = new FormattedCommandAlias(strtolower($alias), $targets);
 			}else{
