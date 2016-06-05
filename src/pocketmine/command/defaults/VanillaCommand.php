@@ -1,9 +1,7 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-
 abstract class VanillaCommand extends Command{
 	const MAX_COORD = 30000000;
 	const MIN_COORD = -30000000;
