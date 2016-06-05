@@ -1,24 +1,5 @@
 <?php
 
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://mcper.cn
- *
- */
-
 namespace pocketmine\tile;
 
 use pocketmine\block\Block;
@@ -38,7 +19,7 @@ class DLDetector extends Spawnable{
 	}
 
 	public function getLightByTime(){
-		/*	$strength = 1;
+			$strength = 1;
 			$time = $this->getLevel()->getTime();
 			if(WeatherManager::isRegistered($this->getLevel())) $weather = $this->getLevel()->getWeather()->getWeather();
 			else $weather = Weather::SUNNY;
@@ -76,7 +57,7 @@ class DLDetector extends Spawnable{
 					if($time >= 4120 and $time <= 7990) $strength = 12;
 					break;
 			}
-			return $strength;*/
+			return $strength;
 		$time = $this->getLevel()->getTime();
 		if(($time >= Level::TIME_DAY and $time <= Level::TIME_SUNSET) or
 			($time >= Level::TIME_SUNRISE and $time <= Level::TIME_FULL)) return 15;
