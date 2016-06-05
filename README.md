@@ -1,7 +1,7 @@
 # Apollo ~ An unofficial [PocketMine](https://github.com/PocketMine/PocketMine-MP) fork [![Travis-CI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)]
 Apollo is a Minecraft: PE Server Software with an improved Generator and a lot more features.
 
-[Travis-CI](https://travis-ci.org/NycuRO/Apollo)
+Is the current build run-able? Check out: [Travis-CI](https://travis-ci.org/NycuRO/Apollo)
 
 Want to chat with us or ask question? Chat with us on [Telegram!](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw)
 
