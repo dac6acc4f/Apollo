@@ -1,9 +1,6 @@
 <?php
-/**
- * Author: boybook
- * OpenGenisys Project
- */
 namespace pocketmine\command\defaults;
+
 use pocketmine\block\Air;
 use pocketmine\block\Block;
 use pocketmine\block\Lava;
@@ -16,6 +13,7 @@ use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+
 class CaveCommand extends VanillaCommand{
 	public function __construct($name){
 		parent::__construct(
