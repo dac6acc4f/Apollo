@@ -1,29 +1,5 @@
 <?php
 
-/*
- *
- *  _                       _           _ __  __ _
- * (_)                     (_)         | |  \/  (_)
- *  _ _ __ ___   __ _  __ _ _  ___ __ _| | \  / |_ _ __   ___
- * | | '_ ` _ \ / _` |/ _` | |/ __/ _` | | |\/| | | '_ \ / _ \
- * | | | | | | | (_| | (_| | | (_| (_| | | |  | | | | | |  __/
- * |_|_| |_| |_|\__,_|\__, |_|\___\__,_|_|_|  |_|_|_| |_|\___|
- *                     __/ |
- *                    |___/
- *
- * This program is a third party build by ImagicalMine.
- *
- * PocketMine is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author ImagicalMine Team
- * @link http://forums.imagicalcorp.ml/
- *
- *
-*/
-
 namespace pocketmine\level\generator\normal;
 
 use pocketmine\block\Block;
@@ -134,13 +110,7 @@ class Normal extends Generator{
 		$this->random->setSeed($this->level->getSeed());
 		$this->selector = new BiomeSelector($this->random, function($temperature, $rainfall){
 			if($rainfall < 0.25){
-				if($temperature < 0.7){
-					return Biome::OCEAN;
-				}elseif($temperature < 0.85){
-					return Biome::RIVER;
-				}else{
-					return Biome::SWAMP;
-				}
+			return Biome::SWAMP;
 			}elseif($rainfall < 0.60){
 				if($temperature < 0.25){
 					return Biome::ICE_PLAINS;
@@ -162,8 +132,6 @@ class Normal extends Generator{
 					return Biome::MOUNTAINS;
 				}elseif($temperature < 0.70){
 					return Biome::SMALL_MOUNTAINS;
-				}else{
-					return Biome::RIVER;
 				}
 			}
 		}, Biome::getBiome(Biome::OCEAN));
