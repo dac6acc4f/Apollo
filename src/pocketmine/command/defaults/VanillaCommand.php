@@ -4,7 +4,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 abstract class VanillaCommand extends Command{
 	const MAX_COORD = 50000;
-	const MIN_COORD = -50000; /but farland is not implement in server ,if implemented ,chunks max is 12550820. No more for performance
+	const MIN_COORD = -50000; //but farland is not implement in server ,if implemented ,chunks max is 12550820. No more for performance
 
 	public function __construct($name, $description = "", $usageMessage = null, array $aliases = []){
 		parent::__construct($name, $description, $usageMessage, $aliases);
