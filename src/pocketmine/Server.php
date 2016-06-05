@@ -424,11 +424,6 @@ class Server{
 		return \pocketmine\API_VERSION;
 	}
 
-
-	public function getiTXApiVersion(){
-		return \pocketmine\iTX_API_VERSION;
-	}
-
 	/**
 	 * @return string
 	 */
@@ -2019,7 +2014,7 @@ class Server{
 		]), $this->dserverConfig["timer"]);
 
 		if($cfgVer != $advVer){
-				$this->logger->notice("Your apollo.yml needs update");
+				$this->logger->notice("Your apollo.yml needs an update");
 			$this->logger->notice("Current Version: $advVer   Latest Version: $cfgVer");
 		}
 
