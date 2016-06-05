@@ -12,7 +12,7 @@ class MakeServerCommand extends VanillaCommand{
 	public function __construct($name){
 		parent::__construct(
 			$name,
-			"Creates Apollo phar",
+			"Creates an Apollo phar",
 			"/makeserver"
 		);
 		$this->setPermission("pocketmine.command.makeserver");
@@ -23,7 +23,7 @@ class MakeServerCommand extends VanillaCommand{
 			return false;
 		}
 		$server = $sender->getServer();
-		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "Apollo" . DIRECTORY_SEPARATOR . $server->getName()."_".$server->getPocketMineVersion().".phar";
+		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR."Apollo".$server->getName()."_".$server->getPocketMineVersion().".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar file already exists, overwriting...");
 			@unlink($pharPath);
@@ -49,7 +49,7 @@ class MakeServerCommand extends VanillaCommand{
 				continue;
 			}
 			$phar->addFile($file, $path);
-			$sender->sendMessage("[Genisys] Adding $path");
+			$sender->sendMessage("[Apollo] Adding $path");
 		}
 		foreach($phar as $file => $finfo){
 			/** @var \PharFileInfo $finfo */
