@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____
@@ -17,13 +18,17 @@
  *
  *
 */
+
 namespace pocketmine\command\defaults;
+
 use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+
 class XpCommand extends VanillaCommand{
+
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -32,10 +37,12 @@ class XpCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.xp");
 	}
+
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
 		}
+
 		if(count($args) != 2){
 			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 			return false;
@@ -46,13 +53,13 @@ class XpCommand extends VanillaCommand{
 					$level = rtrim($args[0], "Ll");
 					if(is_numeric($level)){
 						$player->addExpLevel($level);
-						$sender->sendMessage("Successfully added $level Level of experience to $name");
+						$sender->sendMessage("Successfully add $level Level of experience to $name");
 					}
 				}elseif(is_numeric($args[0])){											//Set Experience
 					$player->addExperience($args[0]);
-					$sender->sendMessage("Successfully added $args[0] of experience to $name");
+					$sender->sendMessage("Successfully add $args[0] of experience to $name");
 				}else{
-					$sender->sendMessage("Argument error");
+					$sender->sendMessage("Argument error.");
 					return false;
 				}
 			}else{

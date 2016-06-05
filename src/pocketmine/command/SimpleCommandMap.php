@@ -1,4 +1,24 @@
 <?php
+
+/*
+ *
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ *
+ *
+*/
+
 namespace pocketmine\command;
 
 use pocketmine\command\defaults\BanCommand;
@@ -62,8 +82,12 @@ use pocketmine\command\defaults\WeatherCommand;
 
 class SimpleCommandMap implements CommandMap{
 
+	/**
+	 * @var Command[]
+	 */
 	protected $knownCommands = [];
 
+	/** @var Server */
 	private $server;
 
 	public function __construct(Server $server){
@@ -83,6 +107,7 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new ExtractPluginCommand("extractplugin"));
 		$this->register("pocketmine", new MakePluginCommand("makeplugin"));
 		$this->register("pocketmine", new MakeServerCommand("ms"));
+		$this->register("pocketmine", new MakeServerCommand("makeserver"));
 		$this->register("pocketmine", new ExtractPluginCommand("ep"));
 		$this->register("pocketmine", new MakePluginCommand("mp"));
 
@@ -281,10 +306,17 @@ class SimpleCommandMap implements CommandMap{
 		return null;
 	}
 
+	/**
+	 * @return Command[]
+	 */
 	public function getCommands(){
 		return $this->knownCommands;
 	}
 
+
+	/**
+	 * @return void
+	 */
 	public function registerServerAliases(){
 		$values = $this->server->getCommandAliases();
 
@@ -316,6 +348,7 @@ class SimpleCommandMap implements CommandMap{
 				continue;
 			}
 
+			//These registered commands have absolute priority
 			if(count($targets) > 0){
 				$this->knownCommands[strtolower($alias)] = new FormattedCommandAlias(strtolower($alias), $targets);
 			}else{

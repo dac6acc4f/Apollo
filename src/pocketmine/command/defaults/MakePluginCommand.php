@@ -19,6 +19,7 @@ class MakePluginCommand extends VanillaCommand{
 	}
 
 	public function execute(CommandSender $sender, $commandLabel, array $args){
+		@mkdir("plugins\Apollo");
 		if(!$this->testPermission($sender)){
 			return false;
 		}
@@ -40,7 +41,7 @@ class MakePluginCommand extends VanillaCommand{
 			return true;
 		}
 
-		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "Apollo" . DIRECTORY_SEPARATOR . $description->getName()."_v".$description->getVersion().".phar";
+		$pharPath = Server::getInstance()->getPluginPath()."Apollo" . DIRECTORY_SEPARATOR . $description->getName()."_v".$description->getVersion().".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar plugin already exists, overwriting...");
 			@unlink($pharPath);
@@ -60,7 +61,7 @@ class MakePluginCommand extends VanillaCommand{
 		if($description->getName() === "DevTools"){
 			$phar->setStub('<?php require("phar://". __FILE__ ."/src/DevTools/ConsoleScript.php"); __HALT_COMPILER();');
 		}else{
-			$phar->setStub('<?php echo "PocketMine-iTX plugin '.$description->getName() .' v'.$description->getVersion().'\nThis file has been generated using PocketMine-iTX by QQ:1215714524 at '.date("r").'\n----------------\n";if(extension_loaded("phar")){$phar = new \Phar(__FILE__);foreach($phar->getMetadata() as $key => $value){echo ucfirst($key).": ".(is_array($value) ? implode(", ", $value):$value)."\n";}} __HALT_COMPILER();');
+			$phar->setStub('<?php echo "Apollo plugin '.$description->getName() .' v'.$description->getVersion().'\nThis file has been generated using Apollo by QQ:1215714524 at '.date("r").'\n----------------\n";if(extension_loaded("phar")){$phar = new \Phar(__FILE__);foreach($phar->getMetadata() as $key => $value){echo ucfirst($key).": ".(is_array($value) ? implode(", ", $value):$value)."\n";}} __HALT_COMPILER();');
 		}
 		$phar->setSignatureAlgorithm(\Phar::SHA1);
 		$reflection = new \ReflectionClass("pocketmine\\plugin\\PluginBase");

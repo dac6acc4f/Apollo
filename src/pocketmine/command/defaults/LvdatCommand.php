@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  _____   _____   __   _   _   _____  __    __  _____
@@ -17,10 +18,13 @@
  * @link https://mcper.cn
  *
  */
+
 namespace pocketmine\command\defaults;
+
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
+
 use pocketmine\level\format\generic\BaseLevelProvider;
 use pocketmine\level\generator\Generator;
 use pocketmine\nbt\NBT;
@@ -29,7 +33,9 @@ use pocketmine\nbt\tag\String;
 use pocketmine\nbt\tag\Long;
 use pocketmine\nbt\tag\Compound;
 use pocketmine\math\Vector3;
+
 class LvdatCommand extends VanillaCommand{
+
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -38,6 +44,7 @@ class LvdatCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.lvdat");
 	}
+
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return false;
@@ -112,6 +119,7 @@ class LvdatCommand extends VanillaCommand{
 		$provider->saveLevelData();
 		return true;
 	}
+
 	public function autoLoad(CommandSender $c, $world){
 		if($c->getServer()->isLevelLoaded($world)) return true;
 		if(!$c->getServer()->isLevelGenerated($world)){

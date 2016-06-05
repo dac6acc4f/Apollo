@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____
@@ -17,7 +18,9 @@
  *
  *
 */
+
 namespace pocketmine\command\defaults;
+
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
@@ -27,7 +30,9 @@ use pocketmine\block\Block;
 use pocketmine\item\ItemBlock;
 use pocketmine\item\Item;
 use pocketmine\level\Level;
+
 class SetBlockCommand extends VanillaCommand{
+
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -36,21 +41,26 @@ class SetBlockCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.setblock");
 	}
+
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
 		}
+
 		if(count($args) < 4 or count($args) > 5){
 			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 			return false;
 		}
+
 		$itemblock = Item::fromString($args[3]);
 		if($itemblock instanceof ItemBlock){
 			$block = $itemblock->getBlock();
 			if(isset($args[4]) and is_numeric($args[4])) $block->setDamage((int)$args[4]);
+
 			$x = $args[0];
 			$y = $args[1];
 			$z = $args[2];
+
 			if($x{0} === "~"){
 				if((is_numeric(trim($x, "~")) or trim($x, "~") === "") and ($sender instanceof Player)) $x = (int)round(trim($x, "~") + $sender->x);
 			}elseif(is_numeric($x)){
@@ -71,7 +81,7 @@ class SetBlockCommand extends VanillaCommand{
 			if($z{0} === "~"){
 				if((is_numeric(trim($z, "~")) or trim($z, "~") === "") and ($sender instanceof Player)) $z = (int)round(trim($z, "~") + $sender->z);
 			}elseif(is_numeric($z)){
-				$z = (int)round($z);
+				$y = (int)round($z);
 			}else{
 				$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 				return false;
@@ -80,6 +90,7 @@ class SetBlockCommand extends VanillaCommand{
 				$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 				return false;
 			}
+
 			$pos = new Vector3($x, $y, $z);
 			if($pos instanceof Vector3){
 				$level = ($sender instanceof Player) ? $sender->getLevel() : $sender->getServer()->getDefaultLevel();
