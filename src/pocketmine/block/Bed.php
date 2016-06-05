@@ -1,24 +1,5 @@
 <?php
 
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- * 
- *
-*/
-
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
@@ -69,7 +50,7 @@ class Bed extends Transparent{
 			return true;
 		}
 
-		$blockNorth = $this->getSide(2); //Gets the blocks around them
+		$blockNorth = $this->getSide(2);
 		$blockSouth = $this->getSide(3);
 		$blockEast = $this->getSide(5);
 		$blockWest = $this->getSide(4);
@@ -125,13 +106,13 @@ class Bed extends Transparent{
 	}
 
 	public function onBreak(Item $item){
-		$blockNorth = $this->getSide(2); //Gets the blocks around them
+		$blockNorth = $this->getSide(2);
 		$blockSouth = $this->getSide(3);
 		$blockEast = $this->getSide(5);
 		$blockWest = $this->getSide(4);
 
-		if(($this->meta & 0x08) === 0x08){ //This is the Top part of bed
-			if($blockNorth->getId() === $this->id and $blockNorth->meta !== 0x08){ //Checks if the block ID and meta are right
+		if(($this->meta & 0x08) === 0x08){
+			if($blockNorth->getId() === $this->id and $blockNorth->meta !== 0x08){
 				$this->getLevel()->setBlock($blockNorth, new Air(), true, true);
 			}elseif($blockSouth->getId() === $this->id and $blockSouth->meta !== 0x08){
 				$this->getLevel()->setBlock($blockSouth, new Air(), true, true);
@@ -140,7 +121,7 @@ class Bed extends Transparent{
 			}elseif($blockWest->getId() === $this->id and $blockWest->meta !== 0x08){
 				$this->getLevel()->setBlock($blockWest, new Air(), true, true);
 			}
-		}else{ //Bottom Part of Bed
+		}else{
 			if($blockNorth->getId() === $this->id and ($blockNorth->meta & 0x08) === 0x08){
 				$this->getLevel()->setBlock($blockNorth, new Air(), true, true);
 			}elseif($blockSouth->getId() === $this->id and ($blockSouth->meta & 0x08) === 0x08){
