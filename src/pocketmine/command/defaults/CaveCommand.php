@@ -1,9 +1,6 @@
 <?php
-/**
- * Author: boybook
- * OpenGenisys Project
- */
 namespace pocketmine\command\defaults;
+
 use pocketmine\block\Air;
 use pocketmine\block\Block;
 use pocketmine\block\Lava;
