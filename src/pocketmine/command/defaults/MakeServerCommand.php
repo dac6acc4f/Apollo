@@ -23,7 +23,7 @@ class MakeServerCommand extends VanillaCommand{
 			return false;
 		}
 		$server = $sender->getServer();
-		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR."Apollo".DIRECTORY_SEPARATOR.$server->getName()."_".$server->getPocketMineVersion().".phar";
+		$pharPath = Server::getInstance()->getPluginPath()."Apollo".DIRECTORY_SEPARATOR.$server->getName()."_".$server->getPocketMineVersion().".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar file already exists, overwriting...");
 			@unlink($pharPath);
