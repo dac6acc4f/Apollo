@@ -1738,13 +1738,10 @@ class Server{
 
 
 		$this->aboutstring = "\n
-		   §5PocketMine-iTX §3Genisys §fis a fork of PocketMine-MP.
-		   Powered by §5iTX Technologies LLC.
+		   §9Apollo §fis a fork of PocketMine-MP.
 		   §fVersion: §6" . $this->getPocketMineVersion() . "
 		   §fClient Version: §d". \pocketmine\MINECRAFT_VERSION ."
-		   §fYou could get the lastest code on https://github.com/iTXTech/Genisys
-		   §fDonate link: http://pl.zxda.net/plugins/203.html
-		   §f如果你在免费使用本核心，希望你可以进入上面的链接捐赠给我们，这会成为我们前进的动力。
+		   §fYou can get the lastest code on https://github.com/NycuRO/Apollo
 		\n";
 
 		$this->about();
@@ -1759,20 +1756,20 @@ class Server{
 		}
 		$this->config = new Config($this->dataPath . "pocketmine.yml", Config::YAML, []);
 
-		$this->logger->info("Loading genisys.yml...");
+		$this->logger->info("Loading apollo.yml...");
 
 		$lang = $this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE);
-		if(file_exists($this->filePath . "src/pocketmine/resources/genisys_$lang.yml")){
-			$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/genisys_$lang.yml");
+		if(file_exists($this->filePath . "src/pocketmine/resources/apollo_$lang.yml")){
+			$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/apollo_$lang.yml");
 		}else{
-			$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/genisys_eng.yml");
+			$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/apollo_eng.yml");
 		}
 
-		if(!file_exists($this->dataPath . "genisys.yml")){
-			@file_put_contents($this->dataPath . "genisys.yml", $content);
+		if(!file_exists($this->dataPath . "apollo.yml")){
+			@file_put_contents($this->dataPath . "apollo.yml", $content);
 		}
 		$internelConfig = new Config($file, Config::YAML, []);
-		$this->advancedConfig = new Config($this->dataPath . "genisys.yml", Config::YAML, []);
+		$this->advancedConfig = new Config($this->dataPath . "apollo.yml", Config::YAML, []);
 		$cfgVer = $this->getAdvancedProperty("config.version", 0, $internelConfig);
 		$advVer = $this->getAdvancedProperty("config.version", 0);
 
@@ -2022,7 +2019,7 @@ class Server{
 		]), $this->dserverConfig["timer"]);
 
 		if($cfgVer != $advVer){
-				$this->logger->notice("Your genisys.yml needs update");
+				$this->logger->notice("Your apollo.yml needs update");
 			$this->logger->notice("Current Version: $advVer   Latest Version: $cfgVer");
 		}
 
