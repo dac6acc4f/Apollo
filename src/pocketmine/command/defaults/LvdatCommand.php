@@ -62,7 +62,7 @@ class LvdatCommand extends VanillaCommand{
 		$p = array_shift($args);
 		switch($o){
 			case "fixname":
-				$provider->getLevelData()->LevelName = new StringTag("LevelName", $level->getFolderName());
+				$provider->getLevelData()->LevelName = new String("LevelName", $level->getFolderName());
 				$sender->sendMessage(new TranslationContainer("pocketmine.command.lvdat.fixname", [$level->getFolderName()]));
 				break;
 			case "help":
