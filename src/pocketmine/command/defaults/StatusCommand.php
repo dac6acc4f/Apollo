@@ -1,4 +1,5 @@
 <?php
+
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
