@@ -1,15 +1,18 @@
 <?php
+
 namespace pocketmine\command\defaults;
+
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 use pocketmine\network\protocol\Info;
+
 class MakeServerCommand extends VanillaCommand{
 	public function __construct($name){
 		parent::__construct(
 			$name,
-			"Creates a PocketMine Phar",
+			"Creates Apollo phar",
 			"/makeserver"
 		);
 		$this->setPermission("pocketmine.command.makeserver");
@@ -20,7 +23,7 @@ class MakeServerCommand extends VanillaCommand{
 			return false;
 		}
 		$server = $sender->getServer();
-		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "PocketMine-iTX" . DIRECTORY_SEPARATOR . $server->getName()."_".$server->getPocketMineVersion().".phar";
+		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "Apollo" . DIRECTORY_SEPARATOR . $server->getName()."_".$server->getApolloVersion().".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar file already exists, overwriting...");
 			@unlink($pharPath);
@@ -30,10 +33,9 @@ class MakeServerCommand extends VanillaCommand{
 			"name" => $server->getName(),
 			"version" => $server->getPocketMineVersion(),
 			"api" => $server->getApiVersion(),
-			"itxapi" => $server->getiTXApiVersion(),
 			"minecraft" => $server->getVersion(),
 			"protocol" => Info::CURRENT_PROTOCOL,
-			"creator" => "Genisys MakeServerCommand",
+			"creator" => "Apollo MakeServerCommand",
 			"creationDate" => time()
 		]);
 		$phar->setStub('<?php define("pocketmine\\\\PATH", "phar://". __FILE__ ."/"); require_once("phar://". __FILE__ ."/src/pocketmine/PocketMine.php");  __HALT_COMPILER();');
