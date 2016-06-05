@@ -1,5 +1,4 @@
 <?php
-
 namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
@@ -15,7 +14,6 @@ use pocketmine\metadata\Metadatable;
 use pocketmine\metadata\MetadataValue;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
-
 
 class Block extends Position implements Metadatable{
 	const AIR = 0;
