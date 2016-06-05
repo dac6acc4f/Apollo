@@ -1,11 +1,9 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\utils\TextFormat;
-
 class WhitelistCommand extends VanillaCommand{
 
 	public function __construct($name){
