@@ -56,7 +56,7 @@ class Cauldron extends Solid{
 			new Enum("Items", [])
 		]);
 		$chunk = $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4);
-		$tile = Tile::createTile("Cauldron", $chunk, $nbt);//
+		$tile = Tile::createTile("Cauldron", $chunk, $nbt);
 		$this->getLevel()->setBlock($block, $this, true, true);
 		return true;
 	}
@@ -106,7 +106,7 @@ class Cauldron extends Solid{
 						if($player->isSurvival()){
 							$player->getInventory()->setItemInHand($ev->getItem());
 						}
-						$this->meta = 0;=
+						$this->meta = 0;
 						$this->getLevel()->setBlock($this, $this, true);
 						$tile->clearCustomColor();
 						$this->getLevel()->addSound(new SplashSound($this->add(0.5, 1, 0.5)));
@@ -229,7 +229,7 @@ class Cauldron extends Solid{
 						$player->getInventory()->addItem($result);
 					}
 					if($this->isEmpty()){
-						$tile->setPotionId(0xffff);//reset
+						$tile->setPotionId(0xffff);
 						$tile->setSplashPotion(false);
 					}
 					$color = Potion::getColor($result->getDamage());
