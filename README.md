@@ -21,7 +21,7 @@ Stone, Dirt, Spruce Trees, Oak Trees
 A variant of the regular extreme hills biome, adding larger mountains, steeper cliffs, and a moderate amount of spruce trees and scattered oak trees.
 
 ## Information
-- Official Apollo Server not exist. Coming soon! :1:
+- Official Apollo Server not exist. Coming soon!
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
 - We are a third party software of PocketMine. We did not code PocketMine, and all credit should be given to them. We are also using Genisys's branch of PocketMine, and all credits should be given to Genisys for their added features to PocketMine.
- - We are edited all lags from fkgenisys and more performance! World changes is best features of Apollo! :1:
+ - We are edited all lags from fkgenisys and more performance! World changes is best features of Apollo! 
