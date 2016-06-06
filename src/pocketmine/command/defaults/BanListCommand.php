@@ -1,13 +1,9 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
-
-
 class BanListCommand extends VanillaCommand{
-
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -16,7 +12,6 @@ class BanListCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.ban.list");
 	}
-
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return \true;
@@ -32,17 +27,14 @@ class BanListCommand extends VanillaCommand{
 				$list = $sender->getServer()->getCIDBans();
 			}else{
 				$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
-
 				return \false;
 			}
 		}
-
 		$message = "";
 		$list = $list->getEntries();
 		foreach($list as $entry){
 			$message .= $entry->getName() . ", ";
-		}
-		
+		}		
 		if(!isset($args[0])) return \false;
 		if($args[0] === "ips"){
 			$sender->sendMessage(Server::getInstance()->getLanguage()->translateString("commands.banlist.ips", [\count($list)]));
@@ -51,7 +43,6 @@ class BanListCommand extends VanillaCommand{
 		}else $sender->sendMessage("共有 ".\count($list)."被ban");
 
 		$sender->sendMessage(\substr($message, 0, -2));
-
 		return \true;
 	}
 }
