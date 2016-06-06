@@ -1,6 +1,5 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\nbt\tag\Compound;
@@ -12,7 +11,6 @@ use pocketmine\Player;
 use pocketmine\tile\Tile;
 use pocketmine\tile\BrewingStand as TileBrewingStand;
 use pocketmine\math\Vector3;
-
 class BrewingStand extends Transparent{
 
 	protected $id = self::BREWING_STAND_BLOCK;
@@ -67,7 +65,6 @@ class BrewingStand extends Transparent{
 
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
-			//TODO lock
 			if($player->isCreative() and $player->getServer()->limitedCreative){
 				return true;
 			}

@@ -1,10 +1,8 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\math\Vector3;
-
 class ActiveRedstoneLamp extends Solid implements ElectricalAppliance{
 	protected $id = self::ACTIVE_REDSTONE_LAMP;
 
@@ -43,7 +41,6 @@ class ActiveRedstoneLamp extends Solid implements ElectricalAppliance{
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP, Vector3::SIDE_DOWN];
 			foreach($sides as $side){
 				if(!in_array($side, $ignore)){
-					/** @var ActiveRedstoneLamp $block */
 					$block = $this->getSide($side);
 					if($block->getId() == $this->id){
 						if(!$block->isLightedByAround()) return true;
@@ -57,7 +54,6 @@ class ActiveRedstoneLamp extends Solid implements ElectricalAppliance{
 	public function lightAround(){
 		$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP, Vector3::SIDE_DOWN];
 		foreach($sides as $side){
-			/** @var InactiveRedstoneLamp $block */
 			$block = $this->getSide($side);
 			if($block->getId() == self::INACTIVE_REDSTONE_LAMP){
 				$block->turnOn();
@@ -71,7 +67,6 @@ class ActiveRedstoneLamp extends Solid implements ElectricalAppliance{
 
 			foreach($sides as $side){
 				if(!in_array($side, $ignore)){
-					/** @var ActiveRedstoneLamp $block */
 					$block = $this->getSide($side);
 					if($block->getId() == $this->id){
 						if($block->isLightedByAround()){
@@ -84,11 +79,6 @@ class ActiveRedstoneLamp extends Solid implements ElectricalAppliance{
 	}
 
 	public function turnOn(){
-		/*if($this->isLightedByAround()){
-			$this->meta = 0;
-			$this->getLevel()->setBlock($this, $this, true, false);
-			$this->lightAround();
-		}*/
 		$this->meta = 0;
 		$this->getLevel()->setBlock($this, $this, true, false);
 		return true;
@@ -96,7 +86,6 @@ class ActiveRedstoneLamp extends Solid implements ElectricalAppliance{
 
 	public function turnOff(){
 		$this->getLevel()->setBlock($this, new InactiveRedstoneLamp(), true, false);
-		//$this->turnAroundOff();
 		return true;
 	}
 }

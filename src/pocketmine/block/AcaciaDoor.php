@@ -1,9 +1,7 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-
 class AcaciaDoor extends Door{
 
 	protected $id = self::ACACIA_DOOR_BLOCK;

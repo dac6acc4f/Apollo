@@ -1,10 +1,7 @@
 <?php
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-
 class BirchWoodStairs extends Stair{
 
 	protected $id = self::BIRCH_WOOD_STAIRS;

@@ -1,12 +1,10 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
-
 class Bed extends Transparent{
 
 	protected $id = self::BED_BLOCK;

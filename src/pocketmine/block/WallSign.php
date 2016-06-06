@@ -1,9 +1,6 @@
 <?php
-
 namespace pocketmine\block;
-
 use pocketmine\level\Level;
-
 class WallSign extends SignPost{
 	
 	protected $id = self::WALL_SIGN;

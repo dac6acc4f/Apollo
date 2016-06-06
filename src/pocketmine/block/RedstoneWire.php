@@ -1,31 +1,9 @@
 <?php
-
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://mcper.cn
- *
- */
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
-
 class RedstoneWire extends RedstoneSource{
 
 	const ON = 1;
@@ -59,9 +37,7 @@ class RedstoneWire extends RedstoneSource{
 			Vector3::SIDE_NORTH => false,
 			Vector3::SIDE_SOUTH => false
 		];
-		//check blocks around
 		foreach($hasChecked as $side => $bool){
-			/** @var RedstoneSource $block */
 			$block = $this->getSide($side);
 			if($block instanceof RedstoneSource){
 				if(($block->getStrength() > $strength) and $block->isActivated($this)) $strength = $block->getStrength();
@@ -69,7 +45,6 @@ class RedstoneWire extends RedstoneSource{
 			}
 		}
 
-		//check blocks above
 		$baseBlock = $this->add(0, 1, 0);
 		foreach($hasChecked as $side => $bool){
 			if(!$bool){
@@ -81,7 +56,6 @@ class RedstoneWire extends RedstoneSource{
 			}
 		}
 
-		//check blocks below
 		$baseBlock = $this->add(0, -1, 0);
 		foreach($hasChecked as $side => $bool){
 			if(!$bool){
@@ -106,7 +80,6 @@ class RedstoneWire extends RedstoneSource{
 			Vector3::SIDE_NORTH => false,
 			Vector3::SIDE_SOUTH => false
 		];
-		//check blocks around
 		foreach($hasChecked as $side => $bool){
 			$block = $this->getSide($side);
 			if($block instanceof RedstoneSource and !$block instanceof PoweredRepeater){
@@ -119,7 +92,6 @@ class RedstoneWire extends RedstoneSource{
 			}
 		}
 
-		//check blocks above
 		$baseBlock = $this->add(0, 1, 0);
 		foreach($hasChecked as $side => $bool){
 			if(!$bool){
@@ -130,7 +102,6 @@ class RedstoneWire extends RedstoneSource{
 			}
 		}
 
-		//check blocks below
 		$baseBlock = $this->add(0, -1, 0);
 		foreach($hasChecked as $side => $bool){
 			if(!$bool){
@@ -166,7 +137,6 @@ class RedstoneWire extends RedstoneSource{
 	public function activate(array $ignore = []){
 		if($this->canCalc()){
 			$block = $this->getSide(Vector3::SIDE_DOWN);
-			/** @var ActiveRedstoneLamp $block */
 			if($block->getId() == Block::INACTIVE_REDSTONE_LAMP or $block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOn();
 
 			$side = $this->getUnconnectedSide();
@@ -202,7 +172,6 @@ class RedstoneWire extends RedstoneSource{
 		if($this->canCalc()){
 			$block = $this->getSide(Vector3::SIDE_DOWN);
 			if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) {
-				/** @var ActiveRedstoneLamp $block */
 				if(!$this->checkPower($block, [Vector3::SIDE_UP], true)) $block->turnOff();
 			}
 
@@ -250,9 +219,7 @@ class RedstoneWire extends RedstoneSource{
 		if(!isset($hasUpdated[$hash])) $hasUpdated[$hash] = true;
 		else return [$powers, $hasUpdated];
 
-		//check blocks around
 		foreach($hasChecked as $side => $bool){
-			/** @var RedstoneWire $block */
 			$block = $wire->getSide($side);
 			if($block instanceof RedstoneSource){
 				if($block->isActivated($wire)){
@@ -268,7 +235,6 @@ class RedstoneWire extends RedstoneSource{
 			}
 		}
 
-		//check blocks above
 		$baseBlock = $wire->add(0, 1, 0);
 		foreach($hasChecked as $side => $bool){
 			if(!$bool){
@@ -286,7 +252,6 @@ class RedstoneWire extends RedstoneSource{
 			}
 		}
 
-		//check blocks below
 		$baseBlock = $wire->add(0, -1, 0);
 		foreach($hasChecked as $side => $bool){
 			if(!$bool){
@@ -308,7 +273,6 @@ class RedstoneWire extends RedstoneSource{
 	}
 
 	public function calcSignal($strength = 15, $type = self::ON, array $hasUpdated = []){
-		//This algorithm is provided by Stary and written by PeratX
 		$hash = Level::blockHash($this->x, $this->y, $this->z);
 		if(!in_array($hash, $hasUpdated)){
 			$hasUpdated[] = $hash;
@@ -318,7 +282,6 @@ class RedstoneWire extends RedstoneSource{
 				if($type == self::DESTROY) $this->getLevel()->setBlock($this, new Air(), true, false);
 				if($strength <= 0) $this->deactivate();
 				$powers = $this->getPowerSources($this, [], [], true);
-				/** @var RedstoneSource $power */
 				foreach($powers[0] as $power){
 					$power->activate();
 				}
@@ -385,7 +348,6 @@ class RedstoneWire extends RedstoneSource{
 	}
 
 	public function updateNormalWire(Block $block, $strength, $type, array $hasUpdated){
-		/** @var RedstoneWire $block */
 		if($block->getId() == Block::REDSTONE_WIRE){
 			if($block->getStrength() < $strength){
 				return $block->calcSignal($strength, $type, $hasUpdated);

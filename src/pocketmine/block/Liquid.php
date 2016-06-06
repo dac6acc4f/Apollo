@@ -241,12 +241,8 @@ abstract class Liquid extends Transparent{
 				}
 
 				if($decay >= 8){
-					//$this->getLevel()->setBlock($bottomBlock, Block::get($this->id, $decay), true);
-					//$this->getLevel()->scheduleUpdate($bottomBlock, $this->tickRate());
 					$this->flowIntoBlock($bottomBlock, $decay);
 				}else{
-					//$this->getLevel()->setBlock($bottomBlock, Block::get($this->id, $decay + 8), true);
-					//$this->getLevel()->scheduleUpdate($bottomBlock, $this->tickRate());
 					$this->flowIntoBlock($bottomBlock, $decay | 0x08);
 				}
 			}elseif($decay >= 0 and ($decay === 0 or !$bottomBlock->canBeFlowedInto())){
@@ -438,12 +434,7 @@ abstract class Liquid extends Transparent{
 	public function getDrops(Item $item){
 		return [];
 	}
-
-	/**
-	 * Creates fizzing sound and smoke. Used when lava flows over block or mixes with water.
-	 *
-	 * @param Vector3 $pos
-	 */
+	
 	protected function triggerLavaMixEffects(Vector3 $pos){
 		$this->getLevel()->addSound(new FizzSound($pos->add(0.5, 0.5, 0.5), 2.5 + mt_rand(0, 1000) / 1000 * 0.8));
 

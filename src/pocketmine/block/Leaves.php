@@ -1,26 +1,5 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- * 
- *
-*/
-
 namespace pocketmine\block;
-
 use pocketmine\event\block\LeavesDecayEvent;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
@@ -29,7 +8,6 @@ use pocketmine\item\enchantment\enchantment;
 use pocketmine\level\Level;
 use pocketmine\Player;
 use pocketmine\Server;
-
 class Leaves extends Transparent{
 	const OAK = 0;
 	const SPRUCE = 1;
@@ -90,7 +68,7 @@ class Leaves extends Transparent{
 						return true;
 					}
 				}
-			}else{ //No more loops
+			}else{
 				switch($fromSide){
 					case 2:
 						if($this->findLog($pos->getSide(2), $visited, $distance + 1, $check, $fromSide) === true){

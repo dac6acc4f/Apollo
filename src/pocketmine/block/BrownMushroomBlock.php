@@ -1,11 +1,7 @@
 <?php
-
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\enchantment\enchantment;
-
 class BrownMushroomBlock extends Solid{
 	
 	const BROWN = 14;

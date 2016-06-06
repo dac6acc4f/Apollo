@@ -1,10 +1,7 @@
 <?php
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-
 class BirchDoor extends Door{
 
 	protected $id = self::BIRCH_DOOR_BLOCK;

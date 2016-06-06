@@ -1,12 +1,8 @@
 <?php
-
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Player;
-
 class Camera extends Flowable{
 
 	protected $id = self::CAMERA;

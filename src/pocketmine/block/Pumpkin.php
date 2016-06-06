@@ -1,15 +1,5 @@
 <?php
-
-/*
- * PocketMine-iTX Genisys
- * @author PocketMine-iTX Team & iTX Technologies LLC.
- * @link http://mcper.cn 
- *       http://mcpe.asia 
- *       http://pl.zxda.net
-*/
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\Player;
@@ -19,7 +9,6 @@ use pocketmine\nbt\tag\Compound;
 use pocketmine\nbt\tag\Enum;
 use pocketmine\nbt\tag\Double;
 use pocketmine\nbt\tag\Float;
-
 class Pumpkin extends Solid{
 
 	protected $id = self::PUMPKIN;

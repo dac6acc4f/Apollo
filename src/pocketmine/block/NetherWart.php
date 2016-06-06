@@ -1,33 +1,11 @@
 <?php
-
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://mcper.cn
- *
- */
-
 namespace pocketmine\block;
-
 use pocketmine\event\block\BlockGrowEvent;
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\item\enchantment\enchantment;
 use pocketmine\Player;
 use pocketmine\Server;
-
 class NetherWart extends Flowable{
 	
 	protected $id = self::NETHER_WART_BLOCK;
@@ -56,8 +34,8 @@ class NetherWart extends Flowable{
 				return Level::BLOCK_UPDATE_NORMAL;
 			}
 		}elseif($type === Level::BLOCK_UPDATE_RANDOM){
-			if(mt_rand(0, 12) == 1){//only have 0-3 So maybe slowly
-				if($this->meta < 0x03){//0x03
+			if(mt_rand(0, 12) == 1){
+				if($this->meta < 0x03){/
 					$block = clone $this;
 					++$block->meta;
 					Server::getInstance()->getPluginManager()->callEvent($ev = new BlockGrowEvent($this, $block));

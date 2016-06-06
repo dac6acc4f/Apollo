@@ -1,35 +1,9 @@
 <?php
-
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://mcper.cn
- *
- */
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
-
-/*
- * This class is the power of all redstone blocks!
- */
-
 class RedstoneSource extends Flowable{
 	protected $maxStrength = 15;
 	protected $activated = false;
@@ -70,12 +44,9 @@ class RedstoneSource extends Flowable{
 			if(!$block->isOpened()) $block->onActivate(new Item(0));
 		}
 		if($block->getId() == Block::TNT) $block->onActivate(new Item(Item::FLINT_AND_STEEL));
-		/** @var InactiveRedstoneLamp $block */
 		if($block->getId() == Block::INACTIVE_REDSTONE_LAMP) $block->turnOn();
-		/** @var Dropper|Dispenser $block */
 		if($block->getId() == Block::DROPPER or $block->getId() == Block::DISPENSER) $block->activate();
 
-		/** @var PoweredRepeater $block */
 		if($block->getId() == Block::UNPOWERED_REPEATER){
 			if($this->equals($block->getSide($block->getDirection()))) $block->activate();
 		}
@@ -84,7 +55,6 @@ class RedstoneSource extends Flowable{
 	public function activateBlock(Block $block){
 		$this->activateBlockWithoutWire($block);
 		if($block->getId() == Block::REDSTONE_WIRE){
-			/** @var RedstoneWire $wire */
 			$wire = $block;
 			$wire->calcSignal($this->maxStrength, RedstoneWire::ON);
 		}
@@ -93,22 +63,18 @@ class RedstoneSource extends Flowable{
 	public function deactivateBlock(Block $block){
 		$this->deactivateBlockWithoutWire($block);
 		if($block->getId() == Block::REDSTONE_WIRE){
-			/** @var RedstoneWire $wire */
 			$wire = $block;
 			$wire->calcSignal(0, RedstoneWire::OFF);
 		}
 	}
 
 	public function deactivateBlockWithoutWire(Block $block){
-		/** @var Door $block */
 		if(!$this->checkPower($block)){
 			if(($block instanceof Door) or ($block instanceof Trapdoor) or ($block instanceof FenceGate)){
 				if($block->isOpened()) $block->onActivate(new Item(0));
 			}
-			/** @var ActiveRedstoneLamp $block */
 			if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOff();
 		}
-		/** @var PoweredRepeater $block */
 		if($block->getId() == Block::POWERED_REPEATER){
 			if($this->equals($block->getSide($block->getDirection()))) $block->deactivate();
 		}
@@ -117,7 +83,6 @@ class RedstoneSource extends Flowable{
 	public function activate(array $ignore = []){
 		if($this->canCalc()){
 			$this->activated = true;
-			/** @var Door $block */
 
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_DOWN];
 
@@ -133,7 +98,6 @@ class RedstoneSource extends Flowable{
 	public function deactivate(array $ignore = []){
 		if($this->canCalc()){
 			$this->activated = false;
-			/** @var Door $block */
 
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 
@@ -147,7 +111,6 @@ class RedstoneSource extends Flowable{
 			if(!in_array(Vector3::SIDE_DOWN, $ignore)){
 				$block = $this->getSide(Vector3::SIDE_DOWN);
 				if(!$this->checkPower($block)){
-					/** @var $block ActiveRedstoneLamp */
 					if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOff();
 				}
 
@@ -177,7 +140,6 @@ class RedstoneSource extends Flowable{
 					if($pos->isActivated($this)){
 						if(($ignoreWire and $pos->getId() != self::REDSTONE_WIRE) or (!$ignoreWire and $pos->getId() != self::REDSTONE_WIRE)) return true;
 						if(!$ignoreWire and $pos->getId() == self::REDSTONE_WIRE){
-							/** @var RedstoneWire $pos */
 							$cb = $pos->getUnconnectedSide();
 							if(!$cb[0]) return false;
 							if($this->equals($pos->getSide($cb[0]))) return true;
@@ -202,7 +164,6 @@ class RedstoneSource extends Flowable{
 		$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP];
 		foreach($sides as $side){
 			if(!in_array($side, $ignore)){
-				/** @var RedstoneTorch $block */
 				$block = $pos->getSide($side);
 				if($block->getId() == self::REDSTONE_TORCH){
 					$faces = [
@@ -227,7 +188,6 @@ class RedstoneSource extends Flowable{
 		$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP];
 		foreach($sides as $side){
 			if(!in_array($side, $ignore)){
-				/** @var RedstoneTorch $block */
 				$block = $pos->getSide($side);
 				if($block->getId() == self::UNLIT_REDSTONE_TORCH){
 					$faces = [

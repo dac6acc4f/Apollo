@@ -1,9 +1,6 @@
 <?php
-
 namespace pocketmine\block;
-
 use pocketmine\level\Level;
-
 class StillWater extends Water{
 	protected $id = self::STILL_WATER;
 	public function onUpdate($type){

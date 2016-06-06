@@ -1,8 +1,6 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
-
 class Air extends Transparent{
 
 	protected $id = self::AIR;

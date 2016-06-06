@@ -1,27 +1,15 @@
 <?php
-
-/*
- * PocketMine-iTX Genisys
- * @author PocketMine-iTX Team & iTX Technologies LLC.
- * @link http://mcper.cn 
- *       http://mcpe.asia 
- *       http://pl.zxda.net
-*/
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
-
 class PoweredRail extends Rail{
 
 	protected $id = self::POWERED_RAIL;
-	/** @var Vector3 [] */
 	protected $connected = [];
 
 	public function __construct($meta = 0){
-		$this->meta = $meta;//0,1,2,3,4,5
+		$this->meta = $meta;
 	}
 
 	public function getName(){
@@ -33,15 +21,10 @@ class PoweredRail extends Rail{
 		return true;
 	}
 
-	/**
-	 * @param Rail $block
-	 * @return bool
-	 */
 	public function canConnect(Rail $block){
 		if($this->distanceSquared($block) > 2){
 			return false;
 		}
-		/** @var Vector3 [] $blocks */
 		if(count($blocks = self::check($this)) == 2){
 			return false;
 		}
@@ -69,7 +52,6 @@ class PoweredRail extends Rail{
 			if(!is_array($connected)){
 				return false;
 			}
-			/** @var Vector3 [] $connected */
 			$connected[] = $rail;
 			switch(count($connected)){
 				case  1:
@@ -102,14 +84,13 @@ class PoweredRail extends Rail{
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$downBlock = $this->getSide(Vector3::SIDE_DOWN);
 
-		if($downBlock instanceof Rail or !$this->isBlock($downBlock)){//判断是否可以放置
+		if($downBlock instanceof Rail or !$this->isBlock($downBlock)){
 			return false;
 		}
 
 		$arrayXZ = [[1, 0], [0, 1], [-1, 0], [0, -1]];
 		$arrayY = [0, 1, -1];
 
-		/** @var Vector3 [] $connected */
 		$connected = [];
 		foreach($arrayXZ as $key => $xz){
 			foreach($arrayY as $y){
@@ -118,7 +99,6 @@ class PoweredRail extends Rail{
 				if($block instanceof Rail){
 					if($block->connect($this)){
 						$connected[] = $v3;
-						//感觉这里怪怪的
 						if($key <= 1){
 							$xz = $arrayXZ[$key + 1];
 							foreach($arrayY as $yy){

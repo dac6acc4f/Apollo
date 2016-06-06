@@ -1,31 +1,5 @@
 <?php
-
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://mcper.cn
- *
- */
-
-/*
- * THIS IS COPIED FROM THE PLUGIN FlowerPot MADE BY @beito123!!
- * https://github.com/beito123/PocketMine-MP-Plugins/blob/master/test%2FFlowerPot%2Fsrc%2Fbeito%2FFlowerPot%2Fomake%2FSkull.php
- *
- */
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\nbt\tag\Compound;
@@ -36,7 +10,6 @@ use pocketmine\tile\Tile;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\nbt\tag\Byte;
 use pocketmine\tile\Skull;
-
 class SkullBlock extends Transparent{
 
 	protected $id = self::SKULL_BLOCK;

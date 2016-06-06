@@ -1,6 +1,5 @@
 <?php
 namespace pocketmine\block;
-
 class ActivatorRail extends PoweredRail {
 
     protected $id = self::ACTIVATOR_RAIL;

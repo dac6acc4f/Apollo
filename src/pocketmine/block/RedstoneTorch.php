@@ -1,31 +1,9 @@
 <?php
-
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://mcper.cn
- *
- */
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Player;
 use pocketmine\math\Vector3;
-
 class RedstoneTorch extends RedstoneSource{
 
 	protected $id = self::REDSTONE_TORCH;
@@ -130,7 +108,6 @@ class RedstoneTorch extends RedstoneSource{
 					}
 				}
 			}
-			//$this->lastUpdateTime = $this->getLevel()->getServer()->getTick();
 		}
 	}
 
@@ -145,7 +122,6 @@ class RedstoneTorch extends RedstoneSource{
 	public function deactivateTorch(array $ignore = [], array $notCheck = []){
 		if($this->canCalc()){
 			$this->activated = false;
-			/** @var Door $block */
 
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 
@@ -162,7 +138,6 @@ class RedstoneTorch extends RedstoneSource{
 				$block = $this->getSide(Vector3::SIDE_DOWN);
 				if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck)){
 					if(!$this->checkPower($block)){
-						/** @var $block ActiveRedstoneLamp */
 						if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOff();
 					}
 
@@ -170,7 +145,6 @@ class RedstoneTorch extends RedstoneSource{
 					$this->deactivateBlock($block);
 				}
 			}
-			//$this->lastUpdateTime = $this->getLevel()->getServer()->getTick();
 		}
 	}
 

@@ -1,14 +1,5 @@
 <?php
-/*
- * Copied from ImagicalMine
- * THIS IS COPIED FROM THE PLUGIN FlowerPot MADE BY @beito123!!
- * https://github.com/beito123/PocketMine-MP-Plugins/blob/master/test%2FFlowerPot%2Fsrc%2Fbeito%2FFlowerPot%2Fomake%2FSkull.php
- *
- * Genisys Project
- */
-
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
@@ -18,6 +9,7 @@ use pocketmine\math\AxisAlignedBB;
 use pocketmine\nbt\tag\String;
 use pocketmine\nbt\tag\Int;
 use pocketmine\nbt\tag\Compound;
+use pocketmine\tile\FlowerPot as FlowPotTile;
 use pocketmine\tile\FlowerPot as FlowerPotTile;
 
 class FlowerPot extends Flowable{
@@ -35,7 +27,7 @@ class FlowerPot extends Flowable{
 		return "Flower Pot Block";
 	}
 
-	public function getBoundingBox(){//todo fix...
+	public function getBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x - 0.6875,
 			$this->y - 0.375,
@@ -62,11 +54,6 @@ class FlowerPot extends Flowable{
 		}
 		return false;
 	}
-
-	/*public function onBreak(Item $item){
-		$this->getLevel()->setBlock($this, new Air(), true, true, true);
-		return true;
-	}*/
 
 	public function onActivate(Item $item, Player $player = null){
 		$tile = $this->getLevel()->getTile($this);
@@ -111,7 +98,6 @@ class FlowerPot extends Flowable{
 
 	public function getDrops(Item $item){
 		$items = array([Item::FLOWER_POT, 0, 1]);
-		/** @var FlowerPotTile $tile */
 		if($this->getLevel()!=null && (($tile = $this->getLevel()->getTile($this)) instanceof FlowerPotTile)){
 			if($tile->getFlowerPotItem() !== Item::AIR){
 				$items[] = array($tile->getFlowerPotItem(), $tile->getFlowerPotData(), 1);

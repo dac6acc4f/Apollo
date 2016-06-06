@@ -1,10 +1,8 @@
 <?php
-
 namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\level\sound\ButtonClickSound;
-
 class StoneButton extends WoodenButton{
 	protected $id = self::STONE_BUTTON;
 	public function getName(){

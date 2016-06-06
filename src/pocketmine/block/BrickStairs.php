@@ -1,8 +1,6 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\item\Tool;
-
 class BrickStairs extends Stair{
 
 	protected $id = self::BRICK_STAIRS;

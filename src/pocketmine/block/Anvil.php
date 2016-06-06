@@ -1,12 +1,10 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\inventory\AnvilInventory;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\level\sound\AnvilBreakSound;
 use pocketmine\Player;
-
 class Anvil extends Fallable{
 
 	protected $id = self::ANVIL;

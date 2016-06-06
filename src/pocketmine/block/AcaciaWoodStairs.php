@@ -1,9 +1,7 @@
 <?php
 namespace pocketmine\block;
-
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-
 class AcaciaWoodStairs extends Stair{
 
 	protected $id = self::ACACIA_WOOD_STAIRS;
