@@ -1,7 +1,5 @@
 <?php
-
 namespace pocketmine\level\generator\normal;
-
 use pocketmine\block\Block;
 use pocketmine\block\CoalOre;
 use pocketmine\block\DiamondOre;
@@ -28,7 +26,6 @@ use pocketmine\level\generator\populator\Tree;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3 as Vector3;
 use pocketmine\utils\Random;
-
 class Normal extends Generator{
 	const NAME = "Normal";
 
