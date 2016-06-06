@@ -128,7 +128,6 @@ class SessionManager{
 				$this->getSession($source, $port)->handlePacket($packet);
 				return true;
 			}elseif($pid === UNCONNECTED_PING::$ID){
-				//No need to create a session for just pings
 				$packet = new UNCONNECTED_PING;
 				$packet->buffer = $buffer;
 				$packet->decode();
@@ -307,7 +306,7 @@ class SessionManager{
 	public function notifyACK(Session $session, $identifierACK){
 		$this->streamACK($session->getAddress() . ":" . $session->getPort(), $identifierACK);
 	}
-	public function getName() : string{
+	public function getName(){
 		return $this->name;
 	}
 	public function getID(){
