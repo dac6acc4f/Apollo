@@ -35,7 +35,7 @@ class NetherWart extends Flowable{
 			}
 		}elseif($type === Level::BLOCK_UPDATE_RANDOM){
 			if(mt_rand(0, 12) == 1){
-				if($this->meta < 0x03){/
+				if($this->meta < 0x03){
 					$block = clone $this;
 					++$block->meta;
 					Server::getInstance()->getPluginManager()->callEvent($ev = new BlockGrowEvent($this, $block));
