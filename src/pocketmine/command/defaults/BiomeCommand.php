@@ -1,11 +1,9 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
-
 class BiomeCommand extends VanillaCommand{
 	public function __construct($name){
 		parent::__construct(
@@ -25,7 +23,7 @@ class BiomeCommand extends VanillaCommand{
 		}
 		if($sender instanceof Player){
 			if($args[0] == "set"){
-				$biome = isset($args[1]) ? $args[1] : 1;//默认改成草原
+				$biome = isset($args[1]) ? $args[1] : 1;
 				if(isset($sender->selectedPos[0]) and isset($sender->selectedPos[1])){
 					if(is_numeric($biome) === false){
 						$sender->sendMessage(TextFormat::RED . "%pocketmine.command.biome.wrongBio");
@@ -51,9 +49,8 @@ class BiomeCommand extends VanillaCommand{
 					$sender->sendMessage("%pocketmine.command.biome.noPos");
 				}
 			}elseif($args[0] == "color"){
-				$color = isset($args[1]) ? $args[1] : "146,188,89";//1=草原("146,188,89"),2=沙漠(251,183,19)"130,180,147"
+				$color = isset($args[1]) ? $args[1] : "146,188,89";
 				$a = explode(",", $color);
-				//var_dump($a);
 				if(count($a) != 3){
 					$sender->sendMessage(TextFormat::RED . "%pocketmine.command.biome.wrongCol");
 					return false;
@@ -73,7 +70,6 @@ class BiomeCommand extends VanillaCommand{
 							$level->setBiomeColor($x, $z, $a[0], $a[1], $a[2]);
 						}
 					}
-					//$sender->selectedPos = array();
 					$sender->sendMessage(new TranslationContainer("pocketmine.command.biome.color", [$a[0], $a[1], $a[2]]));
 				}else{
 					$sender->sendMessage("%pocketmine.command.biome.noPos");
