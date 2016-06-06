@@ -1,6 +1,5 @@
 <?php
 namespace pocketmine\command\defaults;
-
 use pocketmine\block\Air;
 use pocketmine\block\Block;
 use pocketmine\block\Lava;
@@ -13,7 +12,6 @@ use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
-
 class CaveCommand extends VanillaCommand{
 	public function __construct($name){
 		parent::__construct(
@@ -31,7 +29,6 @@ class CaveCommand extends VanillaCommand{
 			$sender->sendMessage("You position ({$sender->getX()}, {$sender->getY()}, {$sender->getZ()}, {$sender->getLevel()->getFolderName()})");
 			return true;
 		}
-		//0:旋转角度 1:洞穴长度 2:分叉数 3:洞穴强度
 		if(count($args) != 8){
 			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 			return false;
@@ -81,28 +78,20 @@ class CaveCommand extends VanillaCommand{
 			$yaw = mt_rand(0, 100) * 72;
 		}
 		$pitch = -45;
-		//$pi = M_PI / 180;
 		$s1 = [$x, $y, $z];
 		$s2 = [$x, $y, $z];
-		//$i = -10 + mt_rand(0, 100) * 0.2;
-		//$i = mt_rand(8, 25) / 10;
 		$i = 1;
 		for($u = 0; $u <= $ls; $u += $i){
 			if($pitch > 12) $pitch = -45;
 			$pitch += 5 + mt_rand(0, 5);
 			$pos->getLevel()->getServer()->getLogger()->debug("[Caves] ".TextFormat::YELLOW . "yaw: $yaw  pitch: $pitch");
 			if($tt) $pitch = mt_rand(0, 100) * 0.05;
-			//$s2[0] = $s1[0] -\sin($yaw / 180 * M_PI) * \cos($pitch / 180 * M_PI) * $i;
-			//$s2[1] = $s1[1] +\sin($pitch / 180 * M_PI) * $i;
-			//$s2[2] = $s1[2] + \cos($yaw / 180 * M_PI) * \cos($pitch / 180 * M_PI) * $i;
 			#echo "s1: ";
 			//var_dump($s1);
 			$see = $this->getDirectionVector($yaw, $pitch);
 			$s2[0] = $s1[0] + $see->x * $i;
 			$s2[1] = $s1[1] - $see->y * $i;
 			$s2[2] = $s1[2] + $see->z * $i;
-			//echo "s2: ";
-			//var_dump($s2);
 			if($s2[1] < 10){
 				$s2[1] = 10 + mt_rand(0, 10);
 			}
@@ -113,8 +102,6 @@ class CaveCommand extends VanillaCommand{
 				$newPos = new Position($s2[0], $s2[1], $s2[2], $level);
 				$this->caves($newPos, [$yaw + 90 * (round(mt_rand(0, 100) / 100) * 2 - 1), $ls - $u, $cv, [false, $cave[3][1], $cave[3][2]], 0], $tt);
 			}
-			//$exPos = new Position($s2[0], $s2[1], $s2[2], $level);
-			//$this->explodeBlocks($exPos, mt_rand(2, 4), mt_rand(1, 4));
 			if(mt_rand(0, 100) > 80){
 				$add = mt_rand(-10, 10);
 			}else{
@@ -123,7 +110,6 @@ class CaveCommand extends VanillaCommand{
 			$yaw = $yaw + $add;
 			$yaw = $yaw % 360;
 			$yaw = $yaw >= 0 ? $yaw : 360 + $yaw;
-			//$i = 5 + mt_rand(0, 100) * 0.05;
 			$x = $s1[0];
 			$y = $s1[1];
 			$z = $s1[2];
@@ -132,8 +118,6 @@ class CaveCommand extends VanillaCommand{
 			$z2 = $s2[2];
 			$l = max(abs($x - $x2), abs($y - $y2), abs($z - $z2));
 			for($m = 0; $m <= $l; $m++){
-				//$v = $level->getBlock(new Vector3(round($this->chu($x + $m, $l * ($x2 - $x))), round($y + $this->chu($m, $l * ($y2 - $y))), round($z + $this->chu($m, $l * ($z2 - $z)))))->getId();
-				//if ($v != 0 and $v != 95)
 				$liu = mt_rand(0, 200) == 100;
 				$this->fdx(round($x + $this->chu($m, $l * ($x2 - $x))), round($y + $this->chu($m, $l * ($y2 - $y))), round($z + $this->chu($m, $l * ($z2 - $z))), $level, $liu);
 			}
@@ -142,32 +126,6 @@ class CaveCommand extends VanillaCommand{
 		if(mt_rand(0, 10) >= 5 and $s2[1] <= 40){
 			$this->lavaSpawn($level, $s2[0], $s2[1], $s2[2]);
 		}
-		/*
-		if ($cave[3][0]) {
-			$l = $cave[4];
-			$x = $s2[0];
-			$y = $s2[1];
-			$z = $s2[2];
-			for ($i = -$l; $i <= $l; $i += 2) {
-				for ($j = -$l; $j <= $l; $j += 2) {
-					if ($i * $i + $j * $j <= pow($l - 0.3 * $l * mt_rand(0, 1000) / 1000, 2)) {
-						if ($level->getBlock(new Vector3($x + $i, $y - 1, $z + $j))->getId() != 0) {
-							$this->fdx($x + $i, $y - 1 + 2 * mt_rand(0, 1000) / 1000, $z + $j, $level);
-						}
-					}
-					if ($i * $i + $j * $j <= pow($l - 0.5 * $l * mt_rand(0, 1000) / 1000, 2)) {
-						if ($level->getBlock(new Vector3($x + $i, $y + 3, $z + $j))->getId() != 0) {
-							$this->fdx($x + $i, $y + 3 + 2 * mt_rand(0, 1000) / 1000, $z + $j, $level);
-						}
-					}
-				}
-			}
-			//if ($level->getBlock(new Vector3($s2[0], $s2[1] - 4, $s2[2]))->getId() != 0 && $cave[3][2] && mt_rand(0, 100) / 100 > 0.5) $this->tiankengy($level, $s2[0], $s2[1], $s2[2], $l * 0.6, 11, 0);
-		} else if ($cave[3][2]) {
-			$l = $cave[4];
-			if ($pitch < -10 && $pitch > -45 && $level->getBlock(new Vector3($s2[0], $s2[1] - 3, $s2[2]))->getId() != 0) $this->tiankengy($level, $s2[0], $s2[1], $s2[2], $l / 2, 11, 0);
-		}*/
-		//echo "\n 矿洞生成完成\n";
 	}
 	public function lavaSpawn(Level $level, $x, $y, $z){
 		$level->getServer()->getLogger()->info("生成岩浆中 " . "floor($x)" . ", " . "floor($y)" . ", " . floor($z));
@@ -233,7 +191,6 @@ class CaveCommand extends VanillaCommand{
 		}
 	}
 	public function fdx($x, $y, $z, Level $level, $liu = false){
-		//$this->getLogger()->info(TextFormat::GREEN."fdx!");
 		for($i = 1; $i < mt_rand(2, 4); $i++){
 			$level->setBlockIdAt($x + $i - 2, $y - 1, $z + 1, 0);
 			$level->setBlockIdAt($x + $i - 2, $y - 1, $z, 0);
