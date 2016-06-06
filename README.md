@@ -23,3 +23,5 @@ A variant of the regular extreme hills biome, adding larger mountains, steeper c
 ## Information
 - Official Apollo Server: [server:**19132**] *Often online, but could be offline at times.*
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
+- We are a third party software of PocketMine. We did not code PocketMine, and all credit should be given to them. We are also using Genisys's branch of PocketMine, and all credits should be given to Genisys for their added features to PocketMine.
+ - We edited their generators, and removed some unnessesary lines that would save some bytes.
