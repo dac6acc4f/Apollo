@@ -108,7 +108,7 @@ class Normal extends Generator{
 		$this->selector = new BiomeSelector($this->random, function($temperature, $rainfall){
 			if($rainfall < 0.25){
 			return Biome::SWAMP;
-				}elseif{$temperature < 0.25){
+				}elseif($temperature < 0.25){
 					return Biome::OCEAN;
 			}elseif($rainfall < 0.60){
 				if($temperature < 0.25){
