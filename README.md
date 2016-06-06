@@ -24,4 +24,5 @@ A variant of the regular extreme hills biome, adding larger mountains, steeper c
 - Official Apollo Server not exist. Coming soon!
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
 - We are a third party software of PocketMine. We did not code PocketMine, and all credit should be given to them. We are also using Genisys's branch of PocketMine, and all credits should be given to Genisys for their added features to PocketMine.
- - We are edited all lags from fkgenisys and more performance! World changes is best features of Apollo! 
+ - We edited the code of Genisys to increase the performance and to decrease the lag!
+ - We edited Genisys's generator to have a better generator.
