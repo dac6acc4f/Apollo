@@ -111,6 +111,8 @@ class Normal extends Generator{
 		$this->selector = new BiomeSelector($this->random, function($temperature, $rainfall){
 			if($rainfall < 0.25){
 			return Biome::SWAMP;
+			}else{
+				return Biome::OCEAN;
 			}elseif($rainfall < 0.60){
 				if($temperature < 0.25){
 					return Biome::ICE_PLAINS;
@@ -268,7 +270,7 @@ class Normal extends Generator{
 	}
 
 	public function getSpawn(){
-		return new Vector3(127.5, 128, 127.5);
+		return new Vector3(0, 128, 0);
 	}
 
 }
