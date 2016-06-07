@@ -8,16 +8,15 @@ use pocketmine\level\generator\Populator\Tree;
 class SwampBiome extends GrassyBiome{
 	public function __construct(){
 		parent::__construct();
-
 		$flower = new Flower();
-		$flower->setBaseAmount(8);
+		$flower->setBaseAmount(2);
 		$flower->addType([Block::RED_FLOWER, FlowerBlock::TYPE_BLUE_ORCHID]);
 		$this->addPopulator($flower);
 		$lilypad = new LilyPad();
 		$lilypad->setBaseAmount(4);
 		$this->addPopulator($lilypad);
 		$trees = new Tree();
-		$trees->setBaseAmount(1);
+		$trees->setBaseAmount(2);
 		$this->addPopulator($trees);
 		$this->setElevation(62, 63);
 		$this->temperature = 0.8;
