@@ -1,26 +1,5 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
-
 namespace pocketmine\level\generator\normal\biome;
-
 use pocketmine\level\generator\populator\TallGrass;
 use pocketmine\level\generator\populator\LilyPad;
 use pocketmine\level\generator\populator\WaterPit;
@@ -29,12 +8,9 @@ use pocketmine\block\Flower as FlowerBlock;
 use pocketmine\level\generator\populator\Flower;
 use pocketmine\level\generator\populator\Sugarcane;
 use pocketmine\level\generator\populator\TallSugarcane;
-
 class PlainBiome extends GrassyBiome{
-
 	public function __construct(){
 		parent::__construct();
-
 		$sugarcane = new Sugarcane();
 		$sugarcane->setBaseAmount(6);
 		$tallSugarcane = new TallSugarcane();
@@ -42,12 +18,11 @@ class PlainBiome extends GrassyBiome{
 		$tallGrass = new TallGrass();
 		$tallGrass->setBaseAmount(25);
 		$waterPit = new WaterPit();
-		$waterPit->setBaseAmount(9999);
+		$waterPit->setBaseAmount(6);
 		$lilyPad = new LilyPad();
-		$lilyPad->setBaseAmount(8);
-
+		$lilyPad->setBaseAmount(1);
 		$flower = new Flower();
-		$flower->setBaseAmount(2);
+		$flower->setBaseAmount(10);
 		$flower->addType([Block::DANDELION, 0]);
 		$flower->addType([Block::RED_FLOWER, FlowerBlock::TYPE_POPPY]);
 		$flower->addType([Block::RED_FLOWER, FlowerBlock::TYPE_AZURE_BLUET]);
@@ -56,20 +31,16 @@ class PlainBiome extends GrassyBiome{
 		$flower->addType([Block::RED_FLOWER, FlowerBlock::TYPE_WHITE_TULIP]);
 		$flower->addType([Block::RED_FLOWER, FlowerBlock::TYPE_PINK_TULIP]);
 		$flower->addType([Block::RED_FLOWER, FlowerBlock::TYPE_OXEYE_DAISY]);
-
 		$this->addPopulator($sugarcane);
 		$this->addPopulator($tallSugarcane);
 		$this->addPopulator($tallGrass);
 		$this->addPopulator($flower);
 		$this->addPopulator($waterPit);
 		$this->addPopulator($lilyPad);
-
-		$this->setElevation(61, 68);
-
+		$this->setElevation(63, 74);
 		$this->temperature = 0.8;
 		$this->rainfall = 0.4;
 	}
-
 	public function getName(){
 		return "Plains";
 	}
