@@ -1,6 +1,6 @@
 <?php
 namespace pocketmine\level\generator\normal\biome;
-class SmallMountainsBiome extends MountainsBiome{
+class MountainsBiome extends GrassyBiome{
 	public function __construct(){
 		parent::__construct();
 		$this->setElevation(63, 127);
