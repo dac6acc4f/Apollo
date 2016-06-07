@@ -6,6 +6,6 @@ class MountainsBiome extends GrassyBiome{
 		$this->setElevation(63, 127);
 	}
 	public function getName(){
-		return "Small Mountains";
+		return "Mountains";
 	}
 }
