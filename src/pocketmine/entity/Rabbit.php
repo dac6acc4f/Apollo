@@ -31,7 +31,6 @@ class Rabbit extends Animal{
 			$nbt->RabbitType = new Byte("RabbitType", $this->getRandomRabbitType());
 		}
 		parent::__construct($chunk, $nbt);
-
 		$this->setDataProperty(self::DATA_RABBIT_TYPE, self::DATA_TYPE_BYTE, $this->getRabbitType());
 	}
 	public function getRandomRabbitType(){
