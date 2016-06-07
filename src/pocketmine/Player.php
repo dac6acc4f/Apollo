@@ -1880,7 +1880,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 			if($this->server->foodEnabled){
 				if($this->starvationTick >= 20){
-					$ev = new EntityDamageEvent($this, EntityDamageEvent::CAUSE_CUSTOM, 1);
+					$ev = new EntityDamageEvent($this, EntityDamageEvent::CAUSE_STARVATION, 1);
 					if($this->getHealth() > $this->server->hungerHealth) $this->attack(1, $ev);
 					$this->starvationTick = 0;
 				}
@@ -1950,6 +1950,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			Item::RAW_CHICKEN => 2,
 			Item::MELON_SLICE => 2,
 			Item::GOLDEN_APPLE => 4,
+                        Item::GOLDEN_APPLE_ENCHANTED => 4,
 			Item::PUMPKIN_PIE => 8,
 			Item::CARROT => 3,
 			Item::POTATO => 1,
@@ -2016,6 +2017,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					$this->addEffect(Effect::getEffect(Effect::POISON)->setAmplifier(3)->setDuration(60 * 20));
 				}elseif($slot->getId() === Item::GOLDEN_APPLE && $slot->getDamage() === 1){
 					$this->setFood($this->getFood() + 4);
+                                   //wtf,is not correct effect give ( golden apple and golden apple enchanted )
 					$this->addEffect(Effect::getEffect(Effect::HEALTH_BOOST)->setAmplifier(0)->setDuration(2 * 60 * 20));
 					$this->addEffect(Effect::getEffect(Effect::REGENERATION)->setAmplifier(4)->setDuration(30 * 20));
 					$this->addEffect(Effect::getEffect(Effect::FIRE_RESISTANCE)->setAmplifier(0)->setDuration(5 * 60 * 20));
