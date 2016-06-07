@@ -79,7 +79,7 @@ class StatusCommand extends VanillaCommand{
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.status.Totalmemory " . TextFormat::GREEN . number_format(round(($mUsage[1] / 1024) / 1024, 2)) . " MB.");
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.status.Totalvirtualmemory " . TextFormat::GREEN . number_format(round(($mUsage[2] / 1024) / 1024, 2)) . " MB.");
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.status.Heapmemory " . TextFormat::GREEN . number_format(round(($rUsage[0] / 1024) / 1024, 2)) . " MB.");
-		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.status.Maxmemorysystem " . TextFormat::WHITE . number_format(round(($mUsage[2] / 1024) / 1024, 2)) . " MB.");
+		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.status.Maxmemorysystem " . TextFormat::GREEN . number_format(round(($mUsage[2] / 1024) / 1024, 2)) . " MB.");
 
 		if($server->getProperty("memory.global-limit") > 0){
 			$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.status.Maxmemorymanager " . TextFormat::GREEN . number_format(round($server->getProperty("memory.global-limit"), 2)) . " MB.");
