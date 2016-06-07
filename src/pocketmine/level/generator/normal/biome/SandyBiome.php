@@ -16,7 +16,6 @@ class SandyBiome extends GrassyBiome{
 		$this->addPopulator($cactus);
 		$this->addPopulator($tallCacti);
 		$this->addPopulator($deadBush);
-		//$this->setElevation(63, 81); TEST
 		$this->temperature = 0.05;
 		$this->rainfall = 0.8;
 		$this->setGroundCover([
