@@ -17,6 +17,6 @@ class SmallMountainsBiome extends MountainsBiome{
 		$this->rainfall = 0.5;
 	}
 	public function getName(){
-		return "Mountains";
+		return "Small Mountains";
 	}
 }
