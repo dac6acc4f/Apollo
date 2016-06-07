@@ -2,7 +2,7 @@
 namespace pocketmine\level\generator\normal\biome;
 use pocketmine\level\generator\populator\TallGrass;
 use pocketmine\level\generator\populator\Tree;
-class MountainsBiome extends GrassyBiome{
+class SmallMountainsBiome extends MountainsBiome{
 	public function __construct(){
 		parent::__construct();
 		$trees = new Tree();
@@ -12,7 +12,7 @@ class MountainsBiome extends GrassyBiome{
 		$tallGrass->setBaseAmount(6);
 		$this->addPopulator($tallGrass);
 		//TODO: add emerald,coming soon
-		$this->setElevation(63, 127);
+		$this->setElevation(63, 97);
 		$this->temperature = 0.4;
 		$this->rainfall = 0.5;
 	}
