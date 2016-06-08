@@ -1,29 +1,16 @@
 <?php
-
-/**
- * OpenGenisys Project
- *
- * @author PeratX
- */
-
 namespace pocketmine\entity;
-
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
-
 class Blaze extends Monster{
 	const NETWORK_ID = 43;
-
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 1.8;
-
 	public $dropExp = [10, 10];
-	
 	public function getName(){
 		return "Blaze";
 	}
-	
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

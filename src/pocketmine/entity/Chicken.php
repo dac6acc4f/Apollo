@@ -1,31 +1,18 @@
 <?php
-
-/**
- * OpenGenisys Project
- *
- * @author PeratX
- */
-
 namespace pocketmine\entity;
-
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\Item as ItemItem;
-
 class Chicken extends Animal{
 	const NETWORK_ID = 10;
-
 	public $width = 0.6;
 	public $length = 0.6;
 	public $height = 1.8;
-
 	public $dropExp = [1, 3];
-	
 	public function getName(){
 		return "Chicken";
 	}
-	
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -42,11 +29,9 @@ class Chicken extends Animal{
 		$player->dataPacket($pk);
 		parent::spawnTo($player);
 	}
-	
 	public function getDrops(){
 		$drops = [];
 		if ($this->lastDamageCause instanceof EntityDamageByEntityEvent and $this->lastDamageCause->getEntity() instanceof Player) {
-			
 				switch (\mt_rand(0, 2)) {
 					case 0:
 						$drops[] = ItemItem::get(ItemItem::RAW_CHICKEN, 0, 1);
