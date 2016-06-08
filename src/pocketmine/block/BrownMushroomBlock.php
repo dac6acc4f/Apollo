@@ -2,32 +2,24 @@
 namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\enchantment\enchantment;
-class BrownMushroomBlock extends Solid{
-	
+class BrownMushroomBlock extends Solid{	
 	const BROWN = 14;
-
 	protected $id = self::BROWN_MUSHROOM_BLOCK;
-
 	public function __construct($meta = 14){
 		$this->meta = $meta;
 	}
-
 	public function canBeActivated() {
 		return true;
 	}
-
 	public function getName(){
 		return "Brown Mushroom Block";
 	}
-
 	public function getHardness() {
 		return 0.2;
 	}
-
 	public function getResistance(){
 		return 1;
-	}
-	
+	}	
 	public function getDrops(Item $item){
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			return [
