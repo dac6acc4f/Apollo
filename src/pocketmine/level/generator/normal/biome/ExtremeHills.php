@@ -3,7 +3,7 @@ namespace pocketmine\level\generator\normal\biome;
 use pocketmine\block\Sapling;
 use pocketmine\block\Block;
 use pocketmine\level\generator\populator\Tree;
-class ExtremeHills extends Normal{
+class ExtremeHills extends NormalBiome{
 	public function __construct(){
 		parent::__construct();
 		$trees = new Tree(Sapling::OAK);
