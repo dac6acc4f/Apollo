@@ -1,30 +1,18 @@
 <?php
-
-/**
- * OpenGenisys Project
- *
- * @author PeratX
- */
-
 namespace pocketmine\entity;
-
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\Item as ItemItem;
-
 class Spider extends Monster{
 	const NETWORK_ID = 35;
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 1.9;
-
 	public $dropExp = [5, 5];
-	
 	public function getName(){
 		return "Spider";
 	}
-
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -39,11 +27,8 @@ class Spider extends Monster{
 		$pk->pitch = $this->pitch;
 		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
-
 		parent::spawnTo($player);
 	}
-	
 	public function getDrops(){
 		$drops = array(ItemItem::get(ItemItem::STRING, 0, 1));
 		if ($this->lastDamageCause instanceof EntityDamageByEntityEvent and $this->lastDamageCause->getEntity() instanceof Player) {

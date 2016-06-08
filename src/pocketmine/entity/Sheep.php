@@ -1,13 +1,5 @@
 <?php
-
-/**
- * OpenGenisys Project
- *
- * @author PeratX
- */
-
 namespace pocketmine\entity;
-
 use pocketmine\block\Wool;
 use pocketmine\nbt\tag\Byte;
 use pocketmine\network\protocol\AddEntityPacket;
@@ -15,20 +7,15 @@ use pocketmine\Player;
 use pocketmine\item\Item as ItemItem;
 use pocketmine\level\format\FullChunk;
 use pocketmine\nbt\tag\Compound;
-
 class Sheep extends Animal implements Colorable{
 	const NETWORK_ID = 13;
-
 	const DATA_COLOR_INFO = 16;
-
 	public $width = 0.625;
 	public $length = 1.4375;
 	public $height = 1.8;
-	
 	public function getName(){
 		return "Sheep";
 	}
-
 	public function __construct(FullChunk $chunk, Compound $nbt){
 		if(!isset($nbt->Color)){
 			$nbt->Color = new Byte("Color", self::getRandomColor());
@@ -37,7 +24,6 @@ class Sheep extends Animal implements Colorable{
 
 		$this->setDataProperty(self::DATA_COLOR_INFO, self::DATA_TYPE_BYTE, $this->getColor());
 	}
-
 	public static function getRandomColor() {
 		$rand = "";
 		$rand .= str_repeat(Wool::WHITE . " ", 20);
@@ -57,15 +43,12 @@ class Sheep extends Animal implements Colorable{
 		$arr = explode(" ", $rand);
 		return $arr[mt_rand(0, count($arr) - 1)];
 	}
-
 	public function getColor() {
 		return (int) $this->namedtag["Color"];
 	}
-
 	public function setColor($color){
 		$this->namedtag->Color = new Byte("Color", $color);
 	}
-	
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -80,10 +63,8 @@ class Sheep extends Animal implements Colorable{
 		$pk->pitch = $this->pitch;
 		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
 		parent::spawnTo($player);
 	}
-	
 	public function getDrops(){
 		$drops = [
 			ItemItem::get(ItemItem::WOOL, $this->getColor(), 1)

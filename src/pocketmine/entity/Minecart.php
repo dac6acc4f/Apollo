@@ -1,26 +1,5 @@
 <?php
-
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://mcper.cn
- *
- */
-
 namespace pocketmine\entity;
-
 use pocketmine\block\Block;
 use pocketmine\block\Rail;
 use pocketmine\item\Item as ItemItem;
@@ -29,50 +8,36 @@ use pocketmine\Player;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\math\Math;
-
 class Minecart extends Vehicle{
 	const NETWORK_ID = 84;
-
 	const TYPE_NORMAL = 1;
 	const TYPE_CHEST = 2;
 	const TYPE_HOPPER = 3;
 	const TYPE_TNT = 4;
-
 	public $height = 0.9;
 	public $width = 1.1;
-
 	public $drag = 0.1;
 	public $gravity = 0.5;
-
 	public $isMoving = false;
 	public $moveSpeed = 0.4;
-
 	public function initEntity(){
 		$this->setMaxHealth(1);
 		$this->setHealth($this->getMaxHealth());
 		parent::initEntity();
 	}
-
 	public function getName() {
 		return "Minecart";
 	}
-
 	public function getType() {
 		return self::TYPE_NORMAL;
 	}
-
 	public function onUpdate($currentTick){
 		if($this->closed !== false){
 			return false;
 		}
-
 		$this->lastUpdate = $currentTick;
-
 		$this->timings->startTiming();
-
 		$hasUpdate = false;
-		//parent::onUpdate($currentTick);
-
 		if($this->isAlive()){
 			$movingType = $this->getLevel()->getServer()->minecartMovingType;
 			if($movingType == -1) return false;
@@ -86,24 +51,18 @@ class Minecart extends Vehicle{
 				$target2 = $this->getLevel()->getBlock($this->add($this->motionX, 0, $this->motionZ)->floor());
 				if($target->getId() != ItemItem::AIR or $target2->getId() != ItemItem::AIR) $this->motionY = $this->gravity * 3;
 				else $this->motionY -= $this->gravity;
-
 				if($this->checkObstruction($this->x, $this->y, $this->z)){
 					$hasUpdate = true;
 				}
-
 				$this->move($this->motionX, $this->motionY, $this->motionZ);
 				$this->updateMovement();
-
 				$friction = 1 - $this->drag;
-
 				if($this->onGround and (abs($this->motionX) > 0.00001 or abs($this->motionZ) > 0.00001)){
 					$friction = $this->getLevel()->getBlock($this->temporalVector->setComponents((int) floor($this->x), (int) floor($this->y - 1), (int) floor($this->z) - 1))->getFrictionFactor() * $friction;
 				}
-
 				$this->motionX *= $friction;
 				$this->motionY *= 1 - $this->drag;
 				$this->motionZ *= $friction;
-
 				if($this->onGround){
 					$this->motionY *= -0.5;
 				}
@@ -136,15 +95,9 @@ class Minecart extends Vehicle{
 				$hasUpdate = true;
 			}
 		}
-
 		$this->timings->stopTiming();
-
 		return $hasUpdate or !$this->onGround or abs($this->motionX) > 0.00001 or abs($this->motionY) > 0.00001 or abs($this->motionZ) > 0.00001;
 	}
-
-	/**
-	 * @return Rail
-	 */
 	public function getNearestRail(){
 		$minX = Math::floorFloat($this->boundingBox->minX);
 		$minY = Math::floorFloat($this->boundingBox->minY);
@@ -152,9 +105,7 @@ class Minecart extends Vehicle{
 		$maxX = Math::ceilFloat($this->boundingBox->maxX);
 		$maxY = Math::ceilFloat($this->boundingBox->maxY);
 		$maxZ = Math::ceilFloat($this->boundingBox->maxZ);
-
 		$rails = [];
-
 		for($z = $minZ; $z <= $maxZ; ++$z){
 			for($x = $minX; $x <= $maxX; ++$x){
 				for($y = $minY; $y <= $maxY; ++$y){
@@ -163,7 +114,6 @@ class Minecart extends Vehicle{
 				}
 			}
 		}
-
 		$minDistance = PHP_INT_MAX;
 		$nearestRail = null;
 		foreach($rails as $rail){
@@ -175,7 +125,6 @@ class Minecart extends Vehicle{
 		}
 		return $nearestRail;
 	}
-
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -190,25 +139,6 @@ class Minecart extends Vehicle{
 		$pk->pitch = 0;
 		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
 		parent::spawnTo($player);
 	}
-
-	/*public function attack($damage, EntityDamageEvent $source){
-		parent::attack($damage, $source);
-
-		if(!$source->isCancelled()){
-			$pk = new EntityEventPacket();
-			$pk->eid = $this->id;
-			$pk->event = EntityEventPacket::HURT_ANIMATION;
-			foreach($this->getLevel()->getPlayers() as $player){
-				$player->dataPacket($pk);
-			}
-		}
-	}
-
-	public function getSaveId(){
-		$class = new \ReflectionClass(static::class);
-		return $class->getShortName();
-	}*/
 }

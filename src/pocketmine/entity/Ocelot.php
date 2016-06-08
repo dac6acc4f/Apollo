@@ -1,56 +1,37 @@
 <?php
-
-/**
- * OpenGenisys Project
- *
- * @author PeratX
- */
-
 namespace pocketmine\entity;
-
 use pocketmine\nbt\tag\Byte;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\level\format\FullChunk;
 use pocketmine\nbt\tag\Compound;
 use pocketmine\Player;
-
 class Ocelot extends Animal{
 	const NETWORK_ID = 22;
-
 	const DATA_CAT_TYPE = 18;
-
 	const TYPE_WILD = 0;
 	const TYPE_TUXEDO = 1;
 	const TYPE_TABBY = 2;
 	const TYPE_SIAMESE = 3;
-
 	public $width = 0.312;
 	public $length = 2.188;
 	public $height = 0.75;
-
 	public $dropExp = [1, 3];
-	
 	public function getName(){
 		return "Ocelot";
 	}
-
 	public function __construct(FullChunk $chunk, Compound $nbt){
 		if(!isset($nbt->CatType)){
 			$nbt->CatType = new Byte("CatType", mt_rand(0, 3));
 		}
 		parent::__construct($chunk, $nbt);
-
 		$this->setDataProperty(self::DATA_CAT_TYPE, self::DATA_TYPE_BYTE, $this->getCatType());
 	}
-
 	public function setCatType($type){
 		$this->namedtag->CatType = new Byte("CatType", $type);
 	}
-
 	public function getCatType(){
 		return (int) $this->namedtag["CatType"];
 	}
-
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -65,7 +46,6 @@ class Ocelot extends Animal{
 		$pk->pitch = $this->pitch;
 		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
 		parent::spawnTo($player);
 	}
 }

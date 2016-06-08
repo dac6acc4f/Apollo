@@ -1,29 +1,16 @@
 <?php
-
-/**
- * OpenGenisys Project
- *
- * @author PeratX
- */
-
 namespace pocketmine\entity;
-
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
-
 class Wolf extends Animal{
 	const NETWORK_ID = 14;
-
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 1.8;
-
 	public $dropExp = [1, 3];
-	
 	public function getName(){
 		return "Wolf";
 	}
-	
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -38,7 +25,6 @@ class Wolf extends Animal{
 		$pk->pitch = $this->pitch;
 		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
 		parent::spawnTo($player);
 	}
 }

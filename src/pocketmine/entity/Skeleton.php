@@ -1,28 +1,15 @@
 <?php
-
-/**
- * OpenGenisys Project
- *
- * @author PeratX
- */
-
-
 namespace pocketmine\entity;
-
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\item\Item as ItemItem;
-
 class Skeleton extends Monster implements ProjectileSource{
 	const NETWORK_ID = 34;
-
 	public $dropExp = [5, 5];
-	
 	public function getName(){
 		return "Skeleton";
 	}
-	
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -37,15 +24,12 @@ class Skeleton extends Monster implements ProjectileSource{
 		$pk->pitch = $this->pitch;
 		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
 		parent::spawnTo($player);
-		
 		$pk = new MobEquipmentPacket();
 		$pk->eid = $this->getId();
 		$pk->item = new ItemItem(ItemItem::BOW);
 		$pk->slot = 0;
 		$pk->selectedSlot = 0;
-
 		$player->dataPacket($pk);
 	}
 }
