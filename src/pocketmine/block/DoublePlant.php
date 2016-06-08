@@ -4,7 +4,12 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Player;
 class DoublePlant extends Flowable{
-
+	const TYPE_SUNFLOWER = 0;
+	const TYPE_LILAC = 1;
+	const TYPE_DOUBLE_TALLGRASS = 2;
+	const TYPE_LARGE_FERN = 3;
+	const TYPE_ROSE_BUSH = 4;
+	const TYPE_PEONY = 5;
 	protected $id = self::DOUBLE_PLANT;
 
 	public function __construct($meta = 0){
