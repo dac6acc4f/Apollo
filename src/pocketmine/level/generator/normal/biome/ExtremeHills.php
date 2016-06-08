@@ -1,14 +1,19 @@
 <?php
 namespace pocketmine\level\generator\normal\biome;
+use pocketmine\block\Sapling;
 use pocketmine\block\Block;
-abstract class ExtremeHillsBiome extends NormalBiome{
+use pocketmine\level\generator\populator\Tree;
+class ExtremeHills extends Normal{
 	public function __construct(){
-		$this->setGroundCover([
-			Block::get(Block::GRASS, 0),
-			Block::get(Block::DIRT, 0),
-			Block::get(Block::DIRT, 0),
-			Block::get(Block::DIRT, 0),
-			Block::get(Block::DIRT, 0),
-		]);
+		parent::__construct();
+		$trees = new Tree(Sapling::OAK);
+		$trees->setBaseAmount(1);
+		$this->addPopulator($trees);
+		$this->setElevation(63, 127);
+		$this->temperature = 0.25;
+		$this->rainfall = 0.8;
+	}
+	public function getName(){
+		return "Extreme Hills";
 	}
 }
