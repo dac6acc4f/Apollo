@@ -11,7 +11,6 @@ class DoublePlant extends Flowable{
 	const TYPE_ROSE_BUSH = 4;
 	const TYPE_PEONY = 5;
 	protected $id = self::DOUBLE_PLANT;
-
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
