@@ -833,7 +833,7 @@ abstract class Entity extends Location implements Metadatable{
 		}
 		$this->isCollided = $this->onGround;
 		$this->updateFallState($dy, $this->onGround);
-		Timings::$entityMoveTimer->stopTiming()
+		Timings::$entityMoveTimer->stopTiming();
 		return true;
 	}
 	public function move($dx, $dy, $dz){
