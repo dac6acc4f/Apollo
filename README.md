@@ -5,10 +5,12 @@ Apollo is a Minecraft: PE Server Software with an improved Generator and a lot m
 
 #Stable
 
-## NOW EXIST TEST SERVER ,ONLINE 24/7 AND STABLE!
+## Test Server
 - IP : 5.135.170.32
 - PORT : 1
-Yes ,port is 1.
+Yes ,port 1.
+- Server uses 512mb ram with 1 core. You can test Apollo in test server :D
+- Server is online 24/7 and more better.
 
 ## Features
 - Worlds: Generator has been improved and has more biomes than the normal Pocketmine.
