@@ -1,8 +1,11 @@
 <?php
 namespace pocketmine\level\generator\normal\biome;
 use pocketmine\block\Block;
-class FrozenRiverBiome extends GrassyBiome{
+class FrozenRiverBiome extends NormalBiome{
 	public function __construct(){
+		parent::__construct();
+		$this->temperature = 0.0;
+		$this->rainfall = 2.0;
 		$this->setGroundCover([
 			Block::get(Block::SNOW_LAYER, 0),
 			Block::get(Block::ICE, 0),
@@ -14,8 +17,6 @@ class FrozenRiverBiome extends GrassyBiome{
 			Block::get(Block::DIRT, 0),
 		]);
 	}
-		$this->temperature = 0.0;
-		$this->rainfall = 2.0;
 	public function getName(){
 		return "Frozen River";
 	}
