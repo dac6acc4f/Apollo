@@ -20,6 +20,13 @@ Stone, Dirt, Spruce Trees, Oak Trees
 
 A variant of the regular extreme hills biome, adding larger mountains, steeper cliffs, and a moderate amount of spruce trees and scattered oak trees.
 
+- Frozen River
+    ~*~ Temperature: 0.0
+
+Ice, Water, Sand, Clay
+
+This variant of river only generates in ice plains biomes. The surface layer of water is frozen.
+
 ## Information
 - Official Apollo Server not exist. Coming soon!
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
