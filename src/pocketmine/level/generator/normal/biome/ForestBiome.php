@@ -11,12 +11,12 @@ class ForestBiome extends GrassyBiome{
 		parent::__construct();
 		$this->type = $type;
 		$trees = new Tree($type === self::TYPE_BIRCH ? Sapling::BIRCH : Sapling::OAK);
-		$trees->setBaseAmount(5);
+		$trees->setBaseAmount(1);
 		$this->addPopulator($trees);
 		$tallGrass = new TallGrass();
 		$tallGrass->setBaseAmount(3);
 		$this->addPopulator($tallGrass);
-		$this->setElevation(63, 81);
+		$this->setElevation(63, 74);
 		if($type === self::TYPE_BIRCH){
 			$this->temperature = 0.5;
 			$this->rainfall = 0.5;
