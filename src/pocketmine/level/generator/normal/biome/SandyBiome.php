@@ -32,4 +32,8 @@ class SandyBiome extends GrassyBiome{
 	public function getName() {
 		return "Sandy";
 	}
+
+	public function getColor(){
+		return $this->grassColor;
+	}
 }
