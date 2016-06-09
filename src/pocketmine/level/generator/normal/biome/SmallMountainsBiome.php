@@ -12,7 +12,7 @@ class SmallMountainsBiome extends MountainsBiome{
 		$tallGrass->setBaseAmount(6);
 		$this->addPopulator($tallGrass);
 		//TODO: add emerald,coming soon
-		$this->setElevation(63, 97);
+		$this->setElevation(56, 97);
 		$this->temperature = 0.4;
 		$this->rainfall = 0.5;
 	}
