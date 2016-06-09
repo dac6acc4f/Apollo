@@ -12,9 +12,10 @@ class FrozenRiverBiome extends NormalBiome{
 			Block::get(Block::DIRT, 0),
 			Block::get(Block::DIRT, 0),
 			Block::get(Block::DIRT, 0),
+		]);
+	}
 		$this->temperature = 0.0;
 		$this->rainfall = 2.0;
-	}
 	public function getName(){
 		return "Frozen River";
 	}
