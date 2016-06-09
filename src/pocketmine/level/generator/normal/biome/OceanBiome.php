@@ -15,7 +15,7 @@ class OceanBiome extends GrassyBiome{
 		$this->addPopulator($sugarcane);
 		$this->addPopulator($tallSugarcane);
 		$this->addPopulator($tallGrass);
-		$this->setElevation(46, 58);
+		$this->setElevation(46, 65);
 		$this->temperature = 0.5;
 		$this->rainfall = 0.5;
 	}
