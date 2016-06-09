@@ -39,3 +39,4 @@ This variant of river only generates in ice plains biomes. The surface layer of 
 - We are a third party software of PocketMine. We did not code PocketMine, and all credit should be given to them. We are also using Genisys's branch of PocketMine, and all credits should be given to Genisys for their added features to PocketMine.
  - We edited the code of Genisys to increase the performance and to decrease the lag!
  - We edited Genisys's generator to have a better generator.
+ - Genisys is free software. Anyone can modify,but Apollo no.
