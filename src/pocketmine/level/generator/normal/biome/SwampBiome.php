@@ -18,7 +18,7 @@ class SwampBiome extends GrassyBiome{
 		$trees = new Tree();
 		$trees->setBaseAmount(2);
 		$this->addPopulator($trees);
-		$this->setElevation(56, 74);
+		$this->setElevation(56, 65);
 		$this->temperature = 0.8;
 		$this->rainfall = 0.9;
 	}
