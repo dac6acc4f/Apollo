@@ -3,7 +3,12 @@ Apollo is a Minecraft: PE Server Software with an improved Generator and a lot m
 
 **TravisCI Build Status** [![TravisCI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)](https://travis-ci.org/NycuRO/Apollo "TravisCI Build Status")
 
-#InDEV
+#Stable
+
+## NOW EXIST TEST SERVER ,ONLINE 24/7 AND STABLE!
+- IP : 5.135.170.32
+- PORT : 1
+Yes ,port is 1.
 
 ## Features
 - Worlds: Generator has been improved and has more biomes than the normal Pocketmine.
@@ -28,7 +33,6 @@ Ice, Water, Sand, Clay
 This variant of river only generates in ice plains biomes. The surface layer of water is frozen.
 
 ## Information
-- Official Apollo Server not exist. Coming soon!
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
 - We are a third party software of PocketMine. We did not code PocketMine, and all credit should be given to them. We are also using Genisys's branch of PocketMine, and all credits should be given to Genisys for their added features to PocketMine.
  - We edited the code of Genisys to increase the performance and to decrease the lag!
