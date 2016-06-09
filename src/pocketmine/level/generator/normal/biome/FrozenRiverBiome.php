@@ -6,7 +6,7 @@ class FrozenRiverBiome extends NormalBiome{
 		parent::__construct();
 		$this->temperature = 0.0;
 		$this->rainfall = 2.0;
-		$this->setElevation(63, 74);
+		$this->setElevation(56, 74);
 		$this->setGroundCover([
 			Block::get(Block::SNOW_LAYER, 0),
 			Block::get(Block::ICE, 0),
