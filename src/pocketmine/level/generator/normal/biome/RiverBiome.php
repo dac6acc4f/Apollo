@@ -15,7 +15,7 @@ class RiverBiome extends GrassyBiome{
 		$this->addPopulator($sugarcane);
 		$this->addPopulator($tallSugarcane);
 		$this->addPopulator($tallGrass);
-		$this->setElevation(58, 62);
+		$this->setElevation(56, 74);
 		$this->temperature = 0.5;
 		$this->rainfall = 0.7;
 	}
