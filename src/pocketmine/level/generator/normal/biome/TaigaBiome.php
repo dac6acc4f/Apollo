@@ -9,7 +9,7 @@ class TaigaBiome extends GrassyBiome{
 		$trees = new Tree(Sapling::SPRUCE);
 		$trees->setBaseAmount(1);
 		$this->addPopulator($trees);
-		$this->setElevation(63, 81);
+		$this->setElevation(56, 81);
 		$this->temperature = 0.25;
 		$this->rainfall = 0.8;
 	}
