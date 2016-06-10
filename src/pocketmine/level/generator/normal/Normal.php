@@ -162,6 +162,7 @@ class Normal extends Generator{
 					return Biome::MOUNTAINS;
 				}
 			}
+			}
 		}, Biome::getBiome(Biome::OCEAN));
 
 		$this->selector->addBiome(Biome::getBiome(Biome::OCEAN));
