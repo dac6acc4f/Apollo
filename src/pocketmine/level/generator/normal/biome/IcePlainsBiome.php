@@ -5,7 +5,7 @@ class IcePlainsBiome extends GrassyBiome{
 	public function __construct(){
 		parent::__construct();
 		$this->setGroundCover([
-			Block::get(Block::SNOW_LAYER, 0),
+			Block::get(Block::SNOW_BLOCK, 0),
 			Block::get(Block::GRASS, 0),
 			Block::get(Block::DIRT, 0),
 			Block::get(Block::DIRT, 0),
