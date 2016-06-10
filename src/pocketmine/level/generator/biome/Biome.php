@@ -31,6 +31,7 @@ abstract class Biome{
 	const SMALL_MOUNTAINS = 20;
 	const BIRCH_FOREST = 27;
 	const EXTREME_HILLS = 34;
+	const MESA = 37;
 	/*
     SWAMPLAND,-> added (6)
     FOREST, -> added (4)
@@ -69,7 +70,7 @@ abstract class Biome{
     EXTREME_HILLS_PLUS,
     SAVANNA,
     SAVANNA_PLATEAU,
-    MESA,
+    MESA, -> in construction (37)
     MESA_PLATEAU_FOREST,
     MESA_PLATEAU,
     SUNFLOWER_PLAINS,
