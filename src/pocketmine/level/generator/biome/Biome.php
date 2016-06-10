@@ -13,7 +13,7 @@ use pocketmine\level\generator\normal\biome\RiverBiome;
 use pocketmine\level\generator\normal\biome\SmallMountainsBiome;
 use pocketmine\level\generator\normal\biome\TaigaBiome;
 use pocketmine\level\generator\normal\biome\MesaBiome;
-use pocketmine\level\generator\normal\biome\ExtremeHillBiome;
+use pocketmine\level\generator\normal\biome\ExtremeHillsBiome;
 use pocketmine\level\generator\normal\biome\FrozenRiverBiome;
 use pocketmine\level\generator\hell\HellBiome;
 use pocketmine\level\generator\populator\Populator;
