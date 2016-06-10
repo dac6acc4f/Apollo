@@ -12,6 +12,9 @@ use pocketmine\level\generator\normal\biome\PlainBiome;
 use pocketmine\level\generator\normal\biome\RiverBiome;
 use pocketmine\level\generator\normal\biome\SmallMountainsBiome;
 use pocketmine\level\generator\normal\biome\TaigaBiome;
+use pocketmine\level\generator\normal\biome\MesaBiome;
+use pocketmine\level\generator\normal\biome\ExtremeHillBiome;
+use pocketmine\level\generator\normal\biome\FrozenRiverBiome;
 use pocketmine\level\generator\hell\HellBiome;
 use pocketmine\level\generator\populator\Populator;
 use pocketmine\utils\Random;
@@ -140,16 +143,15 @@ abstract class Biome{
 		self::register(self::DESERT, new DesertBiome());
 		self::register(self::MOUNTAINS, new MountainsBiome());
 		self::register(self::FOREST, new ForestBiome());
+		self::register(self::MESA, new MesaBiome());
+		self::register(self::FROZEN_RIVER, new FrozenRiverBiome());
+		self::register(self::EXTREME_HILLS, new ExtremeHillsBiome());
 		self::register(self::TAIGA, new TaigaBiome());
 		self::register(self::SWAMP, new SwampBiome());
 		self::register(self::RIVER, new RiverBiome());
-
 		self::register(self::ICE_PLAINS, new IcePlainsBiome());
-
-
 		self::register(self::SMALL_MOUNTAINS, new SmallMountainsBiome());
 		self::register(self::HELL, new HellBiome());
-
 		self::register(self::BIRCH_FOREST, new ForestBiome(ForestBiome::TYPE_BIRCH));
 	}
 
