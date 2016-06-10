@@ -18,6 +18,7 @@ class DesertBiome extends GrassyBiome{
 		$this->addPopulator($deadBush);
 		$this->temperature = 2.0;
 		$this->rainfall = 0.0;
+		$this->setElevation(56, 71);
 		$this->setGroundCover([
 			Block::get(Block::SAND, 0),
 			Block::get(Block::SAND, 0),
