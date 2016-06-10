@@ -110,29 +110,29 @@ class Normal extends Generator{
 			return Biome::SWAMP;
 				}elseif($temperature < 0.25){
 					return Biome::OCEAN;
-				}elseif{$temperature < 0.25){
+				}elseif($temperature < 0.25){
 					return Biome::EXTREME_HILLS;
-				}elseif{$temperature < 2.0){
+				}elseif($temperature < 2.0){
 					return Biome::DESERT;
-				}elseif{$temperature < 2.0){
+				}elseif($temperature < 2.0){
 					return Biome::MESA;
-				}elseif{$temperature < 0.5){
+				}elseif($temperature < 0.5){
 					return Biome::BIRCH_FOREST;
-				}elseif{$temperature < 0.7){
+				}elseif($temperature < 0.7){
 					return Biome::FOREST;
-				}elseif{$temperature < 0.8){
+				}elseif($temperature < 0.8){
 					return Biome::FOREST;
-				}elseif{$temperature < 0.0){
+				}elseif($temperature < 0.0){
 					return Biome::FROZEN_RIVER;
-				}elseif{$temperature < 0.05){
+				}elseif($temperature < 0.05){
 					return Biome::ICE_PLAINS;
-				}elseif{$temperature < 0.8){
+				}elseif($temperature < 0.8){
 					return Biome::PLAINS;
-				}elseif{$temperature < 0.5){
+				}elseif($temperature < 0.5){
 					return Biome::RIVER;
-				}elseif{$temperature < 0.25){
+				}elseif($temperature < 0.25){
 					return Biome::TAIGA;
-				}elseif{$temperature < 0.4){
+				}elseif($temperature < 0.4){
 					return Biome::SMALL_MOUNTAINS;
 				}else{
 					return Biome::MOUNTAINS;
