@@ -110,17 +110,43 @@ class Normal extends Generator{
 			return Biome::SWAMP;
 				}elseif($temperature < 0.25){
 					return Biome::OCEAN;
+				}else{
+					return Biome::BIRCH_FOREST;
+				}
+			}elseif($rainfall < 0.60){
+				if($temperature < 0.75){
+					return Biome::PLAINS;
+				}elseif($temperature < 0.25){
+					return Biome::ICE_PLAINS;
+				}
+			}elseif($rainfall < 0.50){
+				if($temperature < 0.75){
+					return Biome::BIRCH_FOREST;
+				}elseif($temperature < 2.0){
+					return Biome::DESERT;
+				}
+			}elseif($rainfall < 1.0){
+				if($temperature < 0.2){
+					return Biome::EXTREME_HILLS;
+				}elseif($temperature < 0.25){
+					return Biome::SWAMP;
+				}
+			}elseif($rainfall < 0.50){
+				if($temperature < 0.75){
+					return Biome::BIRCH_FOREST;
+				}elseif($temperature < 2.0){
+					return Biome::DESERT;
+				}
 			}elseif($rainfall < 0.60){
 				if($temperature < 0.25){
 					return Biome::ICE_PLAINS;
-				}elseif($temperature < 0.75){
-					return Biome::PLAINS;
-				}
-			}elseif($rainfall < 0.0){
+				}elseif($temperature < 0.0){
+					return Biome::FROZEN_RIVER;
+			}elseif($rainfall < 0.50){
 				if($temperature < 2.0){
-					return Biome::DESERT;
-				}elseif($temperature < 0.75){
-					return Biome::BIRCH_FOREST;
+					return Biome::MESA;
+				}elseif($temperature < 2.0){
+					return Biome::PLAINS;
 				}
 			}elseif($rainfall < 0.80){
 				if($temperature < 0.25){
@@ -130,14 +156,14 @@ class Normal extends Generator{
 				}else{
 					return Biome::BIRCH_FOREST;
 				}
-			}elseif($rainfall < 2.0){
+			}elseif($rainfall < 1.0){
 				if($temperature < 0.0){
 					return Biome::FROZEN_RIVER;
 				}elseif($temperature < 0.2){
 					return Biome::EXTREME_HILLS;
 				}
 			}else{
-				if($temperature < 0.25){
+				if($temperature < 0.75){
 					return Biome::SMALL_MOUNTAINS;
 				}elseif($temperature < 0.70){
 					return Biome::MOUNTAINS;
@@ -158,6 +184,7 @@ class Normal extends Generator{
 		$this->selector->addBiome(Biome::getBiome(Biome::BIRCH_FOREST));
 		$this->selector->addBiome(Biome::getBiome(Biome::FROZEN_RIVER));
 		$this->selector->addBiome(Biome::getBiome(Biome::EXTREME_HILLS));
+		$this->selector->addBiome(Biome::getBiome(Biome::MESA));
 
 		$this->selector->recalculate();
 
