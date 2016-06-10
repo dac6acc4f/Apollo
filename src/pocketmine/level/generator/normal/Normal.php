@@ -24,7 +24,7 @@ use pocketmine\level\generator\populator\Populator;
 use pocketmine\level\generator\populator\TallGrass;
 use pocketmine\level\generator\populator\Tree;
 use pocketmine\level\Level;
-use pocketmine\math\Vector3 as Vector3;
+use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 class Normal extends Generator{
 	const NAME = "Normal";
