@@ -113,12 +113,12 @@ class Normal extends Generator{
 				}else{
 					return Biome::BIRCH_FOREST;
 				}
-			}elseif($rainfall < 0.60){
-				if($temperature < 0.75){
-					return Biome::PLAINS;
-				}elseif($temperature < 0.25){
-					return Biome::ICE_PLAINS;
-				}
+			//}elseif($rainfall < 0.60){
+				//if($temperature < 0.75){
+					//return Biome::PLAINS;
+				//}elseif($temperature < 0.25){
+					//return Biome::ICE_PLAINS;
+				//}
 			}elseif($rainfall < 0.50){
 				if($temperature < 0.75){
 					return Biome::BIRCH_FOREST;
