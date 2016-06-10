@@ -3,7 +3,6 @@ namespace pocketmine\level\generator\normal\biome;
 use pocketmine\block\Block;
 class FrozenRiverBiome extends NormalBiome{
 	public function __construct(){
-		parent::__construct();
 		$this->temperature = 0.0;
 		$this->rainfall = 2.0;
 		$this->setElevation(56, 74);
