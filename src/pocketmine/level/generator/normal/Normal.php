@@ -20,7 +20,6 @@ use pocketmine\level\generator\normal\biome\NormalBiome;
 use pocketmine\level\generator\object\OreType;
 use pocketmine\level\generator\populator\GroundCover;
 use pocketmine\level\generator\populator\Ore;
-use pocketmine\level\generator\populator\Pond;
 use pocketmine\level\generator\populator\Populator;
 use pocketmine\level\generator\populator\TallGrass;
 use pocketmine\level\generator\populator\Tree;
@@ -162,9 +161,6 @@ class Normal extends Generator{
 		$cover = new GroundCover();
 		$this->generationPopulators[] = $cover;
 
-		$pond = new Pond();
-		$this->generationPopulators[] = $pond;
-
 		$ores = new Ore();
 		$ores->setOreTypes([
 			new OreType(new CoalOre(), 20, 16, 0, 128),
@@ -173,6 +169,7 @@ class Normal extends Generator{
 			new OreType(new LapisOre(), 1, 6, 0, 32),
 			new OreType(new GoldOre(), 2, 8, 0, 32),
 			new OreType(new DiamondOre(), 1, 7, 0, 16),
+			new OreType(new Lava(), 1, 7, 0, 16),
 			new OreType(new Dirt(), 20, 32, 0, 128),
 			new OreType(new Stone(Stone::GRANITE), 20, 32, 0, 128),
 			new OreType(new Stone(Stone::DIORITE), 20, 32, 0, 128),
