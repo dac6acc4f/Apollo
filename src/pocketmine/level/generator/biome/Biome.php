@@ -145,7 +145,7 @@ abstract class Biome{
 		self::register(self::FOREST, new ForestBiome());
 		self::register(self::MESA, new MesaBiome());
 		self::register(self::FROZEN_RIVER, new FrozenRiverBiome());
-		self::register(self::EXTREME_HILLS, new ExtremeHillsBiome());
+		//self::register(self::EXTREME_HILLS, new ExtremeHillsBiome());
 		self::register(self::TAIGA, new TaigaBiome());
 		self::register(self::SWAMP, new SwampBiome());
 		self::register(self::RIVER, new RiverBiome());
