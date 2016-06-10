@@ -24,3 +24,4 @@ Yes ,port 1.
 ## Information
 
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
+- Apollo is now PHP5 ,coming soon PHP7
