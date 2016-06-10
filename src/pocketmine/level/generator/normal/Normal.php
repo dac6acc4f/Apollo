@@ -113,44 +113,44 @@ class Normal extends Generator{
 				}else{
 					return Biome::BIRCH_FOREST;
 				}
-			}elseif($rainfall < 0.60){
+			}elseif{($rainfall < 0.60){
 				if($temperature < 0.75){
 					return Biome::PLAINS;
 				}elseif($temperature < 0.25){
 					return Biome::ICE_PLAINS;
-			}elseif($rainfall < 0.50){
+			}elseif{($rainfall < 0.50){
 				if($temperature < 0.75){
 					return Biome::BIRCH_FOREST;
 				}elseif($temperature < 2.0){
 					return Biome::DESERT;
-			}elseif($rainfall < 1.0){
+			}elseif{($rainfall < 1.0){
 				if($temperature < 0.2){
 					return Biome::EXTREME_HILLS;
 				}elseif($temperature < 0.25){
 					return Biome::SWAMP;
-			}elseif($rainfall < 0.50){
+			}elseif{($rainfall < 0.50){
 				if($temperature < 0.75){
 					return Biome::BIRCH_FOREST;
 				}elseif($temperature < 2.0){
 					return Biome::DESERT;
-			}elseif($rainfall < 0.60){
+			}elseif{($rainfall < 0.60){
 				if($temperature < 0.25){
 					return Biome::ICE_PLAINS;
 				}elseif($temperature < 0.0){
 					return Biome::FROZEN_RIVER;
-			}elseif($rainfall < 0.50){
+			}elseif{($rainfall < 0.50){
 				if($temperature < 2.0){
 					return Biome::MESA;
 				}elseif($temperature < 2.0){
 					return Biome::PLAINS;
-			}elseif($rainfall < 0.80){
+			}elseif{($rainfall < 0.80){
 				if($temperature < 0.25){
 					return Biome::TAIGA;
 				}elseif($temperature < 0.75){
 					return Biome::FOREST;
 				}else{
 					return Biome::BIRCH_FOREST;
-			}elseif($rainfall < 1.0){
+			}elseif{($rainfall < 1.0){
 				if($temperature < 0.0){
 					return Biome::FROZEN_RIVER;
 				}elseif($temperature < 0.2){
