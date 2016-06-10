@@ -114,6 +114,7 @@ class Normal extends Generator{
             }else{
                 return Biome::BIRCH_FOREST;
             }
+        }
         }elseif($rainfall < 0.60){
             if($temperature < 0.75){
                 return Biome::PLAINS;
@@ -122,6 +123,7 @@ class Normal extends Generator{
             }else{
                 return Biome::BIRCH_FOREST;
             }
+        }
         }elseif($rainfall < 0.50){
             if($temperature < 0.75){
                 return Biome::BIRCH_FOREST;
@@ -130,6 +132,7 @@ class Normal extends Generator{
             }else{
                 return Biome::MESA;
             }
+        }
         }elseif($rainfall < 1.0){
             if($temperature < 0.2){
                 return Biome::EXTREME_HILLS;
@@ -138,6 +141,7 @@ class Normal extends Generator{
             }else{
                 return Biome::FROZEN_RIVER;
             }
+        }
         }elseif($rainfall < 0.60){
             if($temperature < 0.25){
                 return Biome::ICE_PLAINS;
@@ -146,6 +150,7 @@ class Normal extends Generator{
             }else{
                 return Biome::BIRCH_FOREST;
             }
+        }
         }elseif($rainfall < 0.50){
             if($temperature < 2.0){
                 return Biome::MESA;
@@ -154,6 +159,7 @@ class Normal extends Generator{
             }else{
                 return Biome::DESERT;
             }
+        }
         }elseif($rainfall < 0.80){
             if($temperature < 0.25){
                 return Biome::TAIGA;
@@ -162,6 +168,7 @@ class Normal extends Generator{
             }else{
                 return Biome::BIRCH_FOREST;
             }
+        }
         }elseif($rainfall < 1.0){
             if($temperature < 0.0){
                 return Biome::FROZEN_RIVER;
