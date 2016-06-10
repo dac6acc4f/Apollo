@@ -109,27 +109,74 @@ class Normal extends Generator{
 		$this->selector = new BiomeSelector($this->random, function($temperature, $rainfall){
         if($rainfall < 0.25){
             return Biome::SWAMP;
+        }elseif($temperature < 0.25){
+                return Biome::OCEAN;
+            }else{
+                return Biome::BIRCH_FOREST;
+            }
         }elseif($rainfall < 0.60){
+            if($temperature < 0.75){
+                return Biome::PLAINS;
+            }elseif($temperature < 0.25){
+                return Biome::ICE_PLAINS;
+            }else{
+                return Biome::BIRCH_FOREST;
+            }
+        }elseif{$rainfall < 0.50{
+            if($temperature < 0.75){
+                return Biome::BIRCH_FOREST;
+            }elseif{$temperature < 2.0){
+                return Biome::DESERT;
+            }else{
+                return Biome::MESA;
+            }
+        }elseif{$rainfall < 1.0{
+            if($temperature < 0.2){
+                return Biome::EXTREME_HILLS;
+            }elseif{$temperature < 0.25){
+                return Biome::ICE_PLAINS;
+            }else{
+                return Biome::FROZEN_RIVER;
+            }
+        }elseif{$rainfall < 0.60{
             if($temperature < 0.25){
                 return Biome::ICE_PLAINS;
-            }elseif($temperature < 0.75){
-                return Biome::PLAINS;
+            }elseif{$temperature < 2.0){
+                return Biome::FROZEN_RIVER;
+            }else{
+                return Biome::BIRCH_FOREST;
+            }
+        }elseif{$rainfall < 0.50{
+            if($temperature < 2.0){
+                return Biome::MESA;
+            }elseif{$temperature < 0.25){
+                return Biome::OCEAN;
             }else{
                 return Biome::DESERT;
             }
-        }elseif($rainfall < 0.80){
+        }elseif{$rainfall < 0.80{
             if($temperature < 0.25){
                 return Biome::TAIGA;
-            }elseif($temperature < 0.75){
+            }elseif{$temperature < 0.75){
                 return Biome::FOREST;
             }else{
                 return Biome::BIRCH_FOREST;
             }
-        }else{
-            if($temperature < 0.25){
-                return Biome::SMALL_MOUNTAINS;
+        }elseif{$rainfall < 1.0{
+            if($temperature < 0.0){
+                return Biome::FROZEN_RIVER;
+            }elseif{$temperature < 0.2){
+                return Biome::EXTREME_HILLS;
             }else{
+                return Biome::ICE_PLAINS;
+            }
+        }else{
+            if($temperature < 0.75){
+                return Biome::SMALL_MOUNTAINS;
+            }elseif{$temperature < 0.70){
                 return Biome::MOUNTAINS;
+            }else{
+                return Biome::RIVER;
             }
         }
 		}, Biome::getBiome(Biome::OCEAN));
