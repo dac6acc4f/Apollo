@@ -106,37 +106,31 @@ class Normal extends Generator{
 		$this->noiseBase = new Simplex($this->random, 4, 1 / 4, 1 / 32);
 		$this->random->setSeed($this->level->getSeed());
 		$this->selector = new BiomeSelector($this->random, function($temperature, $rainfall){
-			if($rainfall < 0.25){
-			return Biome::SWAMP;
-				}elseif($temperature < 0.25){
-					return Biome::OCEAN;
-				}elseif($temperature < 0.25){
-					return Biome::EXTREME_HILLS;
-				}elseif($temperature < 2.0){
-					return Biome::DESERT;
-				}elseif($temperature < 2.0){
-					return Biome::MESA;
-				}elseif($temperature < 0.5){
-					return Biome::BIRCH_FOREST;
-				}elseif($temperature < 0.7){
-					return Biome::FOREST;
-				}elseif($temperature < 0.8){
-					return Biome::FOREST;
-				}elseif($temperature < 0.0){
-					return Biome::FROZEN_RIVER;
-				}elseif($temperature < 0.05){
-					return Biome::ICE_PLAINS;
-				}elseif($temperature < 0.8){
-					return Biome::PLAINS;
-				}elseif($temperature < 0.5){
-					return Biome::RIVER;
-				}elseif($temperature < 0.25){
-					return Biome::TAIGA;
-				}elseif($temperature < 0.4){
-					return Biome::SMALL_MOUNTAINS;
-				}else{
-					return Biome::MOUNTAINS;
-			}
+        if(rainfall < 0.25){
+            return Biome::SWAMP;
+        }elseif(rainfall < 0.60){
+            if(temperature < 0.25){
+                return Biome::ICE_PLAINS;
+            }elseif(temperature < 0.75){
+                return Biome::PLAINS;
+            }else{
+                return Biome::DESERT;
+            }
+        }elseif(rainfall < 0.80){
+            if(temperature < 0.25){
+                return Biome::TAIGA;
+            }elseif(temperature < 0.75){
+                return Biome::FOREST;
+            }else{
+                return Biome::BIRCH_FOREST;
+            }
+        }else{
+            if(temperature < 0.25){
+                return Biome::SMALL_MOUNTAINS;
+            }else{
+                return Biome::MOUNTAINS;
+            }
+        }
 		}, Biome::getBiome(Biome::OCEAN));
 
 		$this->selector->addBiome(Biome::getBiome(Biome::OCEAN));
