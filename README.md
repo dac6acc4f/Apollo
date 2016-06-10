@@ -17,23 +17,10 @@ Yes ,port 1.
 - Little to no lag at all!
 
 ## Help Us Develop!
- We arn't a team of advanced coders, so other coders like you can help us improve our MCPE Server Software by creating a pull request!
+ We arn't a team of advanced coders, so other coders like you can help us improve our MCPE Server Software by creating a pull request or create request for collaborator ;)
  
 ## TODO :
-- ExtremeHills+ Biome (34)
-    ~*~ Temperature: 0.2
-
-Stone, Dirt, Spruce Trees, Oak Trees
-
-A variant of the regular extreme hills biome, adding larger mountains, steeper cliffs, and a moderate amount of spruce trees and scattered oak trees.
-
-- Frozen River
-    ~*~ Temperature: 0.0
-
-Ice, Water, Sand, Clay
-
-This variant of river only generates in ice plains biomes. The surface layer of water is frozen.
-
+ If you have epic ideea,create one issue with ideea and paste here :)
 ## Information
 
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
