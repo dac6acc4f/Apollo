@@ -17,7 +17,7 @@ Yes ,port 1.
 - Little to no lag at all!
 
 ## Upcoming Update
-- 0.4 -> Delete all lines unused and minor bug fixed
+- 0.4 -> Delete all lines unused and minor bug fixed and creating Jenkins site or GitLab
 - 0.5dev -> Start create new Al for animals and world generation with animals/zombies
 - 0.5 -> Finish finaly Al mobs and animals and world generatiom with this
 - 0.6dev -> Create new block system
