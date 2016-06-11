@@ -1,4 +1,16 @@
 <?php
+/*
+ * RakLib network library
+ *
+ *
+ * This project is not affiliated with Jenkins Software LLC nor RakNet.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ */
 namespace raklib\server;
 use raklib\Binary;
 use raklib\protocol\ACK;
@@ -68,8 +80,8 @@ class SessionManager{
 		while(!$this->shutdown){
 			$start = microtime(true);
 			$max = 5000;
-			while(--$max and $this->receivePacket());
-			while($this->receiveStream());
+			while(--$max and $this->receivePacket()) ;
+			while($this->receiveStream()) ;
 			$time = microtime(true) - $start;
 			if($time < 0.05){
 				@time_sleep_until(microtime(true) + 0.05 - $time);
@@ -123,11 +135,15 @@ class SessionManager{
 				$this->ipSec[$source] = 1;
 			}
 			$pid = ord($buffer{0});
+			if($pid == UNCONNECTED_PONG::$ID){
+				return false;
+			}
 			if(($packet = $this->getPacketFromPool($pid)) !== null){
 				$packet->buffer = $buffer;
 				$this->getSession($source, $port)->handlePacket($packet);
 				return true;
 			}elseif($pid === UNCONNECTED_PING::$ID){
+				//No need to create a session for just pings
 				$packet = new UNCONNECTED_PING;
 				$packet->buffer = $buffer;
 				$packet->decode();
@@ -280,7 +296,7 @@ class SessionManager{
 	}
 	/**
 	 * @param string $ip
-	 * @param int	$port
+	 * @param int    $port
 	 *
 	 * @return Session
 	 */
@@ -306,7 +322,7 @@ class SessionManager{
 	public function notifyACK(Session $session, $identifierACK){
 		$this->streamACK($session->getAddress() . ":" . $session->getPort(), $identifierACK);
 	}
-	public function getName(){
+	public function getName() : string{
 		return $this->name;
 	}
 	public function getID(){
@@ -327,7 +343,7 @@ class SessionManager{
 		return null;
 	}
 	private function registerPackets(){
-		//$this->registerPacket(UNCONNECTED_PING::$ID, UNCONNECTED_PING::class);
+		$this->registerPacket(UNCONNECTED_PING::$ID, UNCONNECTED_PING::class);
 		$this->registerPacket(UNCONNECTED_PING_OPEN_CONNECTIONS::$ID, UNCONNECTED_PING_OPEN_CONNECTIONS::class);
 		$this->registerPacket(OPEN_CONNECTION_REQUEST_1::$ID, OPEN_CONNECTION_REQUEST_1::class);
 		$this->registerPacket(OPEN_CONNECTION_REPLY_1::$ID, OPEN_CONNECTION_REPLY_1::class);
