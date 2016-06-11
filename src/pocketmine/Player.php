@@ -1951,7 +1951,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			Item::RAW_CHICKEN => 2,
 			Item::MELON_SLICE => 2,
 			Item::GOLDEN_APPLE => 4,
-                        Item::GOLDEN_APPLE_ENCHANTED => 4,
 			Item::PUMPKIN_PIE => 8,
 			Item::CARROT => 3,
 			Item::POTATO => 1,
