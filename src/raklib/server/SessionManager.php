@@ -322,7 +322,7 @@ class SessionManager{
 	public function notifyACK(Session $session, $identifierACK){
 		$this->streamACK($session->getAddress() . ":" . $session->getPort(), $identifierACK);
 	}
-	public function getName() : string{
+	public function getName(){
 		return $this->name;
 	}
 	public function getID(){
