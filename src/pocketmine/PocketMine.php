@@ -52,7 +52,7 @@ namespace pocketmine {
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\Installer;
 
-	const VERSION = "0.1dev";
+	const VERSION = "0.4";
 	const API_VERSION = "1.13.1";
 	const CODENAME = "NycuRO";
 	const MINECRAFT_VERSION = "v0.14.3 alpha";
