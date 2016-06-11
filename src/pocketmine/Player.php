@@ -22,6 +22,8 @@
 namespace pocketmine;
 
 use pocketmine\block\Block;
+use pocketmine\block\Air;
+use pocketmine\block\Fire;
 use pocketmine\block\PressurePlate;
 use pocketmine\command\CommandSender;
 use pocketmine\entity\Animal;
@@ -2962,9 +2964,15 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 								$this->server->getPluginManager()->callEvent($ev);
 
-								if($ev->isCancelled()){
-									$ev->getProjectile()->kill();
+								if(!$ev->isCancelled()){
+ 							             $side = $target->getSide($packet->face);
+ 							             if($side instanceof Fire){
+ 								                  $side->getLevel()->setBlock($side, new Air());
+ 							}
+       						$this->lastBreak = microtime(true);
+						}else{
 									$this->inventory->sendContents($this);
+						}
 								}else{
 									$ev->getProjectile()->setMotion($ev->getProjectile()->getMotion()->multiply($ev->getForce()));
 									if($this->isSurvival()){
