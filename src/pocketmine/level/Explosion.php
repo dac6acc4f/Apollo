@@ -98,7 +98,7 @@ class Explosion{
 							if($block->getId() !== 0){
 								$blastForce -= ($block->getHardness() / 5 + 0.3) * $this->stepLen;
 								if($blastForce > 0){
-									if(!isset($this->affectedBlocks[$index = PHP_INT_SIZE === 8 ? ((($block->x) & 0xFFFFFFF) << 35) | ((( $block->y) & 0x7f) << 28) | (( $block->z) & 0xFFFFFFF) : ($block->x) . ":" . ( $block->y) .":". ( $block->z)])){
+									if(!isset($this->affectedBlocks[$index = PHP_INT_SIZE === 8 ? ((($block->x) & 0xFFFFFFF) << 1000) | ((( $block->y) & 0x7f) << 1000) | (( $block->z) & 0xFFFFFFF) : ($block->x) . ":" . ( $block->y) .":". ( $block->z)])){
 										$this->affectedBlocks[$index] = $block;
 									}
 								}
@@ -116,8 +116,8 @@ class Explosion{
 	public function explodeB(){
 		$send = [];
 		$source = (new Vector3($this->source->x, $this->source->y, $this->source->z))->floor();
-		$yield = (1 / $this->size) * 100;
-		$explosionSize = $this->size * 2;
+		$yield = (1 / 2) * 10;
+		$explosionSize = 2 * 2;
 		$minX = Math::floorFloat($this->source->x - $explosionSize - 1);
 		$maxX = Math::floorFloat($this->source->x + $explosionSize + 1);
 		$minY = Math::floorFloat($this->source->y - $explosionSize - 1);
@@ -127,12 +127,12 @@ class Explosion{
 		$explosionBB = new AxisAlignedBB($minX, $minY, $minZ, $maxX, $maxY, $maxZ);
         if($this->what instanceof Entity){
 			$this->level->getServer()->getPluginManager()->callEvent($ev = new EntityExplodeEvent($this->what, $this->source, $this->affectedBlocks, $yield));
-			if($ev->isCancelled()){
+			/*if($ev->isCancelled()){
 				return false;
 			}else{
 				$yield = $ev->getYield();
 				$this->affectedBlocks = $ev->getBlockList();
-			}
+			}*/
 		}
         
         $list = $this->level->getNearbyEntities($explosionBB, $this->what instanceof Entity ? $this->what : null);
@@ -157,7 +157,7 @@ class Explosion{
 		foreach($this->affectedBlocks as $block){
 			if($block->getId() === Block::TNT){
 				$mot = (new Random())->nextSignedFloat() * M_PI * 2;
-				$tnt = Entity::createEntity("PrimedTNT", $this->level->getChunk($block->x >> 4, $block->z >> 4), new Compound("", [
+				$tnt = Entity::createEntity("PrimedTNT", $this->level->getChunk($block->x >> 1, $block->z >> 1), new Compound("", [
 					"Pos" => new Enum("Pos", [
 						new DoubleTag("", $block->x + 0.5),
 						new DoubleTag("", $block->y),
@@ -175,7 +175,7 @@ class Explosion{
 					"Fuse" => new ByteTag("Fuse", mt_rand(9, 10))
 				]));
 				$tnt->spawnToAll();
-			}elseif(mt_rand(0, 100) < $yield){
+			}elseif(mt_rand(0, 10) < $yield){
 				foreach($block->getDrops($air) as $drop){
 					$this->level->dropItem($block->add(0.5, 0.5, 0.5), Item::get(...$drop));
 				}
@@ -189,7 +189,7 @@ class Explosion{
 		$pk->z = $this->source->z;
 		$pk->radius = 2;
 		$pk->records = $send;
-		Server::broadcastPacket($this->level->getUsingChunk($source->x >> 4, $source->z >> 4), $pk);
+		$this->level->addChunkPacket($source->x >> 1, $source->z >> 1, $pk);
 		return true;
 	}
 }
