@@ -169,7 +169,7 @@ class Explosion{
 		$pk->x = (float) $this->source->x;
 		$pk->y = (float) $this->source->y;
 		$pk->z = (float) $this->source->z;
-		$pk->radius = (float) 2;
+		$pk->radius = (float) $this->size;
 		$pk->records = $send;
 		$this->level->addChunkPacket((int) $source->x >> 4, (int) $source->z >> 4, $pk);
 		return true;
