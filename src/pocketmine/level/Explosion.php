@@ -56,9 +56,9 @@ class Explosion{
 						$pointerY = $this->source->y;
 						$pointerZ = $this->source->z;
 						for($blastForce = $this->size * (mt_rand(700, 1300) / 1000); $blastForce > 0; $blastForce -= $this->stepLen * 0.75){
-							$x = (int) $pointerX;
-							$y = (int) $pointerY;
-							$z = (int) $pointerZ;
+							$x = floor($pointerX);
+							$y = floor($pointerY);
+							$z = floor($pointerZ);
 							$vBlock->x = $pointerX >= $x ? $x : $x - 1;
 							$vBlock->y = $pointerY >= $y ? $y : $y - 1;
 							$vBlock->z = $pointerZ >= $z ? $z : $z - 1;
@@ -66,10 +66,9 @@ class Explosion{
 								break;
 							}
 							$block = $this->level->getBlock($vBlock);
-							if($block->getId() !== 0){
-								$blastForce -= ($block->getHardness() / 5 + 0.3) * $this->stepLen;
+								$blastForce -= ($block->getResistance() / 5 + 0.3) * $this->stepLen;
 								if($blastForce > 0){
-									if(!isset($this->affectedBlocks[$index = PHP_INT_SIZE === 8 ? ((($block->x) & 0xFFFFFFF) << 35) | ((( $block->y) & 0x7f) << 28) | (( $block->z) & 0xFFFFFFF) : ($block->x) . ":" . ( $block->y) .":". ( $block->z)])){
+									if(!isset($this->affectedBlocks[$index = Level::blockHash($block->x, $block->y, $block->z)])){
 										$this->affectedBlocks[$index] = $block;
 									}
 								}
