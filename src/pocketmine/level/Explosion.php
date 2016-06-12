@@ -80,7 +80,7 @@ class Explosion{
 							if($block->getId() !== 0){
 								$blastForce -= ($block->getHardness() / 5 + 0.3) * $this->stepLen;
 								if($blastForce > 0){
-									if(!isset($this->affectedBlocks[$index = PHP_INT_SIZE === 8 ? ((((int) $block->x) & 0xFFFFFFF) << 35) | ((((int) $block->y) & 0x7f) << 28) | (((int) $block->z) & 0xFFFFFFF) : ($block->x) . ":" . ( $block->y) .":". ( $block->z)])){
+									if(!isset($this->affectedBlocks[$index = PHP_INT_SIZE === 8 ? ((($block->x) & 0xFFFFFFF) << 35) | ((($block->y) & 0x7f) << 28) | (($block->z) & 0xFFFFFFF) : ($block->x) . ":" . ($block->y) .":". ( $block->z)])){
 										$this->affectedBlocks[$index] = $block;
 									}
 								}
@@ -121,9 +121,9 @@ class Explosion{
 		foreach($list as $entity){
 			(double) $distance = $entity->distance($this->source) / $explosionSize;
 			if($distance <= 1){
-				(int) $motion = $entity->subtract($this->source)->normalize();
+				$motion = $entity->subtract($this->source)->normalize();
 				(double) $impact = (1 - $distance) * ($exposure = 1);
-				(int) $damage = (int) ((($impact * $impact + $impact) / 2) * 8 * $explosionSize + 1);
+				$damage = ((($impact * $impact + $impact) / 2) * 8 * $explosionSize + 1);
 				if($this->what instanceof Entity){
 					$ev = new EntityDamageByEntityEvent($this->what, $entity, EntityDamageEvent::CAUSE_ENTITY_EXPLOSION, $damage);
 				}elseif($this->what instanceof Block){
@@ -158,12 +158,12 @@ class Explosion{
 				]));
 				$tnt->spawnToAll();
 			}elseif(mt_rand(0, 10) < $yield){
-				foreach((int) $block->getDrops($air) as $drop){
+				foreach($block->getDrops($air) as $drop){
 					$this->level->dropItem($block->add(0.5, 0.5, 0.5), Item::get(...$drop));
 				}
 			}
 			$this->level->setBlockIdAt($block->x, $block->y, $block->z, 0);
-			$send[] = new Vector3((int) $block->x - $source->x, (int) $block->y - $source->y, (int) $block->z - $source->z, 0);
+			$send[] = new Vector3($block->x, $block->y, $block->z, 0);
 		}
 		$pk = new ExplodePacket();
 		$pk->x = (float) $this->source->x;
