@@ -98,14 +98,14 @@ class Explosion{
 	public function explodeB(){
 		$send = [];
 		$source = (new Vector3($this->source->x, $this->source->y, $this->source->z))->floor();
-		(double) $yield = (1 / 2) * 10;
+		(double) $yield = (1 / $this->size) * 100;
 		$explosionSize = 2 * 2;
 		(double) $minX = Math::floorFloat($this->source->x - $explosionSize - 1);
-		(double) $maxX = Math::floorFloat($this->source->x + $explosionSize + 1);
+		(double) $maxX = Math::ceilFloat($this->source->x + $explosionSize + 1);
 		(double) $minY = Math::floorFloat($this->source->y - $explosionSize - 1);
-		(double) $maxY = Math::floorFloat($this->source->y + $explosionSize + 1);
+		(double) $maxY = Math::ceilFloat($this->source->y + $explosionSize + 1);
 		(double) $minZ = Math::floorFloat($this->source->z - $explosionSize - 1);
-		(double) $maxZ = Math::floorFloat($this->source->z + $explosionSize + 1);
+		(double) $maxZ = Math::ceilFloat($this->source->z + $explosionSize + 1);
 		$explosionBB = new AxisAlignedBB($minX, $minY, $minZ, $maxX, $maxY, $maxZ);
         if($this->what instanceof Entity){
 			$this->level->getServer()->getPluginManager()->callEvent($ev = new EntityExplodeEvent($this->what, $this->source, $this->affectedBlocks, $yield));
@@ -123,7 +123,7 @@ class Explosion{
 			if($distance <= 1){
 				$motion = $entity->subtract($this->source)->normalize();
 				(double) $impact = (1 - $distance) * ($exposure = 1);
-				$damage = ((($impact * $impact + $impact) / 2) * 8 * $explosionSize + 1);
+				$damage = (int) ((($impact * $impact + $impact) / 2) * 8 * $explosionSize + 1);
 				if($this->what instanceof Entity){
 					$ev = new EntityDamageByEntityEvent($this->what, $entity, EntityDamageEvent::CAUSE_ENTITY_EXPLOSION, $damage);
 				}elseif($this->what instanceof Block){
@@ -154,16 +154,16 @@ class Explosion{
 						new FloatTag("", 0),
 						new FloatTag("", 0)
 					]),
-					"Fuse" => new ByteTag("Fuse", mt_rand(9, 10))
+					"Fuse" => new ByteTag("Fuse", mt_rand(10, 30))
 				]));
 				$tnt->spawnToAll();
-			}elseif(mt_rand(0, 10) < $yield){
+			}elseif(mt_rand(0, 100) < $yield){
 				foreach($block->getDrops($air) as $drop){
 					$this->level->dropItem($block->add(0.5, 0.5, 0.5), Item::get(...$drop));
 				}
 			}
 			$this->level->setBlockIdAt($block->x, $block->y, $block->z, 0);
-			$send[] = new Vector3($block->x, $block->y, $block->z, 0);
+			//$send[] = new Vector3($block->x, $block->y, $block->z, 0);
 		}
 		$pk = new ExplodePacket();
 		$pk->x = (float) $this->source->x;
@@ -173,6 +173,6 @@ class Explosion{
 		$pk->records = $send;
 		$this->level->addChunkPacket((int) $source->x >> 4, (int) $source->z >> 4, $pk);
 		return true;
-		Server::broadcastPacket((int) $this->level->getUsingChunk($source->x >> 4, (int) $source->z >> 4), $pk);
+		//Server::broadcastPacket((int) $this->level->getUsingChunk($source->x >> 4, (int) $source->z >> 4), $pk);
 	}
 }
