@@ -166,12 +166,13 @@ class Explosion{
 			$send[] = new Vector3($block->x - $source->x, $block->y - $source->y, $block->z - $source->z);
 		}
 		$pk = new ExplodePacket();
-		$pk->x = $this->source->x;
-		$pk->y = $this->source->y;
-		$pk->z = $this->source->z;
-		$pk->radius = 2;
+		$pk->x = (float) $this->source->x;
+		$pk->y = (float) $this->source->y;
+		$pk->z = (float) $this->source->z;
+		$pk->radius = (float) 2;
 		$pk->records = $send;
-		$this->level->addChunkPacket($source->x >> 4, $source->z >> 4, $pk);
+		$this->level->addChunkPacket((int) $source->x >> 4, (int) $source->z >> 4, $pk);
 		return true;
+		Server::broadcastPacket((int) $this->level->getUsingChunk($source->x >> 4, (int) $source->z >> 4), $pk);
 	}
 }
