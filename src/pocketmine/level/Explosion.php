@@ -81,7 +81,6 @@ class Explosion{
 				}
 			}
 		}
-		return true;
 	}
 	public function explodeB(){
 		$send = [];
@@ -97,12 +96,6 @@ class Explosion{
 		$explosionBB = new AxisAlignedBB($minX, $minY, $minZ, $maxX, $maxY, $maxZ);
         if($this->what instanceof Entity){
 			$this->level->getServer()->getPluginManager()->callEvent($ev = new EntityExplodeEvent($this->what, $this->source, $this->affectedBlocks, $yield));
-			if($ev->isCancelled()){
-				return false;
-			}else{
-				$yield = $ev->getYield();
-				$this->affectedBlocks = $ev->getBlockList();
-			}
 		}
         $list = $this->level->getNearbyEntities($explosionBB, $this->what instanceof Entity ? $this->what : null);
 		foreach($list as $entity){
@@ -110,7 +103,7 @@ class Explosion{
 			if($distance <= 1){
 				$motion = $entity->subtract($this->source)->normalize();
 				$impact = (1 - $distance) * ($exposure = 1);
-				$damage = (int) ((($impact * $impact + $impact) / 2) * 8 * $explosionSize + 1);
+				$damage = floor(((($impact * $impact + $impact) / 2) * 8 * $explosionSize + 1));
 				if($this->what instanceof Entity){
 					$ev = new EntityDamageByEntityEvent($this->what, $entity, EntityDamageEvent::CAUSE_ENTITY_EXPLOSION, $damage);
 				}elseif($this->what instanceof Block){
@@ -121,6 +114,7 @@ class Explosion{
 				$entity->attack($ev->getFinalDamage(), $ev);
 				$entity->setMotion($motion->multiply($impact));
 			}
+
 		}
 		$air = Item::get(Item::AIR);
 		foreach($this->affectedBlocks as $block){
@@ -140,8 +134,6 @@ class Explosion{
 					"Rotation" => new Enum("Rotation", [
 						new Float("", 0),
 						new Float("", 0)
-					]),
-					"Fuse" => new Byte("Fuse", mt_rand(10, 30))
 				]));
 				$tnt->spawnToAll();
 			}elseif(mt_rand(0, 100) < $yield){
