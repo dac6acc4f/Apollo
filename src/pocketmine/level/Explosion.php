@@ -24,12 +24,8 @@ class Explosion{
 	public $level;
 	public $source;
 	public $size;
-	/**
-	 * @var Block[]
-	 */
 	public $affectedBlocks = [];
 	public $stepLen = 0.3;
-	/** @var Entity|Block */
 	private $what;
 	public function __construct(Position $center, $size, $what = null){
 		$this->level = $center->getLevel();
@@ -37,19 +33,12 @@ class Explosion{
 		$this->size = max($size, 0);
 		$this->what = $what;
 	}
-	/**
-	 * @deprecated
-	 * @return bool
-	 */
 	public function explode(){
 		if($this->explodeA()){
 			return $this->explodeB();
 		}
 		return false;
 	}
-	/**
-	 * @return bool
-	 */
 	public function explodeA(){
 		if($this->size < 0.1){
 			return false;
@@ -116,7 +105,6 @@ class Explosion{
 				$this->affectedBlocks = $ev->getBlockList();
 			}
 		}
-        
         $list = $this->level->getNearbyEntities($explosionBB, $this->what instanceof Entity ? $this->what : null);
 		foreach($list as $entity){
 			$distance = $entity->distance($this->source) / $explosionSize;
