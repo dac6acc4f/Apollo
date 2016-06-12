@@ -82,6 +82,7 @@ class Explosion{
 			}
 		}
 	}
+        return true;
 	public function explodeB(){
 		$send = [];
 		$source = (new Vector3($this->source->x, $this->source->y, $this->source->z))->floor();
