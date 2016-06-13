@@ -2,7 +2,7 @@
 namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-class Redstone extends RedstoneSource{
+class RedstoneBlock extends RedstoneSource{
 
 	protected $id = self::REDSTONE_BLOCK;
 
