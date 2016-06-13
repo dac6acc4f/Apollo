@@ -1,4 +1,4 @@
-//<?php
+<?php
 /*
  *
  *  _____   _____   __   _   _   _____  __    __  _____
@@ -17,7 +17,7 @@
  * @link https://mcper.cn
  *
  */
-/*namespace pocketmine\block;
+namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\nbt\tag\Compound;
@@ -46,7 +46,7 @@ class DaylightDetector extends RedstoneSource{
 	/**
 	 * @return DLDetector
 	 */
-	/*protected function getTile(){
+	protected function getTile(){
 		$t = $this->getLevel()->getTile($this);
 		if($t instanceof DLDetector){
 			return $t;
@@ -80,7 +80,7 @@ class DaylightDetector extends RedstoneSource{
 	}
 	public function getDrops(Item $item) {
 		return [
-			[self::DAYLIGHT_SENSOR, 0, 1]
+			[self::DAYLIGHT_DETECTOR, 0, 1]
 		];
 	}
-}*/
+}
