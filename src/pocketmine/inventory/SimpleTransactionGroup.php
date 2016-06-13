@@ -1,57 +1,22 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
-
 namespace pocketmine\inventory;
-
 use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\Server;
 
-/**
- * This TransactionGroup only allows doing Transaction between one / two inventories
- */
 class SimpleTransactionGroup implements TransactionGroup{
 	private $creationTime;
 	protected $hasExecuted = false;
-	/** @var Player */
 	protected $source = null;
-
-	/** @var Inventory[] */
 	protected $inventories = [];
-
-	/** @var Transaction[] */
 	protected $transactions = [];
 
-	/**
-	 * @param Player $source
-	 */
 	public function __construct(Player $source = null){
 		$this->creationTime = microtime(true);
 		$this->source = $source;
 	}
 
-	/**
-	 * @return Player
-	 */
 	public function getSource(){
 		return $this->source;
 	}
@@ -85,12 +50,6 @@ class SimpleTransactionGroup implements TransactionGroup{
 		$this->inventories[spl_object_hash($transaction->getInventory())] = $transaction->getInventory();
 	}
 
-	/**
-	 * @param Item[] $needItems
-	 * @param Item[] $haveItems
-	 *
-	 * @return bool
-	 */
 	protected function matchItems(array &$needItems, array &$haveItems){
 		foreach($this->transactions as $key => $ts){
 			if($ts->getTargetItem()->getId() !== Item::AIR){

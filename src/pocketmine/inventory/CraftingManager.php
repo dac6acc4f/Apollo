@@ -1,24 +1,5 @@
 <?php
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
 namespace pocketmine\inventory;
-
 use pocketmine\block\Planks;
 use pocketmine\block\Quartz;
 use pocketmine\block\Sandstone;
@@ -34,18 +15,10 @@ use pocketmine\utils\UUID;
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\Config;
-
 class CraftingManager{
-	/** @var Recipe[] */
 	public $recipes = [];
-
-	/** @var Recipe[][] */
 	protected $recipeLookup = [];
-
-	/** @var FurnaceRecipe[] */
 	public $furnaceRecipes = [];
-
-	/** @var BrewingRecipe[] */
 	public $brewingRecipes = [];
 
 	private static $RECIPE_COUNT = 0;
@@ -53,14 +26,12 @@ class CraftingManager{
 	public function __construct($useJson = false){
 		$this->registerBrewingStand();
 		if($useJson){
-			// load recipes from src/pocketmine/recipes.json
 			$recipes = new Config(Server::getInstance()->getFilePath() . "src/pocketmine/resources/recipes.json", Config::JSON, []);
 
 			MainLogger::getLogger()->info("Loading recipes...");
 			foreach($recipes->getAll() as $recipe){
 				switch($recipe["Type"]){
 					case 0:
-						// TODO: handle multiple result items
 						if(count($recipe["Result"]) == 1){
 							$first = $recipe["Result"][0];
 							$result = new ShapelessRecipe(Item::get($first["ID"], $first["Damage"], $first["Count"]));
@@ -72,7 +43,6 @@ class CraftingManager{
 						}
 						break;
 					case 1:
-						// TODO: handle multiple result items
 						if(count($recipe["Result"]) == 1){
 							$first = $recipe["Result"][0];
 							$result = new ShapedRecipeFromJson(Item::get($first["ID"], $first["Damage"], $first["Count"]), $recipe["Height"], $recipe["Width"]);
@@ -101,7 +71,6 @@ class CraftingManager{
 				}
 			}
 		}else{
-			//$this->registerStonecutter();
 			$this->registerFurnace();
 			$this->registerDyes();
 			$this->registerIngots();
@@ -711,12 +680,6 @@ class CraftingManager{
 	}
 
 	protected function registerBrewingStand(){
-		/*$this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::POTION, Potion::AWKWARD, 1), Item::get(Item::NETHER_WART, 0, 1), Item::get(Item::POTION, Potion::WATER_BOTTLE, 1))); //Akward
-		// Potion
-		$this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::POTION, Potion::SPEED, 1), Item::get(Item::SUGAR, 0, 1), Item::get(Item::POTION, Potion::AWKWARD, 1))); //Swiftness
-		$this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::POTION, Potion::SPEED_T, 1), Item::get(Item::REDSTONE, 0, 1), Item::get(Item::POTION, Potion::SPEED, 1))); //Swiftness Extended
-		$this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::POTION, Potion::SPEED_TWO, 1), Item::get(Item::GLOWSTONE_DUST, 0, 1), Item::get(Item::POTION, Potion::SPEED, 1))); //Swiftness II
-*/
 		$this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::POTION, Potion::AWKWARD, 1), Item::get(Item::NETHER_WART, 0, 1), Item::get(Item::POTION, Potion::WATER_BOTTLE, 1)));
 		$this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::POTION, Potion::THICK, 1), Item::get(Item::GLOWSTONE_DUST, 0, 1), Item::get(Item::POTION, Potion::WATER_BOTTLE, 1)));
 		$this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::POTION, Potion::MUNDANE_EXTENDED, 1), Item::get(Item::REDSTONE_DUST, 0, 1), Item::get(Item::POTION, Potion::WATER_BOTTLE, 1)));
@@ -818,7 +781,6 @@ class CraftingManager{
 			]
 		];
 		$buildRecipes = [];
-		// Single ingedient stone cutter recipes:                
 		$RESULT_ITEMID = 0;
 		$RESULT_META = 1;
 		$INGREDIENT_ITEMID = 2;
@@ -826,7 +788,6 @@ class CraftingManager{
 		$RECIPE_SHAPE = 4;
 		$RESULT_AMOUNT = 5;
 		$recipes = [
-			//RESULT_ITEM_ID            RESULT_META                 INGREDIENT_ITEMID           INGREDIENT_META     RECIPE_SHAPE        RESULT_AMOUNT
 			[Item::SLAB, Slab::STONE, Item::STONE, Stone::NORMAL, "slab", 6],
 			[Item::SLAB, Slab::COBBLESTONE, Item::COBBLESTONE, 0, "slab", 6],
 			[Item::SLAB, Slab::SANDSTONE, Item::SANDSTONE, 0, "slab", 6],
@@ -860,7 +821,6 @@ class CraftingManager{
 		foreach($recipes as $recipe){
 			$buildRecipes[] = $this->createOneIngedientRecipe($shapes[$recipe[$RECIPE_SHAPE]], $recipe[$RESULT_ITEMID], $recipe[$RESULT_META], $recipe[$RESULT_AMOUNT], $recipe[$INGREDIENT_ITEMID], $recipe[$INGREDIENT_META], "X", "Stonecutter");
 		}
-		// Multi-ingredient stone recipes:
 		$buildRecipes[] = ((new StonecutterShapedRecipe(Item::get(Item::STONE, Stone::GRANITE, 1),
 			...$shapes["blockrecipe1X2"]
 		))->setIngredient("A", Item::get(Item::STONE, Stone::DIORITE, 1))->setIngredient("B", Item::get(Item::QUARTZ, Quartz::QUARTZ_NORMAL, 1)));
@@ -877,7 +837,6 @@ class CraftingManager{
 	}
 
 	private function sortAndAddRecipesArray(&$recipes){
-		// Sort the recipes based on the result item name with the bubblesort algoritm.
 		for($i = 0; $i < count($recipes); ++$i){
 			$current = $recipes[$i];
 			$result = $current->getResult();
@@ -896,7 +855,6 @@ class CraftingManager{
 	private function createOneIngedientRecipe($recipeshape, $resultitem, $resultitemmeta, $resultitemamound, $ingedienttype, $ingredientmeta, $ingredientname, $inventoryType = ""){
 		$ingredientamount = 0;
 		$height = 0;
-		// count how many of the ingredient are in the recipe and check height for big or small recipe.
 		foreach($recipeshape as $line){
 			$height += 1;
 			$width = strlen($line);
@@ -904,13 +862,11 @@ class CraftingManager{
 		}
 		$recipe = null;
 		if($height < 3){
-			// Process small recipe
 			$fullClassName = "pocketmine\\inventory\\" . $inventoryType . "ShapedRecipe";// $ShapeClass."ShapedRecipe";
 			$recipe = ((new $fullClassName(Item::get($resultitem, $resultitemmeta, $resultitemamound),
 				...$recipeshape
 			))->setIngredient($ingredientname, Item::get($ingedienttype, $ingredientmeta, $ingredientamount)));
 		}else{
-			// Process big recipe
 			$fullClassName = "pocketmine\\inventory\\" . $inventoryType . "BigShapedRecipe";
 			$recipe = ((new $fullClassName(Item::get($resultitem, $resultitemmeta, $resultitemamound),
 				...$recipeshape
@@ -1128,11 +1084,6 @@ class CraftingManager{
 	}
 
 	protected function registerDyes(){
-		/*$this->registerRecipe((new BigShapedRecipe(Item::get(Item::POTION, Potion::SWIFTNESS_TWO, 1),
-			"XXX",
-			"XXX",
-			"XXX"
-		))->setIngredient("X", Item::get(Item::COBBLESTONE, 0, 9)));*/
 		for($i = 0; $i < 16; ++$i){
 			$this->registerRecipe((new ShapedRecipe(Item::get(Item::WOOL, 15 - $i, 1),
 				"X ",
@@ -1143,7 +1094,6 @@ class CraftingManager{
 				"YXY",
 				"YYY"
 			))->setIngredient("X", Item::get(Item::DYE, $i, 1))->setIngredient("Y", Item::get(Item::HARDENED_CLAY, 0, 8)));
-			//TODO: add glass things?
 			$this->registerRecipe((new ShapedRecipe(Item::get(Item::WOOL, 15 - $i, 1),
 				"X ",
 				"Y "
@@ -1296,34 +1246,19 @@ class CraftingManager{
 		}
 	}
 
-	/**
-	 * @param UUID $id
-	 * @return Recipe
-	 */
 	public function getRecipe(UUID $id){
 		$index = $id->toBinary();
 		return isset($this->recipes[$index]) ? $this->recipes[$index] : null;
 	}
 
-	/**
-	 * @return Recipe[]
-	 */
 	public function getRecipes(){
 		return $this->recipes;
 	}
 
-	/**
-	 * @return FurnaceRecipe[]
-	 */
 	public function getFurnaceRecipes(){
 		return $this->furnaceRecipes;
 	}
 
-	/**
-	 * @param Item $input
-	 *
-	 * @return FurnaceRecipe
-	 */
 	public function matchFurnaceRecipe(Item $input){
 		if(isset($this->furnaceRecipes[$input->getId() . ":" . $input->getDamage()])){
 			return $this->furnaceRecipes[$input->getId() . ":" . $input->getDamage()];
@@ -1334,12 +1269,7 @@ class CraftingManager{
 	}
 
 
-	/**
-	 * @param Item $input
-	 * @param Item $potion
-	 *
-	 * @return BrewingRecipe
-	 */
+
 	public function matchBrewingRecipe(Item $input, Item $potion){
 		if(isset($this->brewingRecipes[$input->getId() . ":" . ($potion->getDamage() === null ? "0" : $potion->getDamage())])){
 			return $this->brewingRecipes[$input->getId() . ":" . ($potion->getDamage() === null ? "0" : $potion->getDamage())];
@@ -1347,9 +1277,6 @@ class CraftingManager{
 		return null;
 	}
 
-	/**
-	 * @param ShapedRecipe $recipe
-	 */
 	public function registerShapedRecipe(ShapedRecipe $recipe){
 		$result = $recipe->getResult();
 		$this->recipes[$recipe->getId()->toBinary()] = $recipe;
@@ -1358,7 +1285,6 @@ class CraftingManager{
 		foreach($ingredients as $v){
 			foreach($v as $item){
 				if($item !== null){
-					/** @var Item $item */
 					$hash .= $item->getId() . ":" . ($item->getDamage() === null ? "?" : $item->getDamage()) . "x" . $item->getCount() . ",";
 				}
 			}
@@ -1367,9 +1293,6 @@ class CraftingManager{
 		$this->recipeLookup[$result->getId() . ":" . $result->getDamage()][$hash] = $recipe;
 	}
 
-	/**
-	 * @param ShapelessRecipe $recipe
-	 */
 	public function registerShapelessRecipe(ShapelessRecipe $recipe){
 		$result = $recipe->getResult();
 		$this->recipes[$recipe->getId()->toBinary()] = $recipe;
@@ -1382,27 +1305,17 @@ class CraftingManager{
 		$this->recipeLookup[$result->getId() . ":" . $result->getDamage()][$hash] = $recipe;
 	}
 
-	/**
-	 * @param FurnaceRecipe $recipe
-	 */
 	public function registerFurnaceRecipe(FurnaceRecipe $recipe){
 		$input = $recipe->getInput();
 		$this->furnaceRecipes[$input->getId() . ":" . ($input->getDamage() === null ? "?" : $input->getDamage())] = $recipe;
 	}
 
-	/**
-	 * @param BrewingRecipe $recipe
-	 */
 	public function registerBrewingRecipe(BrewingRecipe $recipe){
 		$input = $recipe->getInput();
 		$potion = $recipe->getPotion();
 		$this->brewingRecipes[$input->getId() . ":" . ($potion->getDamage() === null ? "0" : $potion->getDamage())] = $recipe;
 	}
 
-	/**
-	 * @param ShapelessRecipe $recipe
-	 * @return bool
-	 */
 	public function matchRecipe(ShapelessRecipe $recipe){
 		if(!isset($this->recipeLookup[$idx = $recipe->getResult()->getId() . ":" . $recipe->getResult()->getDamage()])){
 			return false;
@@ -1451,9 +1364,6 @@ class CraftingManager{
 		return $hasRecipe !== null;
 	}
 
-	/**
-	 * @param Recipe $recipe
-	 */
 	public function registerRecipe(Recipe $recipe){
 		$recipe->setId(UUID::fromData(++self::$RECIPE_COUNT, $recipe->getResult()->getId(), $recipe->getResult()->getDamage(), $recipe->getResult()->getCount(), $recipe->getResult()->getCompoundTag()));
 		if($recipe instanceof ShapedRecipe){

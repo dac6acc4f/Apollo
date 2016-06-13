@@ -1,51 +1,16 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
-
 namespace pocketmine\inventory;
-
 use pocketmine\item\Item;
 use pocketmine\Server;
 use pocketmine\utils\UUID;
 use pocketmine\math\Vector2;
-
 class ShapedRecipe implements Recipe{
-	/** @var Item */
 	private $output;
-
 	private $id = null;
-
-	/** @var string[] */
 	private $shape = [];
-
-	/** @var Item[][] */
 	private $ingredients = [];
-	/** @var Vector2[][] */
 	private $shapeItems = [];
 
-	/**
-	 * @param Item     $result
-	 * @param string[] $shape
-	 *
-	 * @throws \Exception
-	 */
 	public function __construct(Item $result, ...$shape){
 		if(count($shape) === 0){
 			throw new \InvalidArgumentException("Must provide a shape");
@@ -97,13 +62,6 @@ class ShapedRecipe implements Recipe{
 		$this->id = $id;
 	}
 
-	/**
-	 * @param string $key
-	 * @param Item   $item
-	 *
-	 * @return $this
-	 * @throws \Exception
-	 */
 	public function setIngredient($key, Item $item){
 		if(!array_key_exists($key, $this->shape)){
 			throw new \Exception("Symbol does not appear in the shape: " . $key);
@@ -120,9 +78,6 @@ class ShapedRecipe implements Recipe{
 		}
 	}
 
-	/**
-	 * @return Item[][]
-	 */
 	public function getIngredientMap(){
 		$ingredients = [];
 		foreach($this->ingredients as $y => $row){
@@ -139,18 +94,10 @@ class ShapedRecipe implements Recipe{
 		return $ingredients;
 	}
 
-	/**
-	 * @param $x
-	 * @param $y
-	 * @return null|Item
-	 */
 	public function getIngredient($x, $y){
 		return isset($this->ingredients[$y][$x]) ? $this->ingredients[$y][$x] : Item::get(Item::AIR);
 	}
 
-	/**
-	 * @return string[]
-	 */
 	public function getShape(){
 		return $this->shape;
 	}

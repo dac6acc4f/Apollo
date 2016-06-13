@@ -1,29 +1,6 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
-
 namespace pocketmine\inventory;
 
-/**
- * Saves all the information regarding default inventory sizes and types
- */
 class InventoryType{
 	const CHEST = 0;
 	const DOUBLE_CHEST = 1;
@@ -38,18 +15,11 @@ class InventoryType{
 	const DISPENSER = 10;
 	const DROPPER = 11;
 	const HOPPER = 12;
-
 	private static $default = [];
-
 	private $size;
 	private $title;
 	private $typeId;
-
-	/**
-	 * @param $index
-	 *
-	 * @return InventoryType
-	 */
+	
 	public static function get($index){
 		return isset(static::$default[$index]) ? static::$default[$index] : null;
 	}
@@ -74,34 +44,20 @@ class InventoryType{
 		static::$default[static::HOPPER] = new InventoryType(5, "Hopper", 8); //5 CONTAINER
 	}
 
-	/**
-	 * @param int    $defaultSize
-	 * @param string $defaultTitle
-	 * @param int    $typeId
-	 */
 	private function __construct($defaultSize, $defaultTitle, $typeId = 0){
 		$this->size = $defaultSize;
 		$this->title = $defaultTitle;
 		$this->typeId = $typeId;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getDefaultSize(){
 		return $this->size;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getDefaultTitle(){
 		return $this->title;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getNetworkType(){
 		return $this->typeId;
 	}

@@ -1,26 +1,5 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
-
 namespace pocketmine\inventory;
-
 use pocketmine\item\Dye;
 use pocketmine\item\EnchantedBook;
 use pocketmine\item\enchantment\Enchantment;
@@ -33,21 +12,15 @@ use pocketmine\network\protocol\CraftingDataPacket;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\tile\EnchantTable;
-
 class EnchantInventory extends ContainerInventory{
 	private $bookshelfAmount = 0;
-
 	private $levels = [];
-	/** @var EnchantmentEntry[] */
 	private $entries = null;
 
 	public function __construct(EnchantTable $tile){
 		parent::__construct($tile, InventoryType::get(InventoryType::ENCHANT_TABLE));
 	}
 
-	/**
-	 * @return EnchantTable
-	 */
 	public function getHolder(){
 		return $this->holder;
 	}
@@ -86,7 +59,6 @@ class EnchantInventory extends ContainerInventory{
 			if($item->getId() == Item::AIR){
 				$this->entries = null;
 			}elseif($before->getId() == Item::AIR and !$item->hasEnchantments()){
-				//before enchant
 				if($this->entries == null){
 					$enchantAbility = Enchantment::getEnchantAbility($item);
 					$this->entries = [];
@@ -126,7 +98,6 @@ class EnchantInventory extends ContainerInventory{
 						$result[] = $enchantment;
 						unset($possible[$key]);
 
-						//Extra enchantment
 						while(count($possible) > 0){
 							$modifiedLevel = round($modifiedLevel / 2);
 							$v = mt_rand(0 ,51);
@@ -216,7 +187,6 @@ class EnchantInventory extends ContainerInventory{
 
 	public function countBookshelf(){
 		return 15;
-		//TODO: calculate bookshelf around
 	}
 
 	public function sendEnchantmentList(){
@@ -232,11 +202,6 @@ class EnchantInventory extends ContainerInventory{
 		Server::getInstance()->broadcastPacket($this->getViewers(), $pk);
 	}
 
-	/**
-	 * @param Enchantment      $enchantment
-	 * @param Enchantment[]    $enchantments
-	 * @return Enchantment[]
-	 */
 	public function removeConflictEnchantment(Enchantment $enchantment, array $enchantments){
 		if(count($enchantments) > 0){
 			foreach($enchantments as $e){
@@ -247,19 +212,16 @@ class EnchantInventory extends ContainerInventory{
 				}
 
 				if($id >= 0 and $id <= 4 and $enchantment->getId() >= 0 and $enchantment->getId() <= 4){
-					//Protection
 					unset($enchantments[$id]);
 					continue;
 				}
 
 				if($id >= 9 and $id <= 14 and $enchantment->getId() >= 9 and $enchantment->getId() <= 14){
-					//Weapon
 					unset($enchantments[$id]);
 					continue;
 				}
 
 				if(($id == Enchantment::TYPE_MINING_SILK_TOUCH and $enchantment->getId() == Enchantment::TYPE_MINING_FORTUNE) or ($id == Enchantment::TYPE_MINING_FORTUNE and $enchantment->getId() == Enchantment::TYPE_MINING_SILK_TOUCH)){
-					//Protection
 					unset($enchantments[$id]);
 					continue;
 				}

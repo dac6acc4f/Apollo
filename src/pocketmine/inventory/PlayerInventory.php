@@ -1,26 +1,5 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
-
 namespace pocketmine\inventory;
-
 use pocketmine\entity\Human;
 use pocketmine\event\entity\EntityArmorChangeEvent;
 use pocketmine\event\entity\EntityInventoryChangeEvent;
@@ -32,11 +11,9 @@ use pocketmine\network\protocol\MobArmorEquipmentPacket;
 use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 use pocketmine\Server;
-
 class PlayerInventory extends BaseInventory{
 
 	protected $itemInHandIndex = 0;
-	/** @var int[] */
 	protected $hotbar;
 
 	public function __construct(Human $player){
@@ -96,11 +73,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-	/**
-	 * @param Item $item
-	 *
-	 * @return bool
-	 */
 	public function setItemInHand(Item $item){
 		return $this->setItem($this->getHeldItemSlot(), $item);
 	}
@@ -127,9 +99,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-	/**
-	 * @param Player|Player[] $target
-	 */
 	public function sendHeldItem($target){
 		$item = $this->getItemInHand();
 
@@ -285,9 +254,6 @@ class PlayerInventory extends BaseInventory{
 		return true;
 	}
 
-	/**
-	 * @return Item[]
-	 */
 	public function getArmorContents(){
 		$armor = [];
 
@@ -305,9 +271,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-	/**
-	 * @param Player|Player[] $target
-	 */
 	public function sendArmorContents($target){
 		if($target instanceof Player){
 			$target = [$target];
@@ -333,9 +296,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-	/**
-	 * @param Item[] $items
-	 */
 	public function setArmorContents(array $items){
 		for($i = 0; $i < 4; ++$i){
 			if(!isset($items[$i]) or !($items[$i] instanceof Item)){
@@ -350,11 +310,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-
-	/**
-	 * @param int             $index
-	 * @param Player|Player[] $target
-	 */
 	public function sendArmorSlot($index, $target){
 		if($target instanceof Player){
 			$target = [$target];
@@ -370,7 +325,6 @@ class PlayerInventory extends BaseInventory{
 
 		foreach($target as $player){
 			if($player === $this->getHolder()){
-				/** @var Player $player */
 				$pk2 = new ContainerSetSlotPacket();
 				$pk2->windowid = ContainerSetContentPacket::SPECIAL_ARMOR;
 				$pk2->slot = $index - $this->getSize();
@@ -382,9 +336,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-	/**
-	 * @param Player|Player[] $target
-	 */
 	public function sendContents($target){
 		if($target instanceof Player){
 			$target = [$target];
@@ -395,18 +346,6 @@ class PlayerInventory extends BaseInventory{
 		for($i = 0; $i < $this->getSize(); ++$i){ //Do not send armor by error here
 			$pk->slots[$i] = $this->getItem($i);
 		}
-		/*if($holder instanceof Player and $holder->isCreative()){
-			for($current = 0; $current < $this->getSize(); ++$current){
-				$pk->slots[$current] = $this->getItem($current);
-			}
-			/*foreach(Item::getCreativeItems() as $i => $item){
-				$pk->slots[$i + $current] = Item::getCreativeItem($i);
-			}*
-		}else{
-			for($i = 0; $i < $this->getSize(); ++$i){ //Do not send armor by error here
-				$pk->slots[$i] = $this->getItem($i);
-			}
-		}*/
 
 		foreach($target as $player){
 			$pk->hotbar = [];
@@ -425,10 +364,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-	/**
-	 * @param int             $index
-	 * @param Player|Player[] $target
-	 */
 	public function sendSlot($index, $target){
 		if($target instanceof Player){
 			$target = [$target];
@@ -445,7 +380,6 @@ class PlayerInventory extends BaseInventory{
 
 		foreach($target as $player){
 			if($player === $this->getHolder()){
-				/** @var Player $player */
 				$pk->windowid = 0;
 				$player->dataPacket(clone $pk);
 			}else{
@@ -459,9 +393,6 @@ class PlayerInventory extends BaseInventory{
 		}
 	}
 
-	/**
-	 * @return Human|Player
-	 */
 	public function getHolder(){
 		return parent::getHolder();
 	}

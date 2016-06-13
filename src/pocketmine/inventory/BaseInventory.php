@@ -1,26 +1,5 @@
 <?php
-
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
-*/
-
 namespace pocketmine\inventory;
-
 use pocketmine\entity\Entity;
 use pocketmine\event\entity\EntityInventoryChangeEvent;
 use pocketmine\event\inventory\InventoryOpenEvent;
@@ -30,33 +9,17 @@ use pocketmine\network\protocol\ContainerSetContentPacket;
 use pocketmine\network\protocol\ContainerSetSlotPacket;
 use pocketmine\Player;
 use pocketmine\Server;
-
 abstract class BaseInventory implements Inventory{
 
-	/** @var InventoryType */
 	protected $type;
-	/** @var int */
 	protected $maxStackSize = Inventory::MAX_STACK;
-	/** @var int */
 	protected $size;
-	/** @var string */
 	protected $name;
-	/** @var string */
 	protected $title;
-	/** @var Item[] */
 	protected $slots = [];
-	/** @var Player[] */
 	protected $viewers = [];
-	/** @var InventoryHolder */
 	protected $holder;
-
-	/**
-	 * @param InventoryHolder $holder
-	 * @param InventoryType   $type
-	 * @param Item[]          $items
-	 * @param int             $overrideSize
-	 * @param string          $overrideTitle
-	 */
+	
 	public function __construct(InventoryHolder $holder, InventoryType $type, array $items = [], $overrideSize = null, $overrideTitle = null){
 		$this->holder = $holder;
 
@@ -115,9 +78,6 @@ abstract class BaseInventory implements Inventory{
 		return $this->slots;
 	}
 
-	/**
-	 * @param Item[] $items
-	 */
 	public function setContents(array $items){
 		if(count($items) > $this->size){
 			$items = array_slice($items, 0, $this->size, true);
@@ -250,8 +210,6 @@ abstract class BaseInventory implements Inventory{
 	}
 
 	public function addItem(...$slots){
-		/** @var Item[] $itemSlots */
-		/** @var Item[] $slots */
 		$itemSlots = [];
 		foreach($slots as $slot){
 			if(!($slot instanceof Item)){
@@ -291,7 +249,6 @@ abstract class BaseInventory implements Inventory{
 
 		if(count($itemSlots) > 0 and count($emptySlots) > 0){
 			foreach($emptySlots as $slotIndex){
-				//This loop only gets the first item, then goes to the next empty slot
 				foreach($itemSlots as $index => $slot){
 					$amount = min($slot->getMaxStackSize(), $slot->getCount(), $this->getMaxStackSize());
 					$slot->setCount($slot->getCount() - $amount);
@@ -310,8 +267,6 @@ abstract class BaseInventory implements Inventory{
 	}
 
 	public function removeItem(...$slots){
-		/** @var Item[] $itemSlots */
-		/** @var Item[] $slots */
 		$itemSlots = [];
 		foreach($slots as $slot){
 			if(!($slot instanceof Item)){
@@ -379,9 +334,6 @@ abstract class BaseInventory implements Inventory{
 		}
 	}
 
-	/**
-	 * @return Player[]
-	 */
 	public function getViewers(){
 		return $this->viewers;
 	}
@@ -420,10 +372,6 @@ abstract class BaseInventory implements Inventory{
 		$this->sendSlot($index, $this->getViewers());
 	}
 
-
-	/**
-	 * @param Player|Player[] $target
-	 */
 	public function sendContents($target){
 		if($target instanceof Player){
 			$target = [$target];
@@ -445,10 +393,6 @@ abstract class BaseInventory implements Inventory{
 		}
 	}
 
-	/**
-	 * @param int             $index
-	 * @param Player|Player[] $target
-	 */
 	public function sendSlot($index, $target){
 		if($target instanceof Player){
 			$target = [$target];
