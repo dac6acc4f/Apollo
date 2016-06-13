@@ -42,5 +42,4 @@ Attention! All version have new biomes added and more changes in biomes :)
 
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
 - We are a edited version of Genisys. We have edited their generators to our version and have improved the performance
- - **"Improved" as in what NycuRO thinks improved it.**
 - Apollo is currently PHP5, we will update to PHP7 soon.
