@@ -10,7 +10,7 @@ use pocketmine\nbt\tag\Enum as ListTag;
 use pocketmine\nbt\tag\String as StringTag;
 use pocketmine\nbt\tag\Int as IntTag;
 use pocketmine\tile\Tile;
-class DaylightDetector extends Transparent implements RedstoneSys, RedstoneSwitch{
+class DaylightDetector extends Transparent implements RedstoneSource{
 	protected $id = self::DAYLIGHT_DETECTOR;
 	public function __construct($meta = 0){
 		$this->meta = $meta;
