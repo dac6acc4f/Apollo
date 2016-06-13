@@ -31,7 +31,7 @@ Note: You may **not** copy our generator without NycuRO's permission. Other than
 - 1.0 -> Finish PHP7
 - ....
 
-Atention! All version have new biomes added and more changes in biomes :)
+Attention! All version have new biomes added and more changes in biomes :)
 
 ## Help Us Develop!
  We arn't a team of advanced coders, so other coders like you can help us improve our MCPE Server Software by creating a pull request or create request for collaborator ;)
@@ -42,5 +42,5 @@ Atention! All version have new biomes added and more changes in biomes :)
 
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
 - We are a edited version of Genisys. We have edited their generators to our version and have improved the performance
- - **"Improved" as in what NycuRO thinks improved it.
+ - **"Improved" as in what NycuRO thinks improved it.**
 - Apollo is currently PHP5, we will update to PHP7 soon.
