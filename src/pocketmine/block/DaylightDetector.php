@@ -46,7 +46,7 @@ class DaylightDetector extends RedstoneSource{
 	/**
 	 * @return DLDetector
 	 */
-	protected function getTile(){
+	/*protected function getTile(){
 		$t = $this->getLevel()->getTile($this);
 		if($t instanceof DLDetector){
 			return $t;
