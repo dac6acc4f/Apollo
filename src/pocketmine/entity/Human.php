@@ -153,7 +153,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	 *
 	 * @return float the amount of exhaustion level increased
 	 */
-	public function exhaust(float $amount, int $cause = PlayerExhaustEvent::CAUSE_CUSTOM) : float{
+	public function exhaust(float $amount, int $cause = PlayerExhaustEvent::CAUSE_CUSTOM){//PHP7 SUCK SUCK SUCK SUCK SMD SMD SMD SMD
 		$this->server->getPluginManager()->callEvent($ev = new PlayerExhaustEvent($this, $amount, $cause));
 		if($ev->isCancelled()){
 			return 0.0;
