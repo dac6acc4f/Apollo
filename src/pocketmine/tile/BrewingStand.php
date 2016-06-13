@@ -54,11 +54,11 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
 			$this->inventory->setItem($i, $this->getItem($i));
 		}
 
-		if(!isset($this->namedtag->CookedTime)){
-			$this->namedtag->CookedTime = new Short("CookedTime", self::MAX_BREW_TIME);
+		if(!isset($this->namedtag->BrewTime)){
+			$this->namedtag->BrewTime = new Short("BrewTime", self::MAX_BREW_TIME);
 		}
 
-		if($this->namedtag["CookTime"] < self::MAX_BREW_TIME){
+		if($this->namedtag["BrewTime"] < self::MAX_BREW_TIME){
 			$this->scheduleUpdate();
 		}
 	}
@@ -197,15 +197,15 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
 			}
 		}
 
-		if($this->namedtag["CookTime"] <= self::MAX_BREW_TIME and $canBrew and $ingredient->getCount() > 0){
+		if($this->namedtag["BrewTime"] <= self::MAX_BREW_TIME and $canBrew and $ingredient->getCount() > 0){
 			//if(!$this->checkIngredient($ingredient)) $canBrew = false;
 			//TODO: check ingredients
 		} else $canBrew = false;
 
 		if($canBrew){
-			$this->namedtag->CookTime = new Short("CookTime", $this->namedtag["CookTime"] - 1);
+			$this->namedtag->BrewTime = new Short("BrewTime", $this->namedtag["BrewTime"] - 1);
 
-			if($this->namedtag["CookTime"] <= 0){
+			if($this->namedtag["BrewTime"] <= 0){
 				for($i = 1; $i <= 3; $i++){
 					$potion = $this->inventory->getItem($i);
 					$recipe = Server::getInstance()->getCraftingManager()->matchBrewingRecipe($ingredient, $potion);
@@ -225,13 +225,13 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
 					$pk = new ContainerSetDataPacket();
 					$pk->windowid = $windowId;
 					$pk->property = 0; //Brew
-					$pk->value = $this->namedtag["CookTime"];
+					$pk->value = $this->namedtag["BrewTime"];
 					$player->dataPacket($pk);
 				}
 			}
 
 			$ret = true;
-		}else $this->namedtag->CookTime = new Short("CookTime", self::MAX_BREW_TIME);
+		}else $this->namedtag->BrewTime = new Short("BrewTime", self::MAX_BREW_TIME);
 
 		$this->lastUpdate = microtime(true);
 
@@ -246,7 +246,7 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
 			new Int("x", (int) $this->x),
 			new Int("y", (int) $this->y),
 			new Int("z", (int) $this->z),
-			new Short("CookTime", self::MAX_BREW_TIME),
+			new Short("BrewTime", self::MAX_BREW_TIME),
 		]);
 
 		if($this->hasName()){
