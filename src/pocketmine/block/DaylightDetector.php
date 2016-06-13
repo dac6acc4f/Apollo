@@ -1,4 +1,4 @@
-<?php
+/*<?php
 /*
  *
  *  _____   _____   __   _   _   _____  __    __  _____
@@ -83,4 +83,4 @@ class DaylightDetector extends RedstoneSource{
 			[self::DAYLIGHT_SENSOR, 0, 1]
 		];
 	}
-}
+}*/
