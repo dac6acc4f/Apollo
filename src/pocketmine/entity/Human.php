@@ -106,7 +106,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 			$this->foodTickTimer = 0;
 		}
 	}
-	public function getMaxFood() : float{
+	public function getMaxFood(){
 		return $this->attributeMap->getAttribute(Attribute::HUNGER)->getMaxValue();
 	}
 	public function addFood(float $amount){
@@ -115,7 +115,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		$amount = max(min($amount, $attr->getMaxValue()), $attr->getMinValue());
 		$this->setFood($amount);
 	}
-	public function getSaturation() : float{
+	public function getSaturation(){
 		return $this->attributeMap->getAttribute(Attribute::SATURATION)->getValue();
 	}
 	/**
@@ -133,7 +133,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		$attr = $this->attributeMap->getAttribute(Attribute::SATURATION);
 		$attr->setValue($attr->getValue() + $amount, true);
 	}
-	public function getExhaustion() : float{
+	public function getExhaustion(){
 		return $this->attributeMap->getAttribute(Attribute::EXHAUSTION)->getValue();
 	}
 	/**
@@ -177,25 +177,25 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		$this->setExhaustion($exhaustion);
 		return $ev->getAmount();
 	}
-	public function getXpLevel() : int{
+	public function getXpLevel(){
 		return (int) $this->attributeMap->getAttribute(Attribute::EXPERIENCE_LEVEL)->getValue();
 	}
 	public function setXpLevel(int $level){
 		$this->attributeMap->getAttribute(Attribute::EXPERIENCE_LEVEL)->setValue($level);
 	}
-	public function getXpProgress() : float{
+	public function getXpProgress(){
 		return $this->attributeMap->getAttribute(Attribute::EXPERIENCE)->getValue();
 	}
 	public function setXpProgress(float $progress){
 		$this->attributeMap->getAttribute(Attribute::EXPERIENCE)->setValue($progress);
 	}
-	public function getTotalXp() : float{
+	public function getTotalXp(){
 		return $this->totalXp;
 	}
-	public function getRemainderXp() : int{
+	public function getRemainderXp(){
 		return $this->getTotalXp() - self::getTotalXpForLevel($this->getXpLevel());
 	}
-	public function recalculateXpProgress() : float{
+	public function recalculateXpProgress(){
 		$this->setXpProgress($this->getRemainderXp() / self::getTotalXpForLevel($this->getXpLevel()));
 	}
 	public static function getTotalXpForLevel(int $level) : int{
