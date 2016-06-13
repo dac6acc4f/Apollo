@@ -198,7 +198,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	public function recalculateXpProgress(){
 		$this->setXpProgress($this->getRemainderXp() / self::getTotalXpForLevel($this->getXpLevel()));
 	}
-	public static function getTotalXpForLevel(int $level) : int{
+	public static function getTotalXpForLevel(int $level){
 		if($level <= 16){
 			return $level ** 2 + $level * 6;
 		}elseif($level < 32){
