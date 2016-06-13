@@ -1,4 +1,4 @@
-/*<?php
+//<?php
 /*
  *
  *  _____   _____   __   _   _   _____  __    __  _____
@@ -17,7 +17,7 @@
  * @link https://mcper.cn
  *
  */
-namespace pocketmine\block;
+/*namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\nbt\tag\Compound;
