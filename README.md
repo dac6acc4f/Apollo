@@ -1,20 +1,18 @@
-# Apollo
+# Apollo - Stable
 Apollo is a Minecraft: PE Server Software with an improved Generator and a lot more features. 
 
-Note: You may **not** copy our generator without NycuRO's permission. Other than that, everything is open-source.
+Note: You may **not** copy our generator without NycuRO's permission. Other than that, everything is open-source and may be edited.
 
 **TravisCI Build Status** [![TravisCI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)](https://travis-ci.org/NycuRO/Apollo "TravisCI Build Status")
-
-#Stable
 
 ## Test Server
 - IP : 5.135.170.32
 - PORT : 1
-- Server uses 512mb ram with 1 core. You can test Apollo in test server :D
+- Server uses 512mb ram with 1 core.
 - Server is online 24/7 and more better.
 
 ## Features
-- Worlds: Generator has been improved and has more biomes than the normal Pocketmine.
+- Worlds: Generator has been improved and has more biomes than Genisys and PocketMine
 - Little to no lag at all!
 
 ## Upcoming Update
@@ -39,8 +37,10 @@ Atention! All version have new biomes added and more changes in biomes :)
  We arn't a team of advanced coders, so other coders like you can help us improve our MCPE Server Software by creating a pull request or create request for collaborator ;)
  
 ## TODO :
- If you have epic ideas,create one issue with ideea and paste here :)
+ If you have epic ideas, create an issue and tell us the idea!
 ## Information
 
 - Need to communicate with us? Join our [Telegram](https://telegram.me/joinchat/Ca8L9T9P01PtR1bOEwtxuw) group!
-- Apollo is now PHP5 ,coming soon PHP7
+- We are a edited version of Genisys. We have edited their generators to our version and have improved the performance
+ - **"Improved" as in what NycuRO thinks improved it.
+- Apollo is currently PHP5, we will update to PHP7 soon.
