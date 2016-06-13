@@ -77,7 +77,7 @@ class DLDetector extends Spawnable{
 		return 0;
 	}
 	public function isActivated(){
-		if($this->getType() == Block::DAYLIGHT_DETECTOR) {
+		if($this->getType() == Block::DAYLIGHT_SENSOR) {
 			if($this->getLightByTime() == 15) return true;
 			return false;
 		}else{
@@ -91,7 +91,7 @@ class DLDetector extends Spawnable{
 	public function onUpdate(){
 		if(($this->getLevel()->getServer()->getTick() % 3) == 0){ //Update per 3 ticks
 			if($this->getType() != $this->lastType){ //Update when changed
-				/** @var DaylightDetector $block */
+				/** @var DaylightSensor $block */
 				$block = $this->getBlock();
 				if($this->isActivated()){
 					$block->activate();
@@ -105,7 +105,7 @@ class DLDetector extends Spawnable{
 	}
 	public function getSpawnCompound(){
 		return new Compound("", [
-			new String("id", Tile::DAY_LIGHT_DETECTOR),
+			new String("id", Tile::DAY_LIGHT_SENSOR),
 			new Int("x", (int) $this->x),
 			new Int("y", (int) $this->y),
 			new Int("z", (int) $this->z),
