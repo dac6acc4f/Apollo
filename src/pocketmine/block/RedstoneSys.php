@@ -1,5 +1,5 @@
 <?php
 namespace pocketmine\block;
-interface Redstone{
+interface RedstoneSys{
 	public function isRedstone();
 }
