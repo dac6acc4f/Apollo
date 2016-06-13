@@ -26,10 +26,10 @@ use pocketmine\nbt\tag\Int;
 use pocketmine\tile\Tile;
 use pocketmine\tile\DLDetector;
 class DaylightDetector extends RedstoneSource{
-	protected $id = self::DAYLIGHT_DETECTOR;
+	protected $id = self::DAYLIGHT_SENSOR;
 	//protected $hasStartedUpdate = false;
 	public function getName(){
-		return "Daylight Detector";
+		return "Daylight Sensor";
 	}
 	public function getBoundingBox(){
 		if($this->boundingBox === null){
@@ -52,16 +52,16 @@ class DaylightDetector extends RedstoneSource{
 			return $t;
 		}else{
 			$nbt = new Compound("", [
-				new String("id", Tile::DAY_LIGHT_DETECTOR),
+				new String("id", Tile::DAY_LIGHT_SENSOR),
 				new Int("x", $this->x),
 				new Int("y", $this->y),
 				new Int("z", $this->z)
 			]);
-			return Tile::createTile(Tile::DAY_LIGHT_DETECTOR, $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+			return Tile::createTile(Tile::DAY_LIGHT_SENSOR, $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
 		}
 	}
 	public function onActivate(Item $item, Player $player = null){
-		$this->getLevel()->setBlock($this, new DaylightDetectorInverted(), true, true);
+		$this->getLevel()->setBlock($this, new DaylightSensorInverted(), true, true);
 		$this->getTile()->onUpdate();
 		return true;
 	}
@@ -80,7 +80,7 @@ class DaylightDetector extends RedstoneSource{
 	}
 	public function getDrops(Item $item) {
 		return [
-			[self::DAYLIGHT_DETECTOR, 0, 1]
+			[self::DAYLIGHT_SENSOR, 0, 1]
 		];
 	}
 }
