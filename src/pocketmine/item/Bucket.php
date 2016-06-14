@@ -29,10 +29,10 @@ class Bucket extends Item{
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::BUCKET, $meta, $count, "Bucket");
 	}
-	public function getMaxStackSize() : int{
+	public function getMaxStackSize(){
 		return 1;
 	}
-	public function canBeActivated() : bool{
+	public function canBeActivated(){
 		return true;
 	}
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
