@@ -17,8 +17,8 @@ Note: You may **not** copy our generator without NycuRO's permission. Other than
 
 ## Upcoming Update
 - 0.4 -> Delete all lines unused and minor bug fixed and creating Jenkins site or GitLab
-- 0.5dev -> Start create new Al for animals and world generation with animals/zombies
-- 0.5 -> Finish finaly Al mobs and animals and world generatiom with this
+- 0.5dev -> Start create PHP7
+- 0.5 -> Finish PHP7
 - 0.6dev -> Create new block system
 - 0.6 -> Finish system block
 - 0.7dev -> Create new items system
@@ -27,8 +27,8 @@ Note: You may **not** copy our generator without NycuRO's permission. Other than
 - 0.8 -> Finish all Villages added
 - 0.9dev -> Start add other biomes
 - 0.9 -> Finish all biomes of MCPE
-- 1.0dev -> Start PHP7 for epic software
-- 1.0 -> Finish PHP7
+- 1.0dev -> Start create new Al for animals and world generation with animals/zombies
+- 1.0 -> Finish finaly Al mobs and animals and world generation with this
 - ....
 
 Attention! All version have new biomes added and more changes in biomes :)
