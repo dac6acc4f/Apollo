@@ -56,7 +56,7 @@ use pocketmine\command\defaults\ExtractPharCommand;
 use pocketmine\command\defaults\MakePluginCommand;
 use pocketmine\command\defaults\BancidbynameCommand;
 use pocketmine\command\defaults\BanipbynameCommand;
-use pocketmine\command\defaults\BanCidCommand;
+//use pocketmine\command\defaults\BanCidCommand;
 use pocketmine\command\defaults\PardonCidCommand;
 use pocketmine\command\defaults\WeatherCommand;
 
@@ -78,10 +78,10 @@ class SimpleCommandMap implements CommandMap{
 	private function setDefaultCommands(){
 		$this->register("pocketmine", new WeatherCommand("weather"));
 
-		$this->register("pocketmine", new BanCidCommand("bancid"));
-		$this->register("pocketmine", new PardonCidCommand("pardoncid"));
-		$this->register("pocketmine", new BancidbynameCommand("bancidbyname"));
-		$this->register("pocketmine", new BanipbynameCommand("banipbyname"));
+		//$this->register("pocketmine", new BanCidCommand("bancid"));
+		$this->register("pocketmine", new PardonCidCommand("pardondevice"));
+		$this->register("pocketmine", new BancidbynameCommand("deviceban"));
+		//$this->register("pocketmine", new BanipbynameCommand("banipbyname"));
 
 		$this->register("pocketmine", new ExtractPharCommand("extractphar"));
 		$this->register("pocketmine", new ExtractPluginCommand("extractplugin"));
