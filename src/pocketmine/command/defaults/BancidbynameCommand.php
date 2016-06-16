@@ -12,7 +12,7 @@ class BancidbynameCommand extends VanillaCommand{
 			"%pocketmine.command.bancidbyname.description",
 			"%commands.bancidbyname.usage"
 		);
-		$this->setPermission("pocketmine.command.bancidbyname");
+		$this->setPermission("pocketmine.command.deviceban");
 	}
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
