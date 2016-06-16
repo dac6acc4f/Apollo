@@ -55,7 +55,7 @@ use pocketmine\command\defaults\ExtractPluginCommand;
 use pocketmine\command\defaults\ExtractPharCommand;
 use pocketmine\command\defaults\MakePluginCommand;
 use pocketmine\command\defaults\BancidbynameCommand;
-use pocketmine\command\defaults\BanipbynameCommand;
+//use pocketmine\command\defaults\BanipbynameCommand;
 //use pocketmine\command\defaults\BanCidCommand;
 use pocketmine\command\defaults\PardonCidCommand;
 use pocketmine\command\defaults\WeatherCommand;
