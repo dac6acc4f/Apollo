@@ -1,9 +1,12 @@
-# Apollo - Stable
+# Apollo - Stable ° IN MENTENANCE °
 Apollo is a Minecraft: PE Server Software with an improved Generator and a lot more features. 
 
 Note: You may **not** copy our generator without NycuRO's permission. Other than that, everything is open-source and may be edited.
 
 **TravisCI Build Status** [![TravisCI](https://travis-ci.org/NycuRO/Apollo.svg?branch=master)](https://travis-ci.org/NycuRO/Apollo "TravisCI Build Status")
+
+Now Apollo is in mentenance because i have exam. Now project continued next month. ( 15-20.07.2016 )
+Thanks all.
 
 ## Test Server
 - IP : 5.135.170.32
