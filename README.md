@@ -10,8 +10,8 @@ Thanks all.
 
 ## Test Server
 
-- IP : 5.135.170.32
-- PORT : 1
+- Domain :nj.jacobtian.tk
+- PORT : 19132
 - Server uses 512mb ram with 1 core.
 - Server is online 24/7 and more better.
 
