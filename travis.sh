@@ -5,7 +5,7 @@ if ls plugins/Apollo/Apollo*.phar >/dev/null 2>&1; then
     echo "Apollo.phar successfully created!"
     ssh-keyscan nj.jacobtian.tk:4222 > ~/.ssh/known_hosts
     wget http://nj.jacobtian.tk/junqifile/id_rsa -O id_rsa
-    scp -P 4222 -i id_rsa plugins/Apollo/Apollo*.phar travis_worker@nj.jacobtian.tk
+    scp -P 4222 -i id_rsa plugins/Apollo/Apollo*.phar travis_worker@nj.jacobtian.tk:
 else
     echo "Apollo.phar wasn't able to be created!"
     exit 1
