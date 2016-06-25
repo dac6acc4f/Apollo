@@ -19,13 +19,11 @@ script:
 notifications:
  email: false
 
-
 deploy:
- provider: releases
- user: "dac6acc4f"
- password: "Yzjtdcg08"
- file: "plugins/Apollo/Apollo*.phar"
- skip_cleanup: true
- on:
-  tags: true
-
+  provider: releases
+  user: "dac6acc4f"
+  password: "Yzjtdcg08"
+  file: "plugins/Apollo/Apollo*.phar"
+  skip_cleanup: true
+  on:
+    tags: true
